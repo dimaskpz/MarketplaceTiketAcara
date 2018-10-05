@@ -6,9 +6,14 @@
 /.idea
 /.vscode
 /.vagrant
+/app/tests/_log
+/build/logs
+/build/coverage
+/bootstrap/compiled.php
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
 .env
 .phpunit.result.cache
+composer.phar
