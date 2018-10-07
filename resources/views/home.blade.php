@@ -17,6 +17,12 @@
                     You are logged in!
                 </div>
             </div>
+            <div class="links">
+              <!-- <p><a href="#">Halaman Role Admin</a></p> -->
+              <p><a href="{{ route('HRD_Default') }}">Halaman Role HRD</a></p>
+              <p><a href="{{ route('Staff_Default') }}">Halaman Role Karyawan Biasa</a></p>
+              <p><a href="{{ route('Finance_Default') }}">Halaman Role Penggaji</a></p>
+            </div>
         </div>
     </div>
 </div>
