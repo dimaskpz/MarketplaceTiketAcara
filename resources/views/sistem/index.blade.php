@@ -14,6 +14,20 @@ img {margin-bottom: -8px;}
 </style>
 <body class="w3-content w3-black" style="max-width:1500px;">
 
+  <!-- Navbar (sit on top) -->
+  <div class="w3-top">
+    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+      <a href="#home" class="w3-bar-item w3-button"><b>VIHO</b>Workshop System</a>
+      <!-- Float links to the right. Hide them on small screens -->
+      <div class="w3-right w3-hide-small">
+        <a href="#projects" class="w3-bar-item w3-button">Masuk</a>
+        <a href="#about" class="w3-bar-item w3-button">Tentang Kami</a>
+        <a href="#contact" class="w3-bar-item w3-button">Kontak</a>
+      </div>
+    </div>
+  </div>
+
+
 <!-- Header with Slideshow -->
 <header class="w3-display-container w3-center">
   <button class="w3-button w3-block w3-green w3-hide-large w3-hide-medium" onclick="document.getElementById('download').style.display='block'">Download <i class="fa fa-android"></i> <i class="fa fa-apple"></i> <i class="fa fa-windows"></i></button>
@@ -31,7 +45,7 @@ img {margin-bottom: -8px;}
     <img class="w3-image" src="images/event2.jpg" alt="Image 2" style="min-width:500px" width="1500" height="1000">
     <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
       <div class="w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large">
-        <h1 class="w3-xlarge w3-text-red">Seminar</h1>
+        <h1 class="w3-xlarge w3-text-red">Workshop</h1>
         <hr class="w3-opacity">
         <p>Choose from thousands of features</p>
       </div>
@@ -41,7 +55,7 @@ img {margin-bottom: -8px;}
     <img class="w3-image" src="images/event3.jpg" alt="Image 3" style="min-width:500px" width="1500" height="1000">
     <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
       <div class="w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large">
-        <h1 class="w3-xlarge">Smart Design</h1>
+        <h1 class="w3-xlarge">Seminar</h1>
         <hr class="w3-opacity">
         <p>Customize photos as you go</p>
       </div>
@@ -63,7 +77,7 @@ img {margin-bottom: -8px;}
     <i class="fa fa-twitter w3-hover-opacity"></i>
     <i class="fa fa-linkedin w3-hover-opacity"></i>
   </div>
-  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+  <p class="w3-medium">Copyright Viho 2018 </p>
 </footer>
 
 <script>
