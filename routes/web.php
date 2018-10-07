@@ -16,9 +16,13 @@ Route::get('/', function () {
 });
 
 Route::get('/admin', function () {
-    return view('sistem.index');
+    return view('sistem.cthtemplate.index');
 });
 
 Route::get('/admin2', function () {
-    return view('sistem.index2');
+    return view('sistem.cthtemplate.index2');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
