@@ -38,11 +38,20 @@ Route::get('/affiliates', 'AffiliateController@index')->name('Affiliate_Default'
 
 
 Route::get('/admin', function () {
-    return view('sistem.cthtemplate.index');
+    return view('unused.cthtemplate.index');
 });
 
 Route::get('/admin2', function () {
-    return view('sistem.cthtemplate.index2');
+    return view('unused.cthtemplate.index2');
+});
+
+//template dashboard
+Route::get('/a2', function () {
+    return view('sistem.index2');
+});
+//halaman welcome
+Route::get('/a', function () {
+    return view('sistem.index');
 });
 
 // Route::get('/karyawan', 'MasterKaryawanController@index')->name('User_Default');
