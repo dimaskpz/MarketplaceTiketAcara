@@ -14,8 +14,12 @@ Event
 @section('content')
 
   <h2>Tabs in a Grid</h2>
-
-<input type="text" placeholder="Search.." name="search">
+<div class="">
+  <p>
+  <input type="text" placeholder="Search.." name="search">
+  </p>
+  
+</div>
 
     <div class="w3-row">
       <a href="javascript:void(0)" onclick="openCity(event, 'tabaktif');">
