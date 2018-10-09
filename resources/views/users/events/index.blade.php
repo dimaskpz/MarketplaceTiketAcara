@@ -13,25 +13,27 @@ Event
 
 @section('content')
 
-  <h2>Tabs in a Grid</h2>
-<div class="">
+<div class="w3-container w3-padding-32">
+  <!--Search Bar-->
+  <h3>Event</h3>
   <p>
-  <input type="text" placeholder="Search.." name="search">
+  <div class="w3-row-padding">
+    <div class="w3-half">
+    <input type="text" class="w3-bar-item w3-input" placeholder="Cari Event....">
+    </div>
+  </div>
   </p>
-  
-</div>
-
+    <!--Tabs-->
+    <p>
     <div class="w3-row">
-      <a href="javascript:void(0)" onclick="openCity(event, 'tabaktif');">
+      <a href="javascript:void(0)" onclick="openEvent(event, 'tabaktif');">
         <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">EVENT AKTIF</div>
       </a>
-      <a href="javascript:void(0)" onclick="openCity(event, 'tablalu');">
+      <a href="javascript:void(0)" onclick="openEvent(event, 'tablalu');">
         <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">EVENT LALU</div>
       </a>
-      {{-- <a href="javascript:void(0)" onclick="openCity(event, 'Tokyo');">
-        <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Tokyo</div>
-      </a> --}}
     </div>
+    </p>
 
     <div id="tabaktif" class="w3-container city" style="display:none">
       <h2>London</h2>
@@ -42,15 +44,13 @@ Event
       <h2>Paris</h2>
       <p>Paris is the capital of France.</p>
     </div>
-
-    {{-- <div id="Tokyo" class="w3-container city" style="display:none">
-      <h2>Tokyo</h2>
-      <p>Tokyo is the capital of Japan.</p>
-    </div> --}}
+    <!--Akhir Tabs-->
   </div>
 
+
+
   <script>
-  function openCity(evt, cityName) {
+  function openEvent(evt, cityName) {
     var i, x, tablinks;
     x = document.getElementsByClassName("city");
     for (i = 0; i < x.length; i++) {
