@@ -32,13 +32,13 @@ Route::get('/', 'DashboardController@index')->name('Dashboard_Default');
 
 Route::group(['prefix' => 'tickets'], function () {
 Route::get('/', 'TicketController@index')->name('Ticket_Default');
-// Route::get('/show/{id}', 'TicketController@index')->name('Ticket_Default');
+Route::get('/show/{id}', 'TicketController@show')->name('Ticket.Show');
 });
 
 Route::group(['prefix' => 'events'], function () {
 Route::get('/', 'EventController@index')->name('Event_Default');
 Route::get('/show/{id}', 'EventController@show')->name('Event.Show');
-// Route::get('/edit/{id}', 'EventController@edit')->name('Event.Edit');
+Route::get('/edit/{id}', 'EventController@edit')->name('Event.Edit');
 });
 
 Route::group(['prefix' => 'affiliates'], function () {
