@@ -36,16 +36,56 @@ Event
     </p>
 
     <div id="tabaktif" class="w3-container city" style="display:none">
-      <h2>London</h2>
-      <p>London is the capital city of England.</p>
+        <!--Awal Tabel-->
+        <p>
+        <div class="w3-responsive">
+          <table class="w3-table-all">
+            <tr>
+              <th>Nama Event</th>
+              <th>Tanggal Event</th>
+              <th>Waktu</th>
+              <th>Kapasitas</th>
+              <th>Venue dan Lokasi</th>
+            </tr>
+            <tr>
+              <td>OVO Points</td>
+              <td>18-19 Januari 2018</td>
+              <td>09.00am-12.00pm</td>
+              <td>400</td>
+              <td>Universitas Ciputra</td>
+            </tr>
+          </table>
+        </div>
+        </p>
     </div>
+        <!--Akhir Tabel-->
 
     <div id="tablalu" class="w3-container city" style="display:none">
-      <h2>Paris</h2>
-      <p>Paris is the capital of France.</p>
+      <p>
+      <div class="w3-responsive">
+        <table class="w3-table-all">
+          <tr>
+            <th>Nama Event</th>
+            <th>Tanggal Event</th>
+            <th>Waktu</th>
+            <th>Kapasitas</th>
+            <th>Venue dan Lokasi</th>
+          </tr>
+          <tr>
+            <td>OVO Points</td>
+            <td>18-19 Januari 2018</td>
+            <td>09.00am-12.00pm</td>
+            <td>400</td>
+            <td>Universitas Ciputra</td>
+          </tr>
+        </table>
+      </div>
+      </p>
     </div>
     <!--Akhir Tabs-->
+
   </div>
+  <!--Akhir Container-->
 
 
 
