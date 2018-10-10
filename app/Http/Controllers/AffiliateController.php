@@ -45,7 +45,7 @@ class AffiliateController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('users.affiliates.show');
     }
 
     /**

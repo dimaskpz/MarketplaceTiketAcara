@@ -25,13 +25,32 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Route::get('/dashboards', 'DashboardController@index')->name('Dashboard_Default');
 
-Route::get('/tickets', 'TicketController@index')->name('Ticket_Default');
+Route::group(['prefix' => 'dashboards'], function () {
+Route::get('/', 'DashboardController@index')->name('Dashboard_Default');
+});
 
-Route::get('/events', 'EventController@index')->name('Event_Default');
+Route::group(['prefix' => 'tickets'], function () {
+Route::get('/', 'TicketController@index')->name('Ticket_Default');
+// Route::get('/show/{id}', 'TicketController@index')->name('Ticket_Default');
+});
 
-Route::get('/affiliates', 'AffiliateController@index')->name('Affiliate_Default');
+Route::group(['prefix' => 'events'], function () {
+Route::get('/', 'EventController@index')->name('Event_Default');
+Route::get('/show/{id}', 'EventController@show')->name('Event.Show');
+// Route::get('/edit/{id}', 'EventController@edit')->name('Event.Edit');
+});
+
+Route::group(['prefix' => 'affiliates'], function () {
+Route::get('/', 'AffiliateController@index')->name('Affiliate_Default');
+Route::get('/show/{id}', 'AffiliateController@show')->name('Affiliate.Show');
+});
+
+
+
+
+
+
 
 
 

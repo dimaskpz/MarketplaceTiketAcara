@@ -12,7 +12,8 @@ Affiliate
 
 
 @section('content')
-
+show
+<a href="{{ route('Affiliate.Show', ['id' => 35]) }}">link</a>
 tabel acara yang diikuti
 
 <table class="w3-table">

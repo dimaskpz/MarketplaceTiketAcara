@@ -12,7 +12,7 @@ Event
 
 
 @section('content')
-
+<a href="{{ route('Event.Show', ['id' => 35]) }}">link</a>
 <div class="w3-container w3-padding-32">
   <!--Search Bar-->
   <h3>Event</h3>
