@@ -14,14 +14,15 @@ Event
 @section('content')
 <div class="w3-container w3-padding-32">
   <!--Search Bar-->
-  <div class="w3-bottombar w3-border-red">
-    <h3>Judul Event (OVO Talkshow)</h3>
+  <div class="w3-bottombar w3-border-teal w3-text-teal">
+    <b><h2>Judul Event (OVO Talkshow)</h2></b>
   </div>
+
   <p>
   <div class="w3-row-padding">
     <div class="w3-half">
       <p>
-      <div class="w3-card-4 w3-red" style="width:75%">
+      <div class="w3-card-4 w3-teal" style="width:75%">
         <img src="/images/DWP.jpg" alt="Image 3" style="width:100%">
         <div class="w3-container w3-center">
           <p>Ovo Talkshow "DWP"</p>
@@ -29,11 +30,40 @@ Event
       </div>
       </p>
     </div>
+    <div class="w3-half">
+      <p>
+      <ul class="w3-ul w3-card-4 w3-white">
+        <li class="w3-bar">
+          <img src="img_avatar2.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+          <div class="w3-bar-item w3-border-left">
+            <span class="w3-large">Mike</span><br>
+            <span>Web Designer</span>
+          </div>
+        </li>
+
+        <li class="w3-bar">
+          <img src="img_avatar5.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+          <div class="w3-bar-item w3-border-left">
+            <span class="w3-large">Jill</span><br>
+            <span>Support</span>
+          </div>
+        </li>
+
+        <li class="w3-bar">
+          <img src="img_avatar6.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+          <div class="w3-bar-item w3-border-left">
+            <span class="w3-large">Jane</span><br>
+            <span>Accountant</span>
+          </div>
+        </li>
+      </ul>
+      </p>
+    </div>
   </div>
   </p>
 
   <div class='w3-row-padding'>
-    <div class="w3-card-4 w3-white w3-topbar w3-border-red">
+    <div class="w3-card-4 w3-white w3-topbar w3-border-teal">
       <div class="w3-container">
         <div class='w3-row-padding'>
           <div class="w3-third">
