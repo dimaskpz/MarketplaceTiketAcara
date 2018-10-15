@@ -23,7 +23,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('users.events.create');
     }
 
     /**

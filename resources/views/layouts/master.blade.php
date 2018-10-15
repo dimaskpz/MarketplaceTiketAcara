@@ -47,6 +47,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a href="{{ route('Event_Default') }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-paint-brush fa-fw"></i>   Event</a>
     <a href="{{ route('Ticket_Default') }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket fa-fw"></i>  Ticket</a>
     <a href="{{ route('Affiliate_Default') }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i>  Affiliate</a>
+    @yield('side_navigation')
   </div>
 </nav>
 

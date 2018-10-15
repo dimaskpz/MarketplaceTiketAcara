@@ -10,6 +10,9 @@ budi
 Event
 @endsection
 
+@section('side_navigation')
+  <a href="{{ route('Affiliate_Default') }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i>Acara</a>
+@endsection
 
 @section('content')
 <div class="w3-container w3-padding-32">
