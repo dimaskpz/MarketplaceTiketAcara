@@ -10,14 +10,13 @@ budi
 Event
 @endsection
 
+@section('body')
+  onload="openEvent(event, 'tabaktif');"
+@endsection
 
 @section('content')
-<a href="{{ route('Event.Show', ['id' => 35]) }}">Show link</a>
-<p></p>
-<a href="{{ route('Event.Edit', ['id' => 35]) }}">Edit link</a>
-<p></p>
-<a href="{{ route('Event.Create', ['id' => 35]) }}">Create link</a>
 <div class="w3-container w3-padding-32">
+  <a href="{{ route('Event.Create') }}" class="w3-btn w3-teal w3-right"> Tambah Event</a>
   <!--Search Bar-->
   <h3>Event</h3>
   <p>
@@ -47,10 +46,22 @@ Event
             <tr>
               <th>Nama Event</th>
               <th>Tanggal Event</th>
-              <th>Waktu</th>
               <th>Kapasitas</th>
               <th>Venue dan Lokasi</th>
+              <th>Lihat</th>
+              {{-- <th>Waktu</th> --}}
             </tr>
+
+            @foreach ($acaras as $acara)
+              <tr>
+                <td> {{ $acara->nama }} </td>
+                <td> {{date('d-m-Y', strtotime($acara->tgl_mulai))}} </td>
+                {{-- <td> {{ date_format($acara->tgl_mulai, "Y/m/d H:i:s") }} - {{$acara->tgl_selesai}}  </td> --}}
+                <td> {{ $acara->kapasitas }} </td>
+                <td> {{ $acara->lokasi }} </td>
+                <td> <a href="{{ route('Event.Show', ['id' => $acara->id]) }}" class="w3-btn w3-teal">Lihat</a> </td>
+              </tr>
+            @endforeach
             <tr>
               <td>OVO Points</td>
               <td>18-19 Januari 2018</td>

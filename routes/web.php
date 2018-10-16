@@ -41,7 +41,12 @@ Route::get('/', 'EventController@index')->name('Event_Default');
 Route::get('/show/{id}', 'EventController@show')->name('Event.Show');
 Route::get('/edit/{id}', 'EventController@edit')->name('Event.Edit');
 Route::get('/create', 'EventController@create')->name('Event.Create');
+Route::post('/store', 'EventController@store')->name('Event.Store');
 
+Route::get('/penjualan/{id}', 'EventController@penjualan')->name('Event.Penjualan');
+Route::get('/pemesan/{id}', 'EventController@pemesan')->name('Event.Pemesan');
+Route::get('/checkin/{id}', 'EventController@checkin')->name('Event.Checkin');
+Route::get('/sales/{id}','EventController@sales')->name('Event.Sales');
 });
 
 Route::group(['prefix' => 'affiliates'], function () {

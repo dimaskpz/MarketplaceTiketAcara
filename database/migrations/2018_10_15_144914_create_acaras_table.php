@@ -17,14 +17,16 @@ class CreateAcarasTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('gambar',255)->nullable();
             $table->string('nama',255)->nullable();
+            $table->string('lokasi',255)->nullable();
             $table->Integer('kapasitas')->nullable();
             $table->string('jenis_acara',255)->nullable();
             $table->date('tgl_mulai')->nullable();
             $table->date('tgl_selesai')->nullable();
             $table->time('wkt_mulai')->nullable();
             $table->time('wkt_selesai')->nullable();
-            $table->string('deskripsi',600)->nullable();                                  
+            $table->string('deskripsi',600)->nullable();
             $table->timestamps();
         });
     }
