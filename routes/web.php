@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/event/{link}','PublicEventController@show')->name('Public.Event.Show');
+
 Auth::routes();
 
 
@@ -25,17 +27,20 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-
+//DASHBOARD
 Route::group(['prefix' => 'dashboards'], function () {
 Route::get('/', 'DashboardController@index')->name('Dashboard_Default');
 });
 
+//TICKETS
 Route::group(['prefix' => 'tickets'], function () {
 Route::get('/', 'TicketController@index')->name('Ticket_Default');
 Route::get('/show/{id}', 'TicketController@show')->name('Ticket.Show');
 
+
 });
 
+//EVENTS
 Route::group(['prefix' => 'events'], function () {
 Route::get('/', 'EventController@index')->name('Event_Default');
 Route::get('/show/{id}', 'EventController@show')->name('Event.Show');
@@ -47,8 +52,11 @@ Route::get('/penjualan/{id}', 'EventController@penjualan')->name('Event.Penjuala
 Route::get('/pemesan/{id}', 'EventController@pemesan')->name('Event.Pemesan');
 Route::get('/checkin/{id}', 'EventController@checkin')->name('Event.Checkin');
 Route::get('/sales/{id}','EventController@sales')->name('Event.Sales');
+
+Route::get('/event/{id}/ticket/create','EventTicketController@create')->name('Event.Ticket.Create');
 });
 
+//AFFILIATES
 Route::group(['prefix' => 'affiliates'], function () {
 Route::get('/', 'AffiliateController@index')->name('Affiliate_Default');
 Route::get('/show/{id}', 'AffiliateController@show')->name('Affiliate.Show');

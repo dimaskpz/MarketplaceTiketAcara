@@ -19,7 +19,9 @@ class CreateAcarasTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('gambar',255)->nullable();
             $table->string('nama',255)->nullable();
-            $table->string('lokasi',255)->nullable();
+            $table->string('nama_tempat',255)->nullable();
+            $table->string('kota',255)->nullable();
+            $table->string('alamat',255)->nullable();
             $table->Integer('kapasitas')->nullable();
             $table->string('jenis_acara',255)->nullable();
             $table->date('tgl_mulai')->nullable();

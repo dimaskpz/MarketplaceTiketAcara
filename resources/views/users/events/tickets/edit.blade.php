@@ -52,9 +52,7 @@ CREATE EVENT
     </div>
   </div>
 
-<a class="w3-btn w3-teal"href="{{ route('Event.Ticket.Edit', ['id'=>$id]) }}"></a>
-
-  {{-- <div class="w3-half w3-padding">
+  <div class="w3-half w3-padding">
     <div class="w3-card-4">
       <div class="w3-container w3-teal">
         <h2>Tiket</h2>
@@ -101,9 +99,9 @@ CREATE EVENT
       </form>
     </div>
 
-
+  {{-- TABEL --}}
   <div class="w3-container city" >
-
+      <!--Awal Tabel-->
       <p>
       <div class="w3-responsive">
         <table class="w3-table-all">
@@ -114,14 +112,24 @@ CREATE EVENT
             <th>Keuntungan Bersih</th>
             <th>Email</th>
             <th>No Telepon</th>
-
+            {{-- <th>Lihat</th> --}}
+            {{-- <th>Waktu</th> --}}
           </tr>
 
+          {{-- @foreach ($saless as $s)
+            <tr>
+              <td>{{ $s->User->name }}</td>
+              <td>4</td>
+              <td>20</td>
+            </tr>
+          @endforeach --}}
 
         </table>
       </div>
       </p>
-  </div> --}}
+  </div>
+<!--Akhir Tabel-->
+
 </div>
 
 </div>

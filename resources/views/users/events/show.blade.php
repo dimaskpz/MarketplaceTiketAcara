@@ -88,7 +88,7 @@ DETAIL ACARA
         <div class="w3-row-padding">
           <div class="w3-half">
             <a href="{{ route('Event.Edit', ['id' => $acara->id]) }}" class="w3-btn w3-teal">Edit</a>
-            <a href="#" class="w3-btn w3-teal">Tambah Jenis Tiket</a>
+            <a href=" {{ route('Event.Ticket.Create', ['id'=>$acara->id]) }} " class="w3-btn w3-teal">Tambah Jenis Tiket</a>
           </div>
         </div>
       </p>

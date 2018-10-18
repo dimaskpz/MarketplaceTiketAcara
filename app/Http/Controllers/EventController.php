@@ -23,7 +23,8 @@ class EventController extends Controller
 
     public function create()
     {
-
+        // $acara = 'testingfsdasfasdfadf';
+        // dd($acara);
         return view('users.events.create');
     }
 
@@ -67,7 +68,8 @@ class EventController extends Controller
 
     public function edit($id)
     {
-        return view('users.events.edit');
+        $acara = Acara::find($id);
+        return view('users.events.create', compact('acara'));
     }
 
 
