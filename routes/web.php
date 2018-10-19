@@ -53,7 +53,12 @@ Route::get('/pemesan/{id}', 'EventController@pemesan')->name('Event.Pemesan');
 Route::get('/checkin/{id}', 'EventController@checkin')->name('Event.Checkin');
 Route::get('/sales/{id}','EventController@sales')->name('Event.Sales');
 
-Route::get('/event/{id}/ticket/create','EventTicketController@create')->name('Event.Ticket.Create');
+Route::get('/{id}/ticket/create','EventTicketController@create')->name('Event.Ticket.Create');
+Route::get('/{id}/ticket/edit', 'EventTicketController@edit')->name('Event.Ticket.Edit');
+Route::post('/{id}/ticket', 'EventTicketController@store')->name('Event.Ticket.Store');
+Route::get('/ticket/edit/{id}','EventTicketController@edit')->name('Event.Ticket.Edit');
+Route::put('/ticket/update/', 'EventTicketController@update')->name('Event.Ticket.Update');
+Route::post('ticket/destroy','EventTicketController@destroy')->name('Event.Ticket.Destroy');
 });
 
 //AFFILIATES

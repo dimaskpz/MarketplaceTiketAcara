@@ -23,45 +23,40 @@ class EventController extends Controller
 
     public function create()
     {
-        // $acara = 'testingfsdasfasdfadf';
-        // dd($acara);
+
         return view('users.events.create');
     }
 
 
     public function store(Request $request)
     {
-        // dd($request->toarray());
-        // dd($request->gambar);
         $acara = new Acara;
         $a = Auth::user()->id;
-        // dd($a->id);
-        // dd($a);
 
-        $acara->gambar = $request->gambar;
         $acara->user_id = Auth::user()->id;
+        $acara->gambar = $request->gambar;
         $acara->nama = $request->nama;
+        $acara->nama_tempat = $request->nama_tempat;
+        $acara->kota = $request->kota;
+        $acara->alamat = $request->alamat;
         $acara->kapasitas = $request->kapasitas;
-        $acara->jenis_acara = $request->kapasitas;
-        $acara->lokasi = $request->lokasi;
+        $acara->deskripsi = $request->deskripsi;
+
         $acara->tgl_mulai = $request->tgl_mulai;
         $acara->tgl_selesai = $request->tgl_selesai;
         $acara->wkt_mulai = $request->wkt_selesai;
         $acara->wkt_selesai = $request->wkt_selesai;
-        $acara->deskripsi = $request->deskripsi;
         $acara->save();
 
         $next = Acara::all()->last();
-        // dd($next->toarray() );
-        return redirect()->route('Event.Show',['id'=>$next->id]);
+
+        return redirect()->route('Event.Ticket.Create', ['id'=>$next->id]);
     }
 
 
     public function show($id)
     {
         $acara = Acara::find($id);
-        // dd($acara->toarray());
-        // $id = $acara->id;
         return view('users.events.show', compact('acara'));
     }
 
@@ -69,7 +64,7 @@ class EventController extends Controller
     public function edit($id)
     {
         $acara = Acara::find($id);
-        return view('users.events.create', compact('acara'));
+        return view('users.events.edit', compact('acara'));
     }
 
 

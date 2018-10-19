@@ -18,7 +18,7 @@ class CreateProduksTable extends Migration
             $table->unsignedInteger('acara_id');
             $table->foreign('acara_id')->references('id')->on('acaras')->onUpdate('cascade')->onDelete('cascade');
             $table->string('nama',255)->nullable();
-            $table->Integer('harga')->nullable();
+            $table->Integer('harga')->default(0);
             $table->Integer('jumlah')->nullable();
             $table->string('deskripsi')->nullable();
             $table->date('tgl_mulai')->nullable();

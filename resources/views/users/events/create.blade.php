@@ -17,19 +17,17 @@ CREATE EVENT
       <form class="w3-container" action="{{ route('Event.Store') }}" method="post">
         <p>
         <label>Gambar Acara</label>
-        <input class="w3-input" type="file" name="gambar" ></p>
+        <input class="w3-input" type="file" name="gambar"></p>
         <p>
         <label>Nama Acara</label>
-        <input class="w3-input" type="text" name="nama" value="{{ (isset($acara)?$acara->nama:'')  }}"></p>
+        <input class="w3-input" type="text" name="nama" ></p>
         <p>
         <label>Kapasitas</label>
-        <input class="w3-input" type="text" name="kapasitas" value="{{ (isset($acara)?$acara->kapasitas:'')  }}"></p>
-        {{-- <p>
-        <label>Jenis Acara</label>
-        <input class="w3-input" type="text" name="jenis_acara" value=""></p> --}}
+        <input class="w3-input" type="text" name="kapasitas" ></p>
+
         <p>
         <label>Tanggal Mulai</label>
-        <input class="w3-input" type="date" name="tgl_mulai" value="{{ (isset($acara)?$acara->tgl_mulai:'')  }}"></p>
+        <input class="w3-input" type="date" name="tgl_mulai" ></p>
         <p>
         <label>Tanggal Selesai</label>
         <input class="w3-input" type="date" name="tgl_selesai"></p>
@@ -40,8 +38,14 @@ CREATE EVENT
         <label>Waktu Selesai</label>
         <input class="w3-input" type="time" name="wkt_selesai"></p>
         <p>
-        <label>Lokasi</label>
-        <input class="w3-input" type="text" name="lokasi"></p>
+        <label>Nama Tempat</label>
+        <input class="w3-input" type="text" name="nama_tempat"></p>
+        <p>
+        <label>Alamat</label>
+        <input class="w3-input" type="text" name="alamat"></p>
+        <p>
+        <label>Kota</label>
+        <input class="w3-input" type="text" name="kota"></p>
         <p>
         <label>Deskripsi</label>
         <textarea class="w3-input" type="text" name="deskripsi"></textarea>
@@ -52,7 +56,6 @@ CREATE EVENT
     </div>
   </div>
 
-<a class="w3-btn w3-teal"href="{{ route('Event.Ticket.Edit', ['id'=>$id]) }}"></a>
 
   {{-- <div class="w3-half w3-padding">
     <div class="w3-card-4">
