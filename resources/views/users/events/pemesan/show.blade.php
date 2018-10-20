@@ -35,38 +35,79 @@ DATA PEMESAN
 <div class="w3-container w3-padding-32">
   <!--Search Bar-->
   <div class="w3-bottombar w3-border-teal w3-text-teal">
-    <b><h2> {{ $acara->nama }} </h2></b>
+    <b><h2>
+      {{ $acara->nama }}
+     </h2></b>
   </div>
 
   <p>
-  <div class="w3-row-padding">
+  {{-- <div class="w3-row-padding">
     <div class="w3-half">
     <input type="text" class="w3-bar-item w3-input" placeholder="Cari Pemesan....">
     </div>
-  </div>
+  </div> --}}
   </p>
-
+<a class="w3-btn" href="{{ route('Event.Pemesan',['id'=>$transaksi->acara_id]) }}">Kembali</a>
   <div class="w3-container city" >
       <!--Awal Tabel-->
       <p>
       <div class="w3-responsive">
         <table class="w3-table-all">
           <tr>
-            <th>Nama Pemesan</th>
-            <th>Nomor Transaksi</th>
-            <th>Pembayaran</th>
-            <th>Sales</th>
-            <th>Lihat</th>
+            <th>Detail Transaksi</th>
+            <th></th>
           </tr>
-          @foreach ($pemesans as $p)
+          <tr>
+            <td>Nama :</td>
+            <td>{{ $transaksi->nama }}</td>
+          </tr>
+          <tr>
+            <td>Email :</td>
+            <td>{{ $transaksi->email }}</td>
+          </tr>
+          <tr>
+            <td>Telepon :</td>
+            <td>{{ $transaksi->tlp }}</td>
+          </tr>
+          <tr>
+            <td>Total :</td>
+            <td> Rp {{ number_format($total,0,"",".") }} </td>
+
+          </tr>
+          <tr>
+            <td>Status Pembayaran :</td>
+            <td>
+              @if ($transaksi->ispaid == 'y')
+                {{ 'Lunas' }}
+              @else
+                {{ 'Belum Lunas' }}
+                <br>
+                <a href="{{ route('Event.Ticket.Konfirmasi',['transaksi_id'=> $transaksi->id]) }}" class="w3-btn w3-blue">Konfirmasi</a>
+              @endif
+            </td>
+          </tr>
+
+          <tr>
+            <td>Tiket yang dibeli :</td>
+          </tr>
+          @foreach ($dtrans as $dtran)
+            <tr>
+              {{-- {{ number_format($total,0,"",".") }} --}}
+              {{-- <td >xxx</td> --}}
+              <td > {{ $dtran->jumlah }} tiket ({{ $dtran->produk->nama }}) </td>
+              <td>@ Rp {{ number_format($dtran->produk->harga,0,"",".") }}</td>
+
+            </tr>
+          @endforeach
+          {{-- @foreach ($pemesans as $p)
             <tr>
               <td>{{ $p->nama }}</td>
               <td>{{ $p->id }}</td>
-              <td>{{ ($p->ispaid == 'y' ?'Sudah Lunas':'Belum Bayar') }}</td>
+              <td>{{ $p->ispaid }}</td>
               <td>{{ $p->user->name }}</td>
-              <td> <a href="{{ route('Event.Pemesan.Show',['transaksi_id'=>$p->id]) }}" class="w3-btn w3-teal">Lihat</a> </td>
+              <td> <a href="{{ route('Event.Pemesan.Show',['id'=>$p->id]) }}" class="w3-btn w3-teal">Lihat</a> </td>
             </tr>
-          @endforeach
+          @endforeach --}}
         </table>
       </div>
       </p>

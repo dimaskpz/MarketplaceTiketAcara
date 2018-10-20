@@ -5,7 +5,7 @@ Edit Tiket
 
 @section('content')
   <div class="w3-container w3-teal">
-  <h2>Edit Tiket</h2>
+  <h2>Viho System</h2>
 </div>
 <div class="w3-padding">
 
@@ -13,9 +13,9 @@ Edit Tiket
   <div class="w3-half w3-padding">
     <div class="w3-card-4">
       <div class="w3-container w3-teal">
-        <h2>Tiket</h2>
+        <h2>Ubah Tiket</h2>
       </div>
-      <form class="w3-container" action="{{ route('Event.Ticket.Update') }}" method="post">
+      <form class="w3-container" action="{{ route('Event.Ticket.Update', ['id'=>$produk->id]) }}" method="post">
         <div class="w3-half w3-padding">
           <p>
           <label>Nama Tiket</label>
@@ -31,10 +31,10 @@ Edit Tiket
           <input class="w3-input w3-border w3-sand" type="text" name="deskripsi" value="{{ $produk->deskripsi }}"></p>
           <p>
           <label>Tanggal Mulai</label>
-          <input required min="{{date('Y-m-d')}}" class="w3-input w3-border w3-sand" type="date" name="tgl_mulai" value="{{ $produk->tgl_mulai }}"></p>
+          <input required class="w3-input w3-border w3-sand" type="date" name="tgl_mulai" value="{{ $produk->tgl_mulai }}"></p>
           <p>
           <label>Tanggal Selesai</label>
-          <input required min="{{date('Y-m-d')}}" class="w3-input w3-border w3-sand" type="date" name="tgl_selesai" value="{{ $produk->tgl_selesai }}"></p>
+          <input required  class="w3-input w3-border w3-sand" type="date" name="tgl_selesai" value="{{ $produk->tgl_selesai }}"></p>
           <p>
         </div>
 
@@ -55,8 +55,9 @@ Edit Tiket
           <label>Kelipatan</label>
           <input class="w3-input w3-border w3-sand" type="text" name="kelipatan" value="{{ $produk->kelipatan }}"></p>
 
-          <button class="w3-btn w3-brown">Ubah Tiket</button>
+          <input type="submit" class="w3-btn w3-brown" value="Simpan Perubahan"></input>
           {{ csrf_field() }}
+          <input type="hidden" name="_method" value="PUT">
             <a href="{{ url()->previous() }}" class="w3-button w3-block w3-black w3-section w3-padding">Kembali</a>
         </div>
 

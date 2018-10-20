@@ -6,8 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaksi extends Model
 {
-  public function Link()
+  // public function Link()
+  // {
+  //   return $this->belongsTo('App\Link');
+  // }
+  public function dtransaksi()
   {
-    return $this->belongsTo('App\Link');
+    return $this->HasMany('App\Dtransaksi');
+  }
+
+  public function User()
+  {
+    return $this->belongsTo('App\User');
   }
 }

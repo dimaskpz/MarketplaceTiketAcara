@@ -62,13 +62,7 @@ Event
                 <td> <a href="{{ route('Event.Show', ['id' => $acara->id]) }}" class="w3-btn w3-teal">Lihat</a> </td>
               </tr>
             @endforeach
-            <tr>
-              <td>OVO Points</td>
-              <td>18-19 Januari 2018</td>
-              <td>09.00am-12.00pm</td>
-              <td>400</td>
-              <td>Universitas Ciputra</td>
-            </tr>
+          
           </table>
         </div>
         </p>

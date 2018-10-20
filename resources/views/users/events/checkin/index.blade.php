@@ -56,17 +56,22 @@ CHECKIN
           <tr>
             <th>Nama Pemesan</th>
             <th>Nomor Transaksi</th>
-            <th>Pembayaran</th>
-            <th>Sales</th>
+            <th>Jumlah Tiket</th>
             <th>Lihat</th>
           </tr>
           @foreach ($transaksis as $t)
             <tr>
               <td>{{ $t->nama }}</td>
               <td>{{ $t->id }}</td>
-              <td>{{ $t->ispaid }}</td>
-              <td>{{ $t->link->user->name }}</td>
-              <td> <a href="#" class="w3-btn w3-teal">Lihat</a> </td>
+              <td>
+                {{ $t->dtransaksi()->sum('jumlah') }}
+              </td>
+              <td>
+                <form action="{{ route('Event.Checkin',['id'=>$id]) }}" method="get">
+                  <input type="hidden" name="transaksi_id" value="{{ $t->id }}"></input>
+                  <button class="w3-btn w3-teal">Lihat</button>
+                </form>
+               </td>
             </tr>
           @endforeach
         </table>

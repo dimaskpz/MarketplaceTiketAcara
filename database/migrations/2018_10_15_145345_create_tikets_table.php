@@ -23,7 +23,8 @@ class CreateTiketsTable extends Migration
             $table->string('tlp')->nullable();
             $table->string('tgl_lahir')->nullable();
             $table->string('jenis_kelamin')->nullable();
-            $table->string('no_ktp')->nullable();                    
+            $table->string('no_ktp')->nullable();
+            $table->string('ischeckin')->default('n');                    
             $table->timestamps();
         });
     }

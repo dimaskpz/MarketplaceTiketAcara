@@ -5,7 +5,7 @@ CREATE EVENT
 
 @section('content')
   <div class="w3-container w3-teal">
-  <h2>Input Form</h2>
+  <h2>CREATE EVENT</h2>
 </div>
 <div class="w3-padding">
 

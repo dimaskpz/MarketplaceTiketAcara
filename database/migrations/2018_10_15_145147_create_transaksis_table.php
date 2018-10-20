@@ -22,8 +22,8 @@ class CreateTransaksisTable extends Migration
             $table->unsignedInteger('acara_id');
             $table->foreign('acara_id')->references('id')->on('acaras')->onUpdate('cascade')->onDelete('cascade');
             $table->string('nama',255)->nullable();
-            $table->string('email')->unique();
-            $table->string('tlp')->nullable;
+            $table->string('email')->nullable();
+            $table->string('tlp')->nullable();
             $table->string('ispaid')->default('n');
             $table->timestamps();
         });

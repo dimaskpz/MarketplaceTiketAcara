@@ -22,6 +22,7 @@ class TiketsTableSeeder extends Seeder
             'tgl_lahir' => '1997-10-11',
             'jenis_kelamin' => 'L',
             'no_ktp' => '94587234570247534',
+            'ischeckin' => 'n',
           ],
 
           [
@@ -34,6 +35,7 @@ class TiketsTableSeeder extends Seeder
             'tgl_lahir' => '1997-10-11',
             'jenis_kelamin' => 'L',
             'no_ktp' => '039458923475873485',
+            'ischeckin' => 'n',
           ],
 
           [
@@ -46,6 +48,7 @@ class TiketsTableSeeder extends Seeder
             'tgl_lahir' => '1997-10-11',
             'jenis_kelamin' => 'L',
             'no_ktp' => '4578374582748573845',
+            'ischeckin' => 'n',
           ],
 
         ]);

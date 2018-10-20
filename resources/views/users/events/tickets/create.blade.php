@@ -13,7 +13,7 @@ CREATE EVENT
   <div class="w3-half w3-padding">
     <div class="w3-card-4">
       <div class="w3-container w3-teal">
-        <h2>Tiket</h2>
+        <h2>Tiket Baru</h2>
       </div>
       <form class="w3-container" action="{{ route('Event.Ticket.Store',['id'=>$id]) }}" method="post">
         <div class="w3-half w3-padding">
