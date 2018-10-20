@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
           LinksTableSeeder::class,
           ProduksTableSeeder::class,
           TransaksisTableSeeder::class,
-          DtransaksisTableSeeder::class,
           TiketsTableSeeder::class,
         ]);
     }

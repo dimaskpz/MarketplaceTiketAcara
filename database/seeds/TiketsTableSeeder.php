@@ -15,7 +15,9 @@ class TiketsTableSeeder extends Seeder
           [
             'id' => '1',
             'no_tiket' => '1',
-            'dtransaksi_id' => '1',
+            'transaksi_id' => '1',
+            'produk_id' => '1',
+            // 'dtransaksi_id' => '1',
             'nama' => 'Budi Wijaya',
             'email' => 'bwijaya@gmail.com',
             'tlp' => '08453745345',
@@ -28,7 +30,9 @@ class TiketsTableSeeder extends Seeder
           [
             'id' => '2',
             'no_tiket' => '2',
-            'dtransaksi_id' => '1',
+            // 'dtransaksi_id' => '1',
+            'transaksi_id' => '1',
+            'produk_id' => '2',
             'nama' => 'Okto',
             'email' => 'okto@gmail.com',
             'tlp' => '084537543757',
@@ -41,7 +45,9 @@ class TiketsTableSeeder extends Seeder
           [
             'id' => '3',
             'no_tiket' => '3',
-            'dtransaksi_id' => '2',
+            'transaksi_id' => '2',
+            'produk_id' => '2',
+            // 'dtransaksi_id' => '2',
             'nama' => 'Kevin Razak',
             'email' => 'Krazak@gmail.com',
             'tlp' => '084665645647',

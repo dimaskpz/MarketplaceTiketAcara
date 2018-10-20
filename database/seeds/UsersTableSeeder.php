@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
               'alamat' => 'Jl. Tidar 577',
               'nama_perusahaan' => 'EO Peace',
               'nama_rekening' => 'Marcia',
-              'nomor_rekening' => '34793748378438',
+              'no_rekening' => '34793748378438',
           ],
 
           [
@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
             'alamat' => 'Jl. Tidar 577',
             'nama_perusahaan' => 'EO Peace',
             'nama_rekening' => 'Dimas Kurnia Pratama',
-            'nomor_rekening' => '3479333748378438',
+            'no_rekening' => '3479333748378438',
           ],
 
           [
@@ -48,7 +48,7 @@ class UsersTableSeeder extends Seeder
             'alamat' => 'Jl. Tidar 577',
             'nama_perusahaan' => 'EO Peace',
             'nama_rekening' => 'Budi Wijaya',
-            'nomor_rekening' => '34333793748378438',
+            'no_rekening' => '34333793748378438',
           ],
       ]);
     }

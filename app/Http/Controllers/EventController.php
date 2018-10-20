@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Acara;
 use App\Link;
 Use App\Transaksi;
-Use App\Dtransaksi;
+// Use App\Dtransaksi;
 Use App\Produk;
 Use App\User;
 Use App\Tiket;
@@ -131,19 +131,17 @@ class EventController extends Controller
     public function pemesan_show($transaksi_id)
     {
       $transaksi = Transaksi::find($transaksi_id);
-      $dtrans = Dtransaksi::where('transaksi_id',$transaksi_id)->get();
+      // $dtrans = Dtransaksi::where('transaksi_id',$transaksi_id)->get();
 
       $acara = Acara::find($transaksi->acara_id);
-      $total = 0;
-      foreach ($dtrans as $dtran) {
-        $total =  $total + ($dtran->jumlah * $dtran->produk->harga);
+      $tikets = Tiket::where('transaksi_id', $transaksi_id)->orderBy('produk_id','asc')->get();
+      // dd($tikets->toarray());
+      $total =0;
+      foreach ($tikets as $t) {
+        $total = $total + $t->Produk->harga;
       }
 
-
-      // dd($dtrans->produk->harga);
-
-      // dd($transaksi->toarray());
-      return view('users.events.pemesan.show', compact('transaksi', 'acara', 'dtrans','total'));
+      return view('users.events.pemesan.show', compact('transaksi', 'acara','total', 'tikets'));
     }
 
     public function konfirmasi($transaksi_id)
@@ -160,18 +158,27 @@ class EventController extends Controller
       $acara = Acara::find($id);
       $transaksis = Transaksi::where('acara_id',$id)->where('ispaid','y')->get();
 
-
       $transaksi_id = $request->transaksi_id;
-// dd($transaksi_id);
-
+       dd($transaksi_id);
       if ($transaksi_id) {
-        // $transaksi = Transaksi::find($transaksi_id);
-        $tikets = Tiket::where('transaksi_id',$transaksi_id)->get();
-        // $dtrans = $transaksi->dtransaksi;
-        dd($tikets);
-        // dd($dtrans->tiket);
+      $tikets = Tiket::where('transaksi_id',$transaksi_id)->orderBy('produk_id','asc')->get();
+      // dd($tikets->toarray());
+      return view('users.events.checkin.index', compact('acara','transaksis','id','tikets'));
       }
+
       return view('users.events.checkin.index', compact('acara','transaksis','id'));
+    }
+
+    public function checkin_update(Request $request, $tiket_id)
+    {
+      $tiket = Tiket::find($tiket_id);
+      $tiket->ischeckin = 'y';
+      $tiket->save();
+
+      $acara_id = $tiket->Transaksi->acara_id;
+      $transaksi_id = $tiket->transaksi_id;
+      dd('acara_id', $acara_id, 'transaksi_id', $transaksi_id);
+      return redirect()->route('Event.Checkin',['id'=>$acara_id])->with(compact('transaksi_id'));
     }
 
     public function sales($id)

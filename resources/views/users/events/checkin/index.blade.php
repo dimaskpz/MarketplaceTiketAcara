@@ -50,6 +50,35 @@ CHECKIN
 
   <div class="w3-container city" >
       <!--Awal Tabel-->
+      @if (isset($tikets))
+        <div class="w3-responsive">
+          <table class="w3-table-all">
+            <tr>
+              <th>Nama Tiket</th>
+              <th>Nomor Tiket</th>
+              <th>Checkin</th>
+            </tr>
+              @foreach ($tikets as $tiket)
+                <tr>
+                  <td>{{ $tiket->Produk->nama }} ({{ $tiket->nama }})</td>
+                  <td>{{ $tiket->id }}</td>
+                  <td>
+                    {{-- TIKET --}}
+                    <form action="{{ route('Event.Checkin.Update',['transaksi_id'=>$tiket->id]) }}" method="post">
+                      {{-- <input type="hidden" name="tiket_id" value="{{$tiket->id}}"> --}}
+                      <input type="submit" value="Checkin"></input>
+                      {{ csrf_field() }}
+                      <input type="hidden" name="_method" value="PUT">
+                    </form>
+
+                  </td>
+                </tr>
+              @endforeach
+
+
+          </table>
+        </div>
+      @endif
       <p>
       <div class="w3-responsive">
         <table class="w3-table-all">
@@ -59,16 +88,15 @@ CHECKIN
             <th>Jumlah Tiket</th>
             <th>Lihat</th>
           </tr>
-          @foreach ($transaksis as $t)
+          @foreach ($transaksis as $transaksi)
             <tr>
-              <td>{{ $t->nama }}</td>
-              <td>{{ $t->id }}</td>
+              <td>{{ $transaksi->nama }}</td>
+              <td>{{ $transaksi->id }}</td>
+              <td>{{ $transaksi->Tiket->count() }}</td>
               <td>
-                {{ $t->dtransaksi()->sum('jumlah') }}
-              </td>
-              <td>
+                {{-- TRANSAKSI --}}
                 <form action="{{ route('Event.Checkin',['id'=>$id]) }}" method="get">
-                  <input type="hidden" name="transaksi_id" value="{{ $t->id }}"></input>
+                  <input type="hidden" name="transaksi_id" value="{{ $transaksi->id }}"></input>
                   <button class="w3-btn w3-teal">Lihat</button>
                 </form>
                </td>

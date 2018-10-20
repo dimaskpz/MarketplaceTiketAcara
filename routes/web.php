@@ -56,8 +56,10 @@ Route::post('/store', 'EventController@store')->name('Event.Store');
 Route::put('/update/{id}', 'EventController@update')->name('Event.Update');
           //DASHBOARD EVENT
 Route::get('/penjualan/{id}', 'EventController@penjualan')->name('Event.Penjualan');
-Route::get('/checkin/{id}', 'EventController@checkin')->name('Event.Checkin');
 Route::get('/sales/{id}','EventController@sales')->name('Event.Sales');
+
+Route::get('/checkin/{id}', 'EventController@checkin')->name('Event.Checkin');
+Route::put('/checkin/tiket/{tiket_id}','EventController@checkin_update')->name('Event.Checkin.Update');
 
 Route::get('/pemesan/{id}', 'EventController@pemesan')->name('Event.Pemesan');
 Route::get('/pemesan/show/{transaksi_id}','EventController@pemesan_show')->name('Event.Pemesan.Show');

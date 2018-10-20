@@ -72,7 +72,6 @@ DATA PEMESAN
           <tr>
             <td>Total :</td>
             <td> Rp {{ number_format($total,0,"",".") }} </td>
-
           </tr>
           <tr>
             <td>Status Pembayaran :</td>
@@ -90,15 +89,19 @@ DATA PEMESAN
           <tr>
             <td>Tiket yang dibeli :</td>
           </tr>
-          @foreach ($dtrans as $dtran)
-            <tr>
-              {{-- {{ number_format($total,0,"",".") }} --}}
-              {{-- <td >xxx</td> --}}
-              <td > {{ $dtran->jumlah }} tiket ({{ $dtran->produk->nama }}) </td>
-              <td>@ Rp {{ number_format($dtran->produk->harga,0,"",".") }}</td>
 
+          @foreach ($tikets as $t)
+            <tr>
+              <td> tiket {{ $t->Produk->nama }}</td>
+              <td>@ Rp {{ number_format($t->Produk->harga,0,"",".") }}</td>
             </tr>
           @endforeach
+          {{-- @foreach ($dtrans as $dtran)
+            <tr>
+              <td > {{ $dtran->jumlah }} tiket ({{ $dtran->produk->nama }}) </td>
+              <td></td>
+            </tr>
+          @endforeach --}}
           {{-- @foreach ($pemesans as $p)
             <tr>
               <td>{{ $p->nama }}</td>
