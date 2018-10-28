@@ -18,19 +18,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 //PUBLIC
+//1 TAMPILAN AWAL -> INPUT JUMLAH TIKET YANG AKAN DIBELI
 Route::get('/event/{link}','PublicEventController@show')->name('Public.Event.Show');
-Route::post('/event/checkout', 'PublicEventController@checkout')->name('Public.Event.Checkout');
-Route::get('/event/personal/{acara_id}','PublicEventController@personal')->name('Public.Event.Personal');
+//2 INPUT DATA -> INPUT DATA PEMBELI DAN DATA PESERTA
+Route::post('/event/personal','PublicEventController@personal')->name('Public.Event.Personal');
+//3 TAMPILAN AKHIR -> INFORMASI REKENING PERUSAHAAN UNTUK PEMBAYARAN
 Route::post('/event/personal/store','PublicEventController@store_personal')->name('Event.Public.Store.Personal');
-Route::get('/event/done/{acara_id}','PublicEventController@done')->name('Public.Event.Done');
 
 
 Auth::routes();
-
-
 Route::get('/home', 'HomeController@index')->name('home');
-
-
 
 //DASHBOARD
 Route::group(['prefix' => 'dashboards'], function () {

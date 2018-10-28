@@ -25,7 +25,7 @@ CREATE EVENT
           <input class="w3-input w3-border w3-sand" type="text" name="harga"></p>
           <p>
           <label>Jumlah</label>
-          <input required class="w3-input w3-border w3-sand" type="text" name="jumlah"></p>
+          <input required class="w3-input w3-border w3-sand" type="number" name="jumlah"></p>
           <p>
           <label>Deskripsi</label>
           <input class="w3-input w3-border w3-sand" type="text" name="deskripsi"></p>
@@ -41,19 +41,19 @@ CREATE EVENT
         <div class="w3-half w3-padding">
           <p>
           <label>Komisi Awal</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="komisi_awal"></p>
+          <input class="w3-input w3-border w3-sand" type="number" name="komisi_awal"></p>
           <p>
           <label>Tipe Komisi</label>
           <input class="w3-input w3-border w3-sand" type="text" name="tipe_komisi"></p>
           <p>
           <label>Komisi Tambah</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="komisi_tambah"></p>
+          <input class="w3-input w3-border w3-sand" type="number" name="komisi_tambah"></p>
           <p>
           <label>Maks_kelipatan</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="max_kelipatan"></p>
+          <input class="w3-input w3-border w3-sand" type="number" name="max_kelipatan"></p>
           <p>
           <label>Kelipatan</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="kelipatan"></p>
+          <input class="w3-input w3-border w3-sand" type="number" name="kelipatan"></p>
 
           <button class="w3-btn w3-brown">Tambah Tiket</button>
           {{ csrf_field() }}

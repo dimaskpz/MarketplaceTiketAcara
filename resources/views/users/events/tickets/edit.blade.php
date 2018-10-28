@@ -22,10 +22,10 @@ Edit Tiket
           <input required class="w3-input w3-border w3-sand" type="text" name="nama" value="{{ $produk->nama }}"></p>
           <p>
           <label>Harga</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="harga" value="{{ $produk->harga }}"></p>
+          <input class="w3-input w3-border w3-sand" type="number" name="harga" value="{{ $produk->harga }}"></p>
           <p>
           <label>Jumlah</label>
-          <input required class="w3-input w3-border w3-sand" type="text" name="jumlah" value="{{ $produk->jumlah }}"></p>
+          <input required class="w3-input w3-border w3-sand" type="number" name="jumlah" value="{{ $produk->jumlah }}"></p>
           <p>
           <label>Deskripsi</label>
           <input class="w3-input w3-border w3-sand" type="text" name="deskripsi" value="{{ $produk->deskripsi }}"></p>
@@ -41,19 +41,19 @@ Edit Tiket
         <div class="w3-half w3-padding">
           <p>
           <label>Komisi Awal</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="komisi_awal" value="{{ $produk->komisi_awal }}"></p>
+          <input class="w3-input w3-border w3-sand" type="number" name="komisi_awal" value="{{ $produk->komisi_awal }}"></p>
           <p>
           <label>Tipe Komisi</label>
           <input class="w3-input w3-border w3-sand" type="text" name="tipe_komisi" value="{{ $produk->tipe_komisi }}"></p>
           <p>
           <label>Komisi Tambah</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="komisi_tambah" value="{{ $produk->komisi_tambah }}"></p>
+          <input class="w3-input w3-border w3-sand" type="number" name="komisi_tambah" value="{{ $produk->komisi_tambah }}"></p>
           <p>
           <label>Maks_kelipatan</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="max_kelipatan" value="{{ $produk->max_kelipatan }}"></p>
+          <input class="w3-input w3-border w3-sand" type="number" name="max_kelipatan" value="{{ $produk->max_kelipatan }}"></p>
           <p>
           <label>Kelipatan</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="kelipatan" value="{{ $produk->kelipatan }}"></p>
+          <input class="w3-input w3-border w3-sand" type="number" name="kelipatan" value="{{ $produk->kelipatan }}"></p>
 
           <input type="submit" class="w3-btn w3-brown" value="Simpan Perubahan"></input>
           {{ csrf_field() }}

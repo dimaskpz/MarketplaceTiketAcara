@@ -159,8 +159,8 @@ class EventController extends Controller
       $transaksis = Transaksi::where('acara_id',$id)->where('ispaid','y')->get();
 
       $transaksi_id = $request->transaksi_id;
-       dd($transaksi_id);
       if ($transaksi_id) {
+        // dd($transaksi_id);
       $tikets = Tiket::where('transaksi_id',$transaksi_id)->orderBy('produk_id','asc')->get();
       // dd($tikets->toarray());
       return view('users.events.checkin.index', compact('acara','transaksis','id','tikets'));
@@ -177,8 +177,10 @@ class EventController extends Controller
 
       $acara_id = $tiket->Transaksi->acara_id;
       $transaksi_id = $tiket->transaksi_id;
-      dd('acara_id', $acara_id, 'transaksi_id', $transaksi_id);
-      return redirect()->route('Event.Checkin',['id'=>$acara_id])->with(compact('transaksi_id'));
+      // dd('acara_id', $acara_id, 'transaksi_id', $transaksi_id);
+      // return redirect()->route('Event.Checkin',['id'=>$acara_id])->with(compact('transaksi_id'));
+      return redirect()->route('Event.Checkin', ['id' => $acara_id, 'transaksi_id' => $transaksi_id]);
+      // return redirect()->route('route.name', ['parameter' => 'value']);
     }
 
     public function sales($id)

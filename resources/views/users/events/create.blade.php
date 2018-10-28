@@ -57,74 +57,36 @@ CREATE EVENT
   </div>
 
 
-  {{-- <div class="w3-half w3-padding">
-    <div class="w3-card-4">
-      <div class="w3-container w3-teal">
-        <h2>Tiket</h2>
-      </div>
-      <form class="w3-container" action="/action_page.php">
-        <div class="w3-half w3-padding">
-          <p>
-          <label>Nama Tiket</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="nama"></p>
-          <p>
-          <label>Jumlah Tiket</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="deskripsi"></p>
-          <p>
-          <label>Keterangan</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="deskripsi"></p>
-          <p>
-          <label>Tanggal Mulai</label>
-          <input class="w3-input w3-border w3-sand" type="date" name="deskripsi"></p>
-          <p>
-          <label>Tanggal Selesai</label>
-          <input class="w3-input w3-border w3-sand" type="date" name="deskripsi"></p>
-          <p>
-        </div>
 
-        <div class="w3-half w3-padding">
-          <p>
-          <label>Komisi</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="deskripsi"></p>
-          <p>
-          <label>Tanggal Selesai</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="deskripsi"></p>
-          <p>
-          <label>Tanggal Selesai</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="deskripsi"></p>
-          <p>
-          <label>Tanggal Selesai</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="deskripsi"></p>
-          <p>
-          <label>Tanggal Selesai</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="deskripsi"></p>
-          <button class="w3-btn w3-brown">Register</button></p>
-        </div>
-
-      </form>
+<div class="w3-half w3-padding">
+  <form action="{{ url('store') }}" method="POST" enctype="multipart/form-data">
+    {!! csrf_field() !!}
+    <div class="row">
+          <div class="input-field col s12">
+            <input type="text" class="validate" name="judul">
+            <label for="title">Judul</label>
+          </div>
     </div>
 
-
-  <div class="w3-container city" >
-
-      <p>
-      <div class="w3-responsive">
-        <table class="w3-table-all">
-          <tr>
-            <th>Nama Sales</th>
-            <th>Tiket Belum dibayar</th>
-            <th>Penjualan Tiket</th>
-            <th>Keuntungan Bersih</th>
-            <th>Email</th>
-            <th>No Telepon</th>
-
-          </tr>
-
-
-        </table>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea" name="isi"></textarea>
+          <label for="textarea1">Isi</label>
+        </div>
       </div>
-      </p>
-  </div> --}}
+      <div class="row">
+        <div class="col s6">
+            <img src="http://placehold.it/100x100" id="showgambar" style="max-width:200px;max-height:200px;float:left;" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s6">
+          <input type="file" id="inputgambar" name="gambar" class="validate"/ >
+        </div>
+      </div>
+      <button type="submit" class="btn btn-flat pink accent-3 waves-effect waves-light white-text right">Submit <i class="material-icons right">send</i></button>
+  </form>
+</div>
 </div>
 
 </div>

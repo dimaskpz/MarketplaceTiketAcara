@@ -57,21 +57,27 @@ CHECKIN
               <th>Nama Tiket</th>
               <th>Nomor Tiket</th>
               <th>Checkin</th>
+
             </tr>
               @foreach ($tikets as $tiket)
                 <tr>
                   <td>{{ $tiket->Produk->nama }} ({{ $tiket->nama }})</td>
                   <td>{{ $tiket->id }}</td>
                   <td>
-                    {{-- TIKET --}}
-                    <form action="{{ route('Event.Checkin.Update',['transaksi_id'=>$tiket->id]) }}" method="post">
-                      {{-- <input type="hidden" name="tiket_id" value="{{$tiket->id}}"> --}}
-                      <input type="submit" value="Checkin"></input>
-                      {{ csrf_field() }}
-                      <input type="hidden" name="_method" value="PUT">
-                    </form>
+                    @if ($tiket->ischeckin == 't')
+                      {{-- TIKET --}}
+                      <form action="{{ route('Event.Checkin.Update',['transaksi_id'=>$tiket->id]) }}" method="post">
+                        {{-- <input type="hidden" name="tiket_id" value="{{$tiket->id}}"> --}}
+                        <input type="submit" value="Checkin"></input>
+                        {{ csrf_field() }}
+                        <input type="hidden" name="_method" value="PUT">
+                      </form>
+                    @else
+                      {{ $tiket->updated_at }}                      
+                    @endif
 
                   </td>
+
                 </tr>
               @endforeach
 

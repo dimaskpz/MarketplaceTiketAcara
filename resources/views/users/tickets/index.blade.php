@@ -9,7 +9,9 @@ budi
 @section('nama_halaman')
 Ticket
 @endsection
-
+@section('body')
+  onload="openEvent(event, 'tabaktif');"
+@endsection
 @section('content')
 <a href="{{ route('Ticket.Show', ['id' => 35]) }}">link show tiket</a>
 <div class="w3-container w3-padding-32">
@@ -46,19 +48,26 @@ Ticket
               <th>Kapasitas</th>
               <th>Venue dan Lokasi</th>
               <th>Lihat</th>
-              {{-- <th>Waktu</th> --}}
             </tr>
 
-            {{-- @foreach ($acaras as $acara)
-              <tr>
-                <td> {{ $acara->nama }} </td>
-                <td> {{date('d-m-Y', strtotime($acara->tgl_mulai))}} </td>
 
-                <td> {{ $acara->kapasitas }} </td>
-                <td> {{ $acara->lokasi }} </td>
-                <td> <a href="{{ route('Event.Show', ['id' => $acara->id]) }}" class="w3-btn w3-teal">Lihat</a> </td>
-              </tr>
-            @endforeach --}}
+
+            @foreach ($transaksis as $transaksi)
+              <td>
+                {{ $transaksi->Acara->nama }}
+                {{ $transaksi->Tiket }}
+                {{-- {{ dd($transaksi->Tiket) }} --}}
+                {{-- @foreach ($transaksi->Tiket as $tikets)
+                  {{ dd($tikets) }}
+                @endforeach --}}
+              </td>
+              <td>{{ $transaksi->tgl_mulai }}</td>
+              <td>
+                  <a href="#" class="w3-btn w3-teal">Nota</a>
+                  <a href="#" class="w3-btn w3-teal">Tiket</a>
+              </td>
+
+            @endforeach
             <tr>
               <td>OVO Points</td>
               <td>18-19 Januari 2018</td>

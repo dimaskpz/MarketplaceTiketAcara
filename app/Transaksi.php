@@ -15,4 +15,8 @@ class Transaksi extends Model
   {
     return $this->HasMany('App\Tiket');
   }
+  public function Acara()
+  {
+    return $this->belongsTo('App\Acara');
+  }
 }

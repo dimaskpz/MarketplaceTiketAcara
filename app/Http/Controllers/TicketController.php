@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Tiket;
+use App\Transaksi;
+use Auth;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -13,7 +15,11 @@ class TicketController extends Controller
      */
     public function index()
     {
-        return view('users.tickets.index');
+        $transaksis = Transaksi::where('email',Auth::user()->email)->get();
+        // dd(Auth::user()->email);
+        // dd($tikets);
+        
+        return view('users.tickets.index', compact('transaksis'));
     }
 
     /**

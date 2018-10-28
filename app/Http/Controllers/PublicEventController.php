@@ -10,56 +10,66 @@ use App\Transaksi;
 use App\Tiket;
 class PublicEventController extends Controller
 {
+  // TAHAP PERTAMA UNTUK MENAMPILKAN DETAIL EVENT
     public function show($link)
     {
+      //MENCARI DI TABEL LINK ->(acara_id,user_id)
       $link_show = Link::where('link',$link)->first();
-      $user_id = $link_show->user_id;
+      // dd($link_show->toarray());
       if ($link_show->acara_id) {
-          $acara = Acara::find($link_show->acara_id)->first();
+          $user_id = $link_show->user_id;
+          $acara_id = $link_show->acara_id;
+          $acara = Acara::find($acara_id)->first();
+          $produks = Produk::where('acara_id', $acara_id)->get();
+          $jumlah_produk = $produks->count();
+          return view('users.publics.show', compact('acara','produks','user_id', 'jumlah_produk'));
       } else {
           // TAMPILKAN ERROR
           // abort ('304');
+          // return ERROR
       }
-// GIMANA CARA PENAMAAN BLADE PADA JENIS TIKET
-      $produks = Produk::where('acara_id', $link_show->acara_id)->get();
-      // dd($produks->toarray());
-      return view('users.publics.show', compact('acara','produks','user_id'));
+
+      // GIMANA CARA PENAMAAN BLADE PADA JENIS TIKET
+
     }
 
-    public function checkout(Request $request)
+    // TAHAP KEDUA SETELAH MEMESAN JUMLAH TIKET PADA JENIS TIKET TERTENTU
+    // PROSES PERSIAPAN INPUT DATA PERSONAL PEMBELI Tiket
+    // acara_id, user_id, jumlahproduk, tipe'N' (jumlah tiket yg dibeli)
+    // "acara_id" => "1"
+    // "user_id" => "1"
+    // "jumlah_produk" => "3"
+    // "tipe1" => "2"
+    // "tipe2" => "4"
+    // "tipe3" => "2"
+    // "_token" => "1JhzkSXGaUdxbfyd7gx2HmbGqptszUQY4zPIOln2"
+    public function personal(Request $request)
     {
       // dd($request->toarray());
-      // $a = 'jumlah';
-      // $b = '2';
-      // $c = $a.$b;
-      // dd($c);
 
-      // $jumlah_produk = Produk::where('acara_id', $request->acara_id)->count();
-      // $a = '';
-      // for ($i=1; $i <= $jumlah_produk ; $i++) {
-      //     $a = 'jumlah'.$i;
-      //     // dd($a);
-      //     dd($request->toarray(), $request->.$a);
-      // }
-      //INPUT BEBERAPA JENIS TIKET MENJADI 1 TRANSAKSI GIMANA CARANYA???????????
-      $trans = new Transaksi;
-      $trans->user_id = $request->user_id;
-      $trans->acara_id = $request->acara_id;
-      $trans->save();
+      $user_id = $request->user_id;
+      $acara_id = $request->acara_id;
+      $jumlah_produk = $request->jumlah_produk;
+      $jenis_produks = array();
+      for ($i=0; $i < $jumlah_produk ; $i++) {
+        $nama = 'tipe'.$i;
+        array_push($jenis_produks, $request->$nama);
+      }
+      // dd($jenis_produks[2]);
+      // dd($jenis_produks, $jumlah_produk);
+      $acara = Acara::find($acara_id)->first();
+      $produks = Produk::where('acara_id', $acara_id)->orderBy('id', 'ASC')->get()->toarray();
+      // dd($produks=>['nama']);
+      dd($produks);
 
-      $trans = Transaksi::orderBy('created_at','DESC')->first();
-      // dd($trans->toarray());
-
-
-      return redirect()->route('Public.Event.Personal', ['acara_id'=>$request->acara_id]);
-    }
-
-    public function personal($acara_id)
-    {
-      $peserta = 5;
       //GIMANA CARA BUAT 10 INPUT TIKET DI BLADE
-      return view('/users/publics/personal', compact('peserta','acara_id'));
+      return view('/users/publics/personal', compact('acara','produks','jenis_produks','jumlah_produk'));
     }
+
+    // HALAMAN KETIGA (TERAKHIR) PEMBAYARAN
+    // insert data transaksi, tiket
+    // transaksi = data pribadi pembeli
+    // tiket = data pribadi peserta tiket
 
     public function store_personal(Request $request)
     {

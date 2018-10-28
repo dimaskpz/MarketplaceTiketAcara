@@ -52,28 +52,27 @@ CREATE EVENT
 <div class="w3-half w3-padding">
 <div class="w3-card-4 w3-padding">
 
-
-<form class="" action="{{ route('Public.Event.Checkout') }}" method="post">
-<input type="hidden" name="acara_id" value="{{ $acara->id }}">
-<input type="hidden" name="user_id" value="{{ $user_id }}">
-
-  @foreach ($produks as $p)
-
-    {{ $p->nama }}
-<br>
-    Rp {{ number_format($p->harga,0,"",".") }}
-
-<br>
-    Berakhir pada {{ $p->tgl_selesai }}
-<br>
-    <input type="number" step="1" name="{{$p->id}}" value="0" min="0" max="5">
-<br>
-<br>
-  @endforeach
-  <br>
-<button type="submit" name="button">Beli Tiket</button>
-{{ csrf_field() }}
-</form>
+  <form action="{{ route('Public.Event.Personal') }}" method="post">
+    <input type="hidden" name="acara_id" value="{{ $acara->id }}"></input>
+    <input type="hidden" name="user_id" value="{{ $user_id }}"></input>
+    <input type="hidden" name="jumlah_produk" value="{{ $jumlah_produk }}"></input>
+      @foreach ($produks as $p)
+        {{ $loop->iteration }}
+        <br>
+        {{ $p->nama }}
+        <br>
+        Rp {{ number_format($p->harga,0,"",".") }}
+        <br>
+        Berakhir pada {{ $p->tgl_selesai }}
+        <br>
+        <input name="tipe{{$loop->iteration - 1}}" type="number" step="1" value="0" min="0" max="5"></input>
+        <br>
+        <br>
+      @endforeach
+    <br>
+    <input type="submit" value="Beli Tiket"></input>
+    {{ csrf_field() }}
+  </form>
 
 </div>
 </div>
