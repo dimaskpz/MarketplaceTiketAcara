@@ -56,11 +56,15 @@ class PublicEventController extends Controller
         array_push($jenis_produks, $request->$nama);
       }
       // dd($jenis_produks[2]);
-      // dd($jenis_produks, $jumlah_produk);
       $acara = Acara::find($acara_id)->first();
       $produks = Produk::where('acara_id', $acara_id)->orderBy('id', 'ASC')->get()->toarray();
+      // dd(
+      //     'jenis produk = ' , $jenis_produks,
+      //     'jumlah produk = ', $jumlah_produk,
+      //     'produks = ', $produks
+      //     );
       // dd($produks=>['nama']);
-      dd($produks);
+      // dd($produks);
 
       //GIMANA CARA BUAT 10 INPUT TIKET DI BLADE
       return view('/users/publics/personal', compact('acara','produks','jenis_produks','jumlah_produk'));
