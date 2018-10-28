@@ -57,17 +57,24 @@ class PublicEventController extends Controller
       }
       // dd($jenis_produks[2]);
       $acara = Acara::find($acara_id)->first();
-      $produks = Produk::where('acara_id', $acara_id)->orderBy('id', 'ASC')->get()->toarray();
+      $produks = Produk::where('acara_id', $acara_id)->orderBy('id', 'ASC')->get();
+
+      $nama_produks = array();
+      foreach ($produks as $produk) {
+        array_push($nama_produks, $produk->nama);
+      }
+
       // dd(
       //     'jenis produk = ' , $jenis_produks,
       //     'jumlah produk = ', $jumlah_produk,
-      //     'produks = ', $produks
+      //     'produks = ', $produks,
+      //     'nama produk', $nama_produks
       //     );
       // dd($produks=>['nama']);
       // dd($produks);
 
       //GIMANA CARA BUAT 10 INPUT TIKET DI BLADE
-      return view('/users/publics/personal', compact('acara','produks','jenis_produks','jumlah_produk'));
+      return view('/users/publics/personal', compact('acara','nama_produks','jenis_produks','jumlah_produk'));
     }
 
     // HALAMAN KETIGA (TERAKHIR) PEMBAYARAN
