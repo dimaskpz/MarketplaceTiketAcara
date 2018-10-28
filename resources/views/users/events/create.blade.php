@@ -14,10 +14,13 @@ CREATE EVENT
       <div class="w3-container w3-teal">
         <h2>Acara</h2>
       </div>
-      <form class="w3-container" action="{{ route('Event.Store') }}" method="post">
+      <form enctype="multipart/form-data" class="w3-container" action="{{ route('Event.Store') }}" method="post">
         <p>
         <label>Gambar Acara</label>
-        <input class="w3-input" type="file" name="gambar"></p>
+        <input class="w3-input" type="file" name="featured_img"></p>
+        @if ($errors->has('featured_img'))
+          <p> {{ $errors->first('featured_img') }} </p>
+        @endif
         <p>
         <label>Nama Acara</label>
         <input class="w3-input" type="text" name="nama" ></p>
@@ -50,7 +53,7 @@ CREATE EVENT
         <label>Deskripsi</label>
         <textarea class="w3-input" type="text" name="deskripsi"></textarea>
         </p>
-        <input type="submit" value="Simpan Acara" class="w3-btn w3-black"></input>
+        <input type="submit" name="submit" value="Simpan Acara" class="w3-btn w3-black"></input>
         {{ csrf_field() }}
       </form>
     </div>

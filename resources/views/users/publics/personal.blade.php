@@ -16,13 +16,15 @@ CREATE EVENT
 
       <form action="{{ route('Event.Public.Store.Personal') }}" method="post">
         <input type="hidden" name="acara_id" value="2"></input>
+        <input type="hidden" name="jumlah_produk" value="{{ $jumlah_produk }}"></input>
+        {{-- <input type="hidden" name="jenis_produks" value="{{ $jenis_produks }}"></input> --}}
         @for ($g=0; $g < $jumlah_produk ; $g++)
             @for ($i=0; $i < $jenis_produks[$g]; $i++)
               <div class="w3-card-4">
                 <div class="w3-padding">
                   <div class="w3-container w3-blue">
                     <h2> Tiket {{ $nama_produks[$g] }} - {{  $i + 1 }} </h2>
-                    <h5>  </h5>
+                    <h5> Tiket jenis {{ $g + 1 }} ke {{  $i + 1 }} </h5>
                   </div>
                   <p>
                     <label>TIKET</label>
