@@ -8,6 +8,11 @@ use App\Acara;
 use App\Produk;
 use App\Transaksi;
 use App\Tiket;
+use App\User;
+use JavaScript;
+use Carbon\Carbon;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 class PublicEventController extends Controller
 {
   // TAHAP PERTAMA UNTUK MENAMPILKAN DETAIL EVENT
@@ -43,28 +48,39 @@ class PublicEventController extends Controller
     {
       $user_id = $request->user_id;
       $acara_id = $request->acara_id;
-      $jumlah_produk = $request->jumlah_produk;
+      $produks = Produk::where('acara_id', $acara_id)->orderBy('id', 'ASC')->get();
+      $jumlah_produk = $produks->count();
+      // JUMLAH tiap jenis produk
       $jenis_produks = array();
       for ($i=0; $i < $jumlah_produk ; $i++) {
         $nama = 'tipe'.$i;
         array_push($jenis_produks, $request->$nama);
       }
-      $acara = Acara::find($acara_id)->first();
-      $produks = Produk::where('acara_id', $acara_id)->orderBy('id', 'ASC')->get();
+      //NAMA & HARGA
+      $harga_produks = array();
       $nama_produks = array();
       foreach ($produks as $produk) {
         array_push($nama_produks, $produk->nama);
+        array_push($harga_produks, $produk->harga);
       }
-      // dd($jenis_produks[2]);
-      return view('/users/publics/personal', compact('acara','nama_produks','jenis_produks','jumlah_produk'));
-    }
+      //TOTAL bayar
+      $total = 0;
+      for ($g=0; $g < $jumlah_produk; $g++) {
+        $total = $total + ($harga_produks[$g] * $jenis_produks[$g]);
+      }
+      //DETAIL acara
+      $acara = Acara::find($acara_id)->first();
 
+      return view('/users/publics/personal', compact('total','harga_produks','user_id','acara','nama_produks','jenis_produks','jumlah_produk','produks'));
+    }
     // dd(
-    //     'jenis produk = ' , $jenis_produks,
-    //     'jumlah produk = ', $jumlah_produk,
-    //     'produks = ', $produks,
-    //     'nama produk', $nama_produks
+    //     'request', $request->toarray(),
+    //     'jenis_produks = ' , $jenis_produks,
+    //     'jumlah_produk = ', $jumlah_produk,
+    //     'produks = ', $produks->toarray(),
+    //     'nama_produk', $nama_produks
     //     );
+
 
     //GIMANA CARA BUAT 10 INPUT TIKET DI BLADE
     //-------------------------------------------------------------------------------------------------------------------
@@ -75,39 +91,144 @@ class PublicEventController extends Controller
     // HALAMAN 3
     public function store_personal(Request $request)
     {
-      // dd($request);
-
-      dd($request->toarray());
       $produks = Produk::where('acara_id', $request->acara_id)->orderBy('id', 'ASC')->get();
-
-
-      for ($i=0; $i < $request->jumlah_produk ; $i++) {
-
+      $jumlah_produk = $produks->count(); //jumlah jenis produk
+      $id_produks = array(); //kode (id)
+      $nama_produks = array(); //nama produk
+      $harga_produks = array(); //harga
+      foreach ($produks as $produk) {
+        array_push($id_produks, $produk->id);
+        array_push($nama_produks, $produk->nama);
+        array_push($harga_produks, $produk->harga);
       }
 
+      //PERULANGAN jumlah tiap jenis tiket
+      $jenis_produks = array(); //jumlah pembelian jenis produk
+      for ($i=0; $i < $request->jumlah_produk ; $i++) {
+        $nama = 'tipe'.$i;
+        array_push($jenis_produks, $request->$nama);
+      }
 
-      $tiket = new Tiket;
-      $tiket->dtransaksi_id = $request->dtransaksi_id;
-      $tiket->nama = $request->nama;
-      $tiket->email = $request->email;
-      $tiket->tlp = $request->tlp;
-      $tiket->tgl_lahir = $request->tgl_lahir;
-      $tiket->jenis_kelamin = $request->jenis_kelamin;
-      $tiket->no_ktp = $request->no_ktp;
-      $tiket->save();
-      // dd('sdads');
-      return redirect()->route('Public.Event.Done',['acara_id'=>$request->acara_id]);
+      // TOTAL yang dibayar
+      $total = 0;
+      for ($g=0; $g < $jumlah_produk; $g++) {
+        $total = $total + ($harga_produks[$g] * $jenis_produks[$g]);
+      }
+
+      //INSERT tabel pertama TRANSAKSI
+      $transaksi = new Transaksi;
+      $transaksi->no_nota = 'NT'.uniqid();
+      $transaksi->user_id = $request->user_id;
+      $transaksi->acara_id = $request->acara_id;
+      $transaksi->nama = $request->nama_pembeli;
+      $transaksi->email = $request->email_pembeli;
+      $transaksi->tlp = $request->tlp_pembeli;
+      $transaksi->total = $total;
+      $transaksi->save();
+
+      // foreignkey
+      $last_transaksi = Transaksi::where('nama',$transaksi->nama)
+                                      ->where('email',$transaksi->email)
+                                      ->orderby('id', 'ASC')
+                                      ->get()->last();
+
+      for ($g=0; $g < $request->jumlah_produk ; $g++) {
+        for ($i=0; $i < $jenis_produks[$g] ; $i++) {
+          $tiket = new Tiket;
+          $tiket->no_tiket = uniqid();
+          $tiket->transaksi_id = $last_transaksi->id;
+          $tiket->produk_id = $id_produks[$g];
+
+          $xnama = 'nama'.$g.$i;
+          $xemail = 'email'.$g.$i;
+          $xtlp = 'tlp'.$g.$i;
+          $xtgl_lahir = 'tgl_lahir'.$g.$i;
+          $xjenis_kelamin = 'jenis_kelamin'.$g.$i;
+          $xno_ktp = 'no_ktp'.$g.$i;
+
+          $tiket->nama = $request->$xnama;
+          $tiket->email = $request->$xemail;
+          $tiket->tlp = $request->$xtlp;
+          $tiket->tgl_lahir = $request->$xtgl_lahir;
+          $tiket->jenis_kelamin = $request->$xjenis_kelamin;
+          $tiket->no_ktp = $request->$xno_ktp;
+          $tiket->save();
+        }
+      }
+
+      $acara = Acara::find($request->acara_id);
+      $rekening = User::find($acara->user->id);
+
+      date_default_timezone_set('Asia/Jakarta');
+
+      $created_plus = Carbon::parse($last_transaksi->created_at)->addDays(3);
+      $countdown = (carbon::now())->diff($created_plus);
+      $days= $countdown->days;
+      $hours = $countdown->h;
+      $minutes = $countdown->m;
+      $seconds = $countdown->s;
+      JavaScript::put([
+          'days' => $days,
+          'hours' => $hours,
+          'minutes' => $minutes,
+          'seconds' => $seconds
+      ]);
+      return redirect()->route('Public.Event.Trans',['transaksi_id'=>$last_transaksi->no_nota]);
+      // return redirect()->route('Event.Ticket.Create', ['id'=>$next->id]);
     }
 
-    public function done($acara_id)
+    public function show_trans($no_nota)
     {
-
-      // $a='dd';
-      // dd($a);
-      // JUMLAH YG HARUS DIBAYARKAN
-      // NAMA DAN NOMOR REKENING TUJUAN PERUSAHAAN
-      // NOMOR INVOICE
-
-      return view('users.publics.done');
+      $transaksi = Transaksi::where('no_nota',$no_nota)->get()->first();
+      if ($transaksi) {
+        // USER -> nama, nomor rekening
+        $rekening = $transaksi->acara->user;
+        //COUNTDOWN
+        $created_plus = Carbon::parse($transaksi->created_at)->addHours(12);
+        $countdown = (carbon::now())->diff($created_plus);
+        $days= $countdown->days;
+        $hours = $countdown->h;
+        $minutes = $countdown->m;
+        $seconds = $countdown->s;
+        JavaScript::put([
+            'days' => $days,
+            'hours' => $hours,
+            'minutes' => $minutes,
+            'seconds' => $seconds
+        ]);
+        return view('users.publics.done', compact('rekening', 'transaksi'));
+      }else {
+          return abort(405);
+      }
     }
+
+    public function upload(Request $request)
+    {
+      $this->validate($request,[
+        'bukti_img' => 'required|mimes:jpeg,jpg,png|max:10000'
+      ]);
+      $nama = $request->no_nota.'.jpg'; //nama foto ->$no_nota
+      Storage::putFileAs('/public/bukti', new File($request->bukti_img), $nama);
+
+      $xtransaksi = Transaksi::where('no_nota',$request->no_nota)->get()->first();
+      // dd($xtransaksi);
+      $transaksi = Transaksi::find($xtransaksi->id);
+      $transaksi->isupload = 'y';
+      $transaksi->save();
+      // dd($transaksi->toarray());
+
+      return redirect()->route('Public.Event.Trans',['transaksi_id'=>$request->no_nota]);
+    }
+
+    public function cektrans(Request $request)
+    {
+      $transaksi = Transaksi::where('email', $request->email)->where('no_nota',$request->no_nota)->get()->first();
+      if ($transaksi) {
+        return redirect()->route('Public.Event.Trans',['transaksi_id'=>$request->no_nota]);
+      }else {
+        return abort(405);
+      }
+
+    }
+
 }

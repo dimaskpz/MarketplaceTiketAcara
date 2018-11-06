@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaksi extends Model
 {
+  //SALES
   public function User()
   {
     return $this->belongsTo('App\User');

@@ -39,7 +39,8 @@ DETAIL ACARA
     <div class="w3-half">
       <p>
       <div class="w3-card-4 w3-teal" style="width:75%">
-        <img src="/images/DWP.jpg" alt="Image 3" style="width:100%">
+        {{-- <img src="/images/DWP.jpg" alt="Image 3" style="width:100%"> --}}
+        <img src="{{ asset('/storage/event/'.$acara->gambar) }}" alt="{{$acara->gambar}}" style="width:100%">
         <div class="w3-container w3-center">
           <p> {{ $acara->nama }} </p>
         </div>

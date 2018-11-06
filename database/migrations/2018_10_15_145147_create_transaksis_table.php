@@ -15,6 +15,7 @@ class CreateTransaksisTable extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('no_nota')->nullable();
             // $table->unsignedInteger('link_id');
             // $table->foreign('link_id')->references('id')->on('links')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedInteger('user_id');
@@ -24,6 +25,8 @@ class CreateTransaksisTable extends Migration
             $table->string('nama',255)->nullable();
             $table->string('email')->nullable();
             $table->string('tlp')->nullable();
+            $table->integer('total')->nullable();
+            $table->string('isupload')->default('n');
             $table->string('ispaid')->default('n');
             $table->timestamps();
         });

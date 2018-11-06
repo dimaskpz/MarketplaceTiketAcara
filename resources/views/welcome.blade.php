@@ -40,13 +40,8 @@
             <a href="#home" class="w3-bar-item w3-button"><b>VIHO</b>Workshop System</a>
             <!-- Float links to the right. Hide them on small screens -->
             <div class="w3-right w3-hide-small">
-              {{-- <a href="#projects" class="w3-bar-item w3-button">Masuk</a>
-              <a href="#about" class="w3-bar-item w3-button">Tentang Kami</a>
-              <a href="#contact" class="w3-bar-item w3-button">Kontak</a> --}}
               {{-- LINK LOGIN --}}
-
                     @if (Route::has('login'))
-
                             @auth
                                 <a href="{{ url('/home') }}" class="w3-bar-item w3-button">Home</a>
                             @else
@@ -56,14 +51,11 @@
                                     <a href="{{ route('register') }}" class="w3-bar-item w3-button">Register</a>
                                 @endif
                             @endauth
-
                     @endif
-
-
-
             </div>
           </div>
         </div>
+
 
 
         <!-- Header with Slideshow -->
@@ -71,11 +63,33 @@
         <button class="w3-button w3-block w3-green w3-hide-large w3-hide-medium" onclick="document.getElementById('download').style.display='block'">Download <i class="fa fa-android"></i> <i class="fa fa-apple"></i> <i class="fa fa-windows"></i></button>
         <div class="mySlides w3-animate-opacity">
           <img class="w3-image" src="images/event1.jpg" alt="Image 1" style="min-width:500px" width="1500" height="1000">
-          <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
+
+
+          <div class="w3-display-left w3-padding w3-hide-small" style="width:40%">
             <div class="w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large">
-              <h1 class="w3-xlarge">Music Show</h1>
+              <h1 class="w3-large">Upload Bukti Pembayaran?</h1>
               <hr class="w3-opacity">
-              <p>Super simple installment: free of charge</p>
+              <form action="{{ route('Public.Trans.Cek') }}" method="post">
+                <p>
+                  <input class="w3-input" type="email" name="email" placeholder="email" value="">
+                </p>
+                <p>
+                  <input class="w3-input" type="text" name="no_nota" placeholder="nomer invoice" value="">
+                </p>
+                <p>
+                  <input class="w3-button w3-blue w3-right" type="submit" name="submit" value="Masukan">
+                </p>
+                <br>
+                <br>
+                {{ csrf_field() }}
+              </form>
+              @isset($error_upload)
+                Periksa kembali nomor invoice dan email yang anda masukan
+              @endisset
+              {{-- @if ($error_upload)
+                Periksa kembali nomor invoice dan email yang anda masukan
+              @endif --}}
+              {{-- <p>Mengorganisir Tiket Seminar dan data peserta</p> --}}
             </div>
           </div>
         </div>

@@ -16,18 +16,43 @@ Route::get('/cia', function () {
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('Welcome');
+
+// Route::get('/','HomeController@halaman_awal')->name('Halaman.Awal.Error');
+
 //PUBLIC
 //1 TAMPILAN AWAL -> INPUT JUMLAH TIKET YANG AKAN DIBELI
 Route::get('/event/{link}','PublicEventController@show')->name('Public.Event.Show');
-//2 INPUT DATA -> INPUT DATA PEMBELI DAN DATA PESERTA
+//2 TAMPILAN INPUT DATA -> INPUT DATA PEMBELI DAN DATA PESERTA
 Route::post('/event/personal','PublicEventController@personal')->name('Public.Event.Personal');
-//3 TAMPILAN AKHIR -> INFORMASI REKENING PERUSAHAAN UNTUK PEMBAYARAN
+//2 STORE DATA -> INFORMASI REKENING PERUSAHAAN UNTUK PEMBAYARAN
 Route::post('/event/personal/store','PublicEventController@store_personal')->name('Event.Public.Store.Personal');
+//3 TAMPILAN DTRANSAKSI
+Route::get('/event/trans/{no_nota}','PublicEventController@show_trans')->name('Public.Event.Trans');
+//3 STORE upload bukti pembayaran
+Route::post('event/bukti/store','PublicEventController@upload')->name('Public.Upload');
+
+
+
+Route::post('/event/cek/nota','PublicEventController@cektrans')->name('Public.Trans.Cek');
+
+
 
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'profile'], function () {
+Route::get('/', 'ProfileController@edit')->name('Profile.Edit');
+Route::post('/store', 'ProfileController@update')->name('Profile.Update');
+
+});
+
+Route::group(['prefix' => 'home'], function () {
+Route::get('/', 'HomeController@index')->name('Home_Default');
+Route::get('/show/{acara_id}', 'HomeController@show')->name('Home.Event.Show');
+Route::get('/show/{acara_id}/regis', 'HomeController@Sales_regis')->name('Home.Sales.Regis');
+});
 
 //DASHBOARD
 Route::group(['prefix' => 'dashboards'], function () {
@@ -38,8 +63,6 @@ Route::get('/', 'DashboardController@index')->name('Dashboard_Default');
 Route::group(['prefix' => 'tickets'], function () {
 Route::get('/', 'TicketController@index')->name('Ticket_Default');
 Route::get('/show/{id}', 'TicketController@show')->name('Ticket.Show');
-
-
 });
 
 //EVENTS

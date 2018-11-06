@@ -17,8 +17,8 @@ CREATE EVENT
       <form enctype="multipart/form-data" class="w3-container" action="{{ route('Event.Store') }}" method="post">
         <p>
         <label>Gambar Acara</label>
-        <input class="w3-input" type="file" name="featured_img"></p>
-        @if ($errors->has('featured_img'))
+        <input class="w3-input" type="file" name="event_img"></p>
+        @if ($errors->has('event_img'))
           <p> {{ $errors->first('featured_img') }} </p>
         @endif
         <p>
@@ -30,13 +30,13 @@ CREATE EVENT
 
         <p>
         <label>Tanggal Mulai</label>
-        <input class="w3-input" type="date" name="tgl_mulai" ></p>
+        <input class="w3-input" type="date" name="tgl_mulai" min="{{date('Y-m-d')}}"></p>
         <p>
         <label>Tanggal Selesai</label>
-        <input class="w3-input" type="date" name="tgl_selesai"></p>
+        <input class="w3-input" type="date" name="tgl_selesai" min="{{date('Y-m-d')}}"></p>
         <p>
         <label>Waktu Mulai</label>
-        <input class="w3-input" type="time" name="wkt_mulai"></p>
+        <input class="w3-input" type="time" name="wkt_mulai" ></p>
         <p>
         <label>Waktu Selesai</label>
         <input class="w3-input" type="time" name="wkt_selesai"></p>

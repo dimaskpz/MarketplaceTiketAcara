@@ -58,6 +58,10 @@ DATA PEMESAN
             <th></th>
           </tr>
           <tr>
+            <td>Nomor Invoice</td>
+            <td>{{$transaksi->id}}</td>
+          </tr>
+          <tr>
             <td>Nama :</td>
             <td>{{ $transaksi->nama }}</td>
           </tr>
@@ -96,21 +100,16 @@ DATA PEMESAN
               <td>@ Rp {{ number_format($t->Produk->harga,0,"",".") }}</td>
             </tr>
           @endforeach
-          {{-- @foreach ($dtrans as $dtran)
+          @if ($transaksi->isupload == 'y')
             <tr>
-              <td > {{ $dtran->jumlah }} tiket ({{ $dtran->produk->nama }}) </td>
-              <td></td>
+              <td>Bukti Pembayaran</td>
+              <td>
+                <a href="/storage/bukti/{{$transaksi->no_nota}}.jpg">
+                  <img src="{{ asset('/storage/bukti/'.$transaksi->no_nota).'.jpg' }}" alt="{{$transaksi->no_nota}}" style="width:50%";height:200px class="w3-left">
+                </a>        
+              </td>
             </tr>
-          @endforeach --}}
-          {{-- @foreach ($pemesans as $p)
-            <tr>
-              <td>{{ $p->nama }}</td>
-              <td>{{ $p->id }}</td>
-              <td>{{ $p->ispaid }}</td>
-              <td>{{ $p->user->name }}</td>
-              <td> <a href="{{ route('Event.Pemesan.Show',['id'=>$p->id]) }}" class="w3-btn w3-teal">Lihat</a> </td>
-            </tr>
-          @endforeach --}}
+          @endif
         </table>
       </div>
       </p>

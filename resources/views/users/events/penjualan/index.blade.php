@@ -7,7 +7,7 @@ EVENT
 budi
 @endsection
 @section('nama_halaman')
-PENJUALAN
+LAPORAN PENJUALAN
 @endsection
 
 @section('side_navigation')

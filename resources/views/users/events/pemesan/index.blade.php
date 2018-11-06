@@ -67,6 +67,9 @@ DATA PEMESAN
               <td> <a href="{{ route('Event.Pemesan.Show',['transaksi_id'=>$p->id]) }}" class="w3-btn w3-teal">Lihat</a> </td>
             </tr>
           @endforeach
+          {{-- @if ($p)
+
+          @endif --}}
         </table>
       </div>
       </p>

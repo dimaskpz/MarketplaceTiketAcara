@@ -14,10 +14,13 @@ EDIT EVENT
       <div class="w3-container w3-teal">
         <h2>Ubah Acara</h2>
       </div>
-      <form class="w3-container" action="{{ route('Event.Update',['id'=>$acara->id]) }}" method="post">
+      <form enctype="multipart/form-data" class="w3-container" action="{{ route('Event.Update',['id'=>$acara->id]) }}" method="post">
         <p>
         <label>Gambar Acara</label>
-        <input class="w3-input" type="file" name="gambar" ></p>
+        <input class="w3-input" type="file" name="event_img" ></p>
+        @if ($errors->has('event_img'))
+          <p> {{ $errors->first('event_img') }} </p>
+        @endif
         <p>
         <label>Nama Acara</label>
         <input class="w3-input" type="text" name="nama" value="{{ (isset($acara)?$acara->nama:'')  }}"></p>
