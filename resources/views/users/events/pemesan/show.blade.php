@@ -11,16 +11,7 @@ DATA PEMESAN
 @endsection
 
 @section('side_navigation')
-  {{-- @extends('layouts.navigation') --}}
-  {{-- @extends('layouts.navigation_event') --}}
-  <a class="w3-bar-item w3-padding"></a>
-  <p></p>
-  <h9>    Event Dashboard</h9>
-  <a href="{{ route('Event.Show', ['id' => $acara->id]) }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i>    {{ $acara->nama }}</a>
-  <a href="{{ route('Event.Penjualan',['id'=> $acara->id]) }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i>    Laporan Penjualan</a>
-  <a href="{{ route('Event.Pemesan',['id'=> $acara->id]) }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i>    Data Pemesan</a>
-  <a href="{{ route('Event.Checkin',['id'=> $acara->id]) }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i>    Check in</a>
-  <a href="{{ route('Event.Sales',['id'=> $acara->id]) }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i>    Sales</a>
+  @include('layouts.sidebar_event')
 @endsection
 
 
@@ -106,7 +97,7 @@ DATA PEMESAN
               <td>
                 <a href="/storage/bukti/{{$transaksi->no_nota}}.jpg">
                   <img src="{{ asset('/storage/bukti/'.$transaksi->no_nota).'.jpg' }}" alt="{{$transaksi->no_nota}}" style="width:50%";height:200px class="w3-left">
-                </a>        
+                </a>
               </td>
             </tr>
           @endif

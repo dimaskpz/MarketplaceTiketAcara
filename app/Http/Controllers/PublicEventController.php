@@ -13,6 +13,7 @@ use JavaScript;
 use Carbon\Carbon;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 class PublicEventController extends Controller
 {
   // TAHAP PERTAMA UNTUK MENAMPILKAN DETAIL EVENT
@@ -183,20 +184,46 @@ class PublicEventController extends Controller
       if ($transaksi) {
         // USER -> nama, nomor rekening
         $rekening = $transaksi->acara->user;
+
+        // $produks = Produk::where('acara_id', $transaksi->acara_id)->orderBy('id', 'ASC')->get();
+        // $jumlah_produk = $produks->count();
+        // // JUMLAH tiap jenis produk
+        // $tikets = Tiket::where('transaksi_id',$transaksi->id)->get();
+        //
+        // $jenis_produks = array();
+        // for ($i=0; $i < $jumlah_produk ; $i++) {
+        //   $a =2;
+        //   array_push($jenis_produks, $a);
+        // }
+        // //NAMA & HARGA
+        // $harga_produks = array();
+        // $nama_produks = array();
+        // foreach ($produks as $produk) {
+        //   array_push($nama_produks, $produk->nama);
+        //   array_push($harga_produks, $produk->harga);
+        // }
+        // //TOTAL bayar
+        // $total = 0;
+        // for ($g=0; $g < $jumlah_produk; $g++) {
+        //   $total = $total + ($harga_produks[$g] * $jenis_produks[$g]);
+        // }
+
+
         //COUNTDOWN
         $created_plus = Carbon::parse($transaksi->created_at)->addHours(12);
         $countdown = (carbon::now())->diff($created_plus);
         $days= $countdown->days;
         $hours = $countdown->h;
-        $minutes = $countdown->m;
+        $minutes = $countdown->i;
         $seconds = $countdown->s;
+        // dd($countdown);
         JavaScript::put([
             'days' => $days,
             'hours' => $hours,
             'minutes' => $minutes,
             'seconds' => $seconds
         ]);
-        return view('users.publics.done', compact('rekening', 'transaksi'));
+        return view('users.publics.done', compact('rekening', 'transaksi' , 'total','harga_produks','nama_produk', 'jenis_produks'));
       }else {
           return abort(405);
       }

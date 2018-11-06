@@ -16,7 +16,7 @@ Event
 
 @section('content')
 <div class="w3-container w3-padding-32">
-  <a href="{{ route('Event.Create') }}" class="w3-btn w3-teal w3-right"> Tambah Event</a>
+  <a href="{{ route('Event.Create') }}" class="w3-btn w3-teal"> Buat Event</a>
   <!--Search Bar-->
   <h3>Event</h3>
   <p>
@@ -62,7 +62,7 @@ Event
                 <td> <a href="{{ route('Event.Show', ['id' => $acara->id]) }}" class="w3-btn w3-teal">Lihat</a> </td>
               </tr>
             @endforeach
-          
+
           </table>
         </div>
         </p>

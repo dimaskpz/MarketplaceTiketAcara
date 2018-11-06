@@ -16,7 +16,8 @@ EDIT EVENT
       </div>
       <form enctype="multipart/form-data" class="w3-container" action="{{ route('Event.Update',['id'=>$acara->id]) }}" method="post">
         <p>
-        <label>Gambar Acara</label>
+        <img src="{{ asset('/storage/event/'.$acara->gambar) }}" alt="{{$acara->gambar}}" style="width:100%">
+        <label>Ubah Gambar Event</label>
         <input class="w3-input" type="file" name="event_img" ></p>
         @if ($errors->has('event_img'))
           <p> {{ $errors->first('event_img') }} </p>

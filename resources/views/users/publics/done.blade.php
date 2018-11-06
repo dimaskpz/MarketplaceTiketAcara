@@ -51,6 +51,38 @@ Viho System
       </div>
     </div>
 
+    {{-- <br>
+<div class="w3-card-4">
+  <div class="w3-padding">
+    <div class="w3-container w3-blue">
+      <h2> Pembelian</h2>
+    </div>
+    <table class="w3-table">
+      <tr>
+        <th>Tiket</th>
+        <th>Jumlah</th>
+        <th>Harga</th>
+      </tr>
+      @for ($g=0; $g < $jumlah_produk ; $g++)
+          <tr>
+            @if ($jenis_produks[$g] != 0)
+                <td>
+                  {{ $nama_produks[$g] }}
+                </td>
+                <td>{{ $jenis_produks[$g] }}</td>
+                <td>Rp {{ number_format($harga_produks[$g] * $jenis_produks[$g],0,"",".") }}</td>
+            @endif
+          </tr>
+      @endfor
+      <tr>
+        <td colspan="2">Total Pembayaran</td>
+        <td>Rp {{ number_format($total,0,"",".") }}</td>
+      </tr>
+    </table>
+  </div>
+</div> --}}
+
+
   <div class="w3-half w3-padding">
     <div class="w3-card-4">
       <div class="w3-padding">
@@ -145,6 +177,10 @@ Viho System
     }
   }
   countdown();
+
+
+
+
   </script>
 
 @endsection

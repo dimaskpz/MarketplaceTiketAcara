@@ -30,22 +30,31 @@ class EventController extends Controller
         return view('users.events.create');
     }
 
+    public function show($id)
+    {
+      $acara = Acara::find($id);
+      return view('users.events.show', compact('acara'));
+    }
+
+
+    public function edit($id)
+    {
+      $acara = Acara::find($id);
+      return view('users.events.edit', compact('acara'));
+    }
+
 
     public function store(Request $request)
     {
 
         $this->validate($request,[
-          'event_img' => 'mimes:jpeg,jpg,png|max:10000'
+          'event_img' => 'mimes:jpeg,jpg,png|max:10000',
+          'nama' => 'required'
         ]);
 
-          $nama_gambar = time() . '.png';
-          $request->file('event_img')->storeAs('public/event', $nama_gambar);
-
-          // dd($request->toarray());
           $acara = new Acara;
           $a = Auth::user()->id;
           $acara->user_id = Auth::user()->id;
-          $acara->gambar = $nama_gambar;
           $acara->nama = $request->nama;
           $acara->nama_tempat = $request->nama_tempat;
           $acara->kota = $request->kota;
@@ -56,27 +65,18 @@ class EventController extends Controller
           $acara->tgl_selesai = $request->tgl_selesai;
           $acara->wkt_mulai = $request->wkt_selesai;
           $acara->wkt_selesai = $request->wkt_selesai;
+          if ($request->file('event_img')) {
+            $nama_gambar = time() . '.png';
+            $request->file('event_img')->storeAs('public/event', $nama_gambar);
+            $acara->gambar = $nama_gambar;
+          }
           $acara->save();
 
-          // dd($acara->id);
         $next = Acara::where('user_id', Auth::user()->id)->orderby('id','ASC')->get()->last();
 
         return redirect()->route('Event.Ticket.Create', ['id'=>$next->id]);
     }
 
-
-    public function show($id)
-    {
-        $acara = Acara::find($id);
-        return view('users.events.show', compact('acara'));
-    }
-
-
-    public function edit($id)
-    {
-        $acara = Acara::find($id);
-        return view('users.events.edit', compact('acara'));
-    }
 
 
     public function update(Request $request, $id)
@@ -84,26 +84,28 @@ class EventController extends Controller
 
         //PROSES PENYIMPANAN Gambar
         $this->validate($request,[
-          'event_img' => 'mimes:jpeg,jpg,png|max:10000'
+          'event_img' => 'mimes:jpeg,jpg,png|max:10000',
+          'nama' => 'required'
         ]);
 
-          $nama_gambar = time() . '.png';
-          $request->file('event_img')->storeAs('public/event', $nama_gambar);
 
         $acara = Acara::find($id);
 
-        $acara->gambar = $nama_gambar;
         $acara->nama = $request->nama;
         $acara->nama_tempat = $request->nama_tempat;
         $acara->kota = $request->kota;
         $acara->alamat = $request->alamat;
         $acara->kapasitas = $request->kapasitas;
         $acara->deskripsi = $request->deskripsi;
-
         $acara->tgl_mulai = $request->tgl_mulai;
         $acara->tgl_selesai = $request->tgl_selesai;
         $acara->wkt_mulai = $request->wkt_selesai;
         $acara->wkt_selesai = $request->wkt_selesai;
+        if ($request->file('event_img')) {
+          $nama_gambar = time() . '.png';
+          $request->file('event_img')->storeAs('public/event', $nama_gambar);
+          $acara->gambar = $nama_gambar;
+        }
         $acara->save();
 
         return redirect()->route('Event.Show',['id'=>$acara->id]);

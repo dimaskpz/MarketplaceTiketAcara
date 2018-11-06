@@ -9,7 +9,7 @@ budi
 @endsection
 
 @section('nama_halaman')
-Dashboard
+Home
 @endsection
 
 

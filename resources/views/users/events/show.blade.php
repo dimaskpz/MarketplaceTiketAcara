@@ -7,22 +7,13 @@ EVENT
 budi
 @endsection
 @section('nama_halaman')
-DETAIL ACARA
+Dashboard Event
 @endsection
 
 
 
 @section('side_navigation')
-  {{-- @extends('layouts.navigation') --}}
-  {{-- @extends('layouts.navigation_event') --}}
-  <a class="w3-bar-item w3-padding"></a>
-  <p></p>
-  <h9>    Event Dashboard</h9>
-  <a href="" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i>    {{ $acara->nama }}</a>
-  <a href="{{ route('Event.Penjualan',['id'=> $acara->id]) }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i>    Laporan Penjualan</a>
-  <a href="{{ route('Event.Pemesan',['id'=> $acara->id]) }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i>    Data Pemesan</a>
-  <a href="{{ route('Event.Checkin',['id'=> $acara->id]) }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i>    Check in</a>
-  <a href="{{ route('Event.Sales',['id'=> $acara->id]) }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i>    Sales</a>
+  @include('layouts.sidebar_event')
 @endsection
 @section('nama_acara')
   {{ $acara->nama }}
@@ -87,10 +78,8 @@ DETAIL ACARA
       {{-- BUTTON EDIT --}}
       <p>
         <div class="w3-row-padding">
-          <div class="w3-half">
-            <a href="{{ route('Event.Edit', ['id' => $acara->id]) }}" class="w3-btn w3-teal">Edit</a>
-            <a href=" {{ route('Event.Ticket.Create', ['id'=>$acara->id]) }} " class="w3-btn w3-teal">Tambah Jenis Tiket</a>
-          </div>
+          <a href="{{ route('Event.Edit', ['id' => $acara->id]) }}" class="w3-btn w3-teal">Ubah Detail Acara</a>
+          <a href=" {{ route('Event.Ticket.Create', ['id'=>$acara->id]) }} " class="w3-btn w3-teal">Pengaturan Tiket</a>
         </div>
       </p>
       {{-- AKHIR BUTTON EDIT --}}

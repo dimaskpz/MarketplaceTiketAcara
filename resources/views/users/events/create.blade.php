@@ -14,12 +14,23 @@ CREATE EVENT
       <div class="w3-container w3-teal">
         <h2>Acara</h2>
       </div>
+      @if ($errors->any())
+
+          <div>
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <p>{{ $error }}</p>
+                  @endforeach
+              </ul>
+          </div>
+
+      @endif
       <form enctype="multipart/form-data" class="w3-container" action="{{ route('Event.Store') }}" method="post">
         <p>
         <label>Gambar Acara</label>
         <input class="w3-input" type="file" name="event_img"></p>
         @if ($errors->has('event_img'))
-          <p> {{ $errors->first('featured_img') }} </p>
+          <p> {{ $errors->first('event_img') }} </p>
         @endif
         <p>
         <label>Nama Acara</label>
@@ -60,36 +71,6 @@ CREATE EVENT
   </div>
 
 
-
-<div class="w3-half w3-padding">
-  <form action="{{ url('store') }}" method="POST" enctype="multipart/form-data">
-    {!! csrf_field() !!}
-    <div class="row">
-          <div class="input-field col s12">
-            <input type="text" class="validate" name="judul">
-            <label for="title">Judul</label>
-          </div>
-    </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea" name="isi"></textarea>
-          <label for="textarea1">Isi</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s6">
-            <img src="http://placehold.it/100x100" id="showgambar" style="max-width:200px;max-height:200px;float:left;" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s6">
-          <input type="file" id="inputgambar" name="gambar" class="validate"/ >
-        </div>
-      </div>
-      <button type="submit" class="btn btn-flat pink accent-3 waves-effect waves-light white-text right">Submit <i class="material-icons right">send</i></button>
-  </form>
-</div>
 </div>
 
 </div>
