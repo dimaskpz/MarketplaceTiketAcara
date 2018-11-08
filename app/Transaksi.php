@@ -20,4 +20,47 @@ class Transaksi extends Model
   {
     return $this->belongsTo('App\Acara');
   }
+
+  public function getTotalOmsetAttribute()
+  {
+    $jumlah = 0;
+    foreach($this->tiket as $tiket){
+      $jumlah = $jumlah + $tiket->totalHarga;
+    }
+    return $jumlah;
+  }
+
+
+public function getTotalBersihAttribute()
+{
+  $jumlah = 0;
+  foreach ($this->tiket as $tiket) {
+    $jumlah = $jumlah + $tiket->totalBersih;
+  }
+  return $jumlah;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // public function totalHarga($tikets)
+  // {
+  //   $jumlah = 0;
+  //   foreach ($tikets as $tiket) {
+  //     $jumlah = $jumlah + $tiket->produk->harga;
+  //   }
+  //   return $jumlah;
+  // }
 }

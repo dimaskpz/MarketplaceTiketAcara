@@ -49,9 +49,9 @@ Viho System
           </table>
         </div>
       </div>
-    </div>
 
-    {{-- <br>
+
+    <br>
 <div class="w3-card-4">
   <div class="w3-padding">
     <div class="w3-container w3-blue">
@@ -80,8 +80,14 @@ Viho System
       </tr>
     </table>
   </div>
-</div> --}}
+</div>
+<br>
 
+  <div class="w3-padding">
+    <a class="w3-btn w3-black" href="{{ route('Welcome') }}">Kembali ke Halaman Utama</a>
+
+</div>
+    </div>
 
   <div class="w3-half w3-padding">
     <div class="w3-card-4">

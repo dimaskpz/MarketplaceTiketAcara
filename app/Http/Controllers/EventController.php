@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\Acara;
 use App\Link;
 Use App\Transaksi;
-// Use App\Dtransaksi;
 Use App\Produk;
 Use App\User;
 Use App\Tiket;
@@ -13,20 +12,14 @@ use Auth;
 
 class EventController extends Controller
 {
-
     public function index()
     {
         $acaras = Acara::where('user_id', Auth::user()->id)->get();
-        // dd($acara->toarray());
-        // dd($acara);
-        // dd(Auth::user( )->id);
         return view('users.events.index', compact('acaras'));
     }
 
-
     public function create()
     {
-
         return view('users.events.create');
     }
 
@@ -36,17 +29,14 @@ class EventController extends Controller
       return view('users.events.show', compact('acara'));
     }
 
-
     public function edit($id)
     {
       $acara = Acara::find($id);
       return view('users.events.edit', compact('acara'));
     }
 
-
     public function store(Request $request)
     {
-
         $this->validate($request,[
           'event_img' => 'mimes:jpeg,jpg,png|max:10000',
           'nama' => 'required'
@@ -71,26 +61,19 @@ class EventController extends Controller
             $acara->gambar = $nama_gambar;
           }
           $acara->save();
-
         $next = Acara::where('user_id', Auth::user()->id)->orderby('id','ASC')->get()->last();
-
         return redirect()->route('Event.Ticket.Create', ['id'=>$next->id]);
     }
 
-
-
     public function update(Request $request, $id)
     {
-
         //PROSES PENYIMPANAN Gambar
         $this->validate($request,[
           'event_img' => 'mimes:jpeg,jpg,png|max:10000',
           'nama' => 'required'
         ]);
 
-
         $acara = Acara::find($id);
-
         $acara->nama = $request->nama;
         $acara->nama_tempat = $request->nama_tempat;
         $acara->kota = $request->kota;
@@ -107,16 +90,8 @@ class EventController extends Controller
           $acara->gambar = $nama_gambar;
         }
         $acara->save();
-
         return redirect()->route('Event.Show',['id'=>$acara->id]);
     }
-
-
-    public function destroy($id)
-    {
-        //
-    }
-
 
     public function penjualan($id)
     {
@@ -201,4 +176,11 @@ class EventController extends Controller
       // dd($saless->toarray());
       return view('users.events.sales.index', compact('acara', 'saless'));
     }
+
+
+    public function destroy($id)
+    {
+      //
+    }
+
 }

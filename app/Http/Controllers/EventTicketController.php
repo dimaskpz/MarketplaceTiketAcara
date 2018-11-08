@@ -25,20 +25,22 @@ class EventTicketController extends Controller
       if (!$acara) {
         return redirect()->back();
       }
-
+      // dd($request->toarray());
       $produk = new Produk;
       $produk->acara_id = $id;
       $produk->nama = $request->nama;
       $produk->harga = $request->harga;
       $produk->jumlah = $request->jumlah;
       $produk->deskripsi = $request->deskripsi;
-      $produk->tgl_mulai = $request->tgl_mulai;
       $produk->tgl_selesai = $request->tgl_selesai;
-      $produk->komisi_awal = $request->komisi_awal;
-      $produk->tipe_komisi = $request->tipe_komisi;
-      $produk->komisi_tambah = $request->komisi_tambah;
-      $produk->max_kelipatan = $request->max_kelipatan;
-      $produk->kelipatan = $request->kelipatan;
+      if ($request->komisi_tetap) {
+        // dd('ada komisi_tetap');
+        $produk->komisi_jenis = 'tetap';
+        $produk->komisi_tetap = $request->komisi_tetap;
+      }else {
+        $produk->komisi_jenis = 'persen';
+        $produk->komisi_persen = $request->komisi_persen;
+      }
 
       $produk->save();
 
@@ -57,19 +59,19 @@ class EventTicketController extends Controller
     {
       $produk = Produk::find($id);
 
-      // $produk->acara_id = $id;
+
       $produk->nama = $request->nama;
       $produk->harga = $request->harga;
       $produk->jumlah = $request->jumlah;
       $produk->deskripsi = $request->deskripsi;
-      $produk->tgl_mulai = $request->tgl_mulai;
       $produk->tgl_selesai = $request->tgl_selesai;
-      $produk->komisi_awal = $request->komisi_awal;
-      $produk->tipe_komisi = $request->tipe_komisi;
-      $produk->komisi_tambah = $request->komisi_tambah;
-      $produk->max_kelipatan = $request->max_kelipatan;
-      $produk->kelipatan = $request->kelipatan;
-
+      if ($request->komisi_tetap) {
+        $produk->komisi_jenis = 'tetap';
+        $produk->komisi_tetap = $request->komisi_tetap;
+      }else {
+        $produk->komisi_jenis = 'persen';
+        $produk->komisi_persen = $request->komisi_persen;
+      }
       $produk->save();
 
       return redirect()->route('Event.Ticket.Create', ['id'=>$produk->acara_id]);

@@ -41,13 +41,13 @@ Route::post('/event/cek/nota','PublicEventController@cektrans')->name('Public.Tr
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-
+//PROFILE
 Route::group(['prefix' => 'profile'], function () {
 Route::get('/', 'ProfileController@edit')->name('Profile.Edit');
 Route::post('/store', 'ProfileController@update')->name('Profile.Update');
 
 });
-
+//HOME
 Route::group(['prefix' => 'home'], function () {
 Route::get('/', 'HomeController@index')->name('Home_Default');
 Route::get('/show/{acara_id}', 'HomeController@show')->name('Home.Event.Show');
@@ -67,14 +67,14 @@ Route::get('/show/{id}', 'TicketController@show')->name('Ticket.Show');
 
 //EVENTS
 Route::group(['prefix' => 'events'], function () {
-          //CREATE EVENT
+          //create EVENT
 Route::get('/', 'EventController@index')->name('Event_Default');
 Route::get('/show/{id}', 'EventController@show')->name('Event.Show');
 Route::get('/edit/{id}', 'EventController@edit')->name('Event.Edit');
 Route::get('/create', 'EventController@create')->name('Event.Create');
 Route::post('/store', 'EventController@store')->name('Event.Store');
 Route::put('/update/{id}', 'EventController@update')->name('Event.Update');
-          //DASHBOARD EVENT
+          //dashboard EVENT
 Route::get('/penjualan/{id}', 'EventController@penjualan')->name('Event.Penjualan');
 Route::get('/sales/{id}','EventController@sales')->name('Event.Sales');
 
@@ -85,7 +85,7 @@ Route::get('/pemesan/{id}', 'EventController@pemesan')->name('Event.Pemesan');
 Route::get('/pemesan/show/{transaksi_id}','EventController@pemesan_show')->name('Event.Pemesan.Show');
 Route::get('/pemesan/show/konfirmasi/{transaksi_id}','EventController@konfirmasi')->name('Event.Ticket.Konfirmasi');
 
-          //EVENT->TIKET
+          //EVENT->tiket
 Route::get('/{id}/ticket/create','EventTicketController@create')->name('Event.Ticket.Create');
 Route::get('/{id}/ticket/edit', 'EventTicketController@edit')->name('Event.Ticket.Edit');
 Route::post('/{id}/ticket', 'EventTicketController@store')->name('Event.Ticket.Store');
@@ -97,11 +97,8 @@ Route::post('ticket/destroy','EventTicketController@destroy')->name('Event.Ticke
 //AFFILIATES
 Route::group(['prefix' => 'affiliates'], function () {
 Route::get('/', 'AffiliateController@index')->name('Affiliate_Default');
-Route::get('/show/{id}', 'AffiliateController@show')->name('Affiliate.Show');
+Route::get('/show/{acara_id}', 'AffiliateController@show')->name('Affiliate.Show');
 });
-
-
-
 
 
 

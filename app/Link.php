@@ -14,6 +14,11 @@ class Link extends Model
     return $this->belongsTo('App\User');
   }
 
+  public function Acara()
+  {
+    return $this->belongsTo('App\Acara');
+  }
+
   public function Transaksi()
   {
     return $this->HasMany('App\Transaksi');

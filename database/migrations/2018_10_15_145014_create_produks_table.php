@@ -21,14 +21,13 @@ class CreateProduksTable extends Migration
             $table->Integer('harga')->default(0);
             $table->Integer('jumlah')->nullable();
             $table->string('deskripsi')->nullable();
-            $table->date('tgl_mulai')->nullable();
             $table->date('tgl_selesai')->nullable();
-            $table->Integer('komisi_awal')->nullable();
-            $table->string('tipe_komisi',255)->nullable();
-            $table->Integer('komisi_tambah')->nullable();
-            $table->Integer('max_kelipatan')->nullable();
-            $table->Integer('kelipatan')->nullable();
 
+            $table->string('komisi_jenis')->default('tetap');
+            $table->Integer('komisi_tetap')->default(0);
+            $table->Integer('komisi_persen')->default(0);
+
+            // $table->date('tgl_mulai')->nullable();
             $table->timestamps();
         });
     }

@@ -15,4 +15,38 @@ class Tiket extends Model
   {
     return $this->belongsTo('App\Transaksi');
   }
+
+  public function getTotalHargaAttribute(){
+    return $this->produk->totalHarga;
+  }
+
+  public function getTotalBersihAttribute(){
+    return $this->produk->totalBersih;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

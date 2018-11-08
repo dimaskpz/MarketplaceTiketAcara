@@ -32,28 +32,34 @@ Edit Tiket
           <p>
           <label>Tanggal Mulai</label>
           <input required class="w3-input w3-border w3-sand" type="date" name="tgl_mulai" value="{{ $produk->tgl_mulai }}"></p>
-          <p>
-          <label>Tanggal Selesai</label>
-          <input required  class="w3-input w3-border w3-sand" type="date" name="tgl_selesai" value="{{ $produk->tgl_selesai }}"></p>
-          <p>
+
+
         </div>
 
         <div class="w3-half w3-padding">
           <p>
-          <label>Komisi Awal</label>
-          <input class="w3-input w3-border w3-sand" type="number" name="komisi_awal" value="{{ $produk->komisi_awal }}"></p>
+            <input {{ $produk->komisi_jenis === 'tetap'?"checked='true'":'' }} class="w3-radio" onclick="komisi()" id="radio_tetap" type="radio" name="rkomisi" value="tetap">
+            <label>
+              Komisi Tetap
+            </label>
+          </p>
           <p>
-          <label>Tipe Komisi</label>
-          <input class="w3-input w3-border w3-sand" type="text" name="tipe_komisi" value="{{ $produk->tipe_komisi }}"></p>
-          <p>
-          <label>Komisi Tambah</label>
-          <input class="w3-input w3-border w3-sand" type="number" name="komisi_tambah" value="{{ $produk->komisi_tambah }}"></p>
-          <p>
-          <label>Maks_kelipatan</label>
-          <input class="w3-input w3-border w3-sand" type="number" name="max_kelipatan" value="{{ $produk->max_kelipatan }}"></p>
-          <p>
-          <label>Kelipatan</label>
-          <input class="w3-input w3-border w3-sand" type="number" name="kelipatan" value="{{ $produk->kelipatan }}"></p>
+            <input {{ $produk->komisi_jenis === 'tetap'?'':"checked='true'" }} class="w3-radio" onclick="komisi()" type="radio" name="rkomisi" value="persen">
+            <label>
+              Komisi Persen
+            </label>
+          </p>
+
+        <br>
+
+        <p>
+          <label>Komisi Tetap</label>
+          <input required {{ $produk->komisi_jenis === 'tetap'?'':'disabled' }} id="input_tetap" class="w3-input w3-border" type="number" name="komisi_tetap" value="{{ isset($produk->komisi_tetap)?$produk->komisi_tetap:''}}" placeholder="Komisi Tetap">
+        </p>
+        <p>
+          <label>Prosentase Komisi</label>
+          <input required {{ $produk->komisi_jenis === 'tetap'?'disabled':'' }} id="input_persen" class="w3-input w3-border" type="number" name="komisi_persen" value="{{ isset($produk->komisi_persen)?$produk->komisi_persen:''}}" placeholder="Komisi Persen" max="100"><br>
+        </p>
 
           <input type="submit" class="w3-btn w3-brown" value="Simpan Perubahan"></input>
           {{ csrf_field() }}
@@ -114,4 +120,16 @@ Edit Tiket
 </div> --}}
 
 </div>
+<script>
+  window.komisi = function() {
+    if(document.getElementById("radio_tetap").checked) {
+      document.getElementById("input_tetap").disabled = false;
+      document.getElementById("input_persen").disabled = true;
+    } else {
+      document.getElementById("input_tetap").disabled = true;
+      document.getElementById("input_persen").disabled = false;
+    }
+  }
+
+</script>
 @endsection

@@ -68,20 +68,21 @@ CREATE EVENT
             <div class="w3-container w3-blue">
               <h2> Data Pembeli</h2>
             </div>
+            <input type="hidden" name="kode_unik" value="{{ $kode_unik }}"></input>
             <input type="hidden" name="acara_id" value="{{ $acara->id }}"></input>
             <input type="hidden" name="jumlah_produk" value="{{ $jumlah_produk }}"></input>
             <input type="hidden" name="user_id" value="{{ $user_id }}">
             <p>
               <label>Nama</label>
-              <input class="w3-input" type="text" name="nama_pembeli" value="">
+              <input class="w3-input" type="text" name="nama_pembeli" value="Marcia Kamila Kabelo">
             </p>
             <p>
               <label>Nomor Telepon</label>
-              <input class="w3-input" type="number" name="tlp_pembeli" value="">
+              <input class="w3-input" type="number" name="tlp_pembeli" value="408529485">
             </p>
             <p>
               <label>Email</label>
-              <input class="w3-input" type="email" name="email_pembeli" value="">
+              <input class="w3-input" type="email" name="email_pembeli" value="ciananda7@gmail.com">
             </p>
           </div>
         </div>
@@ -109,7 +110,7 @@ CREATE EVENT
                 </p>
                 <p>
                   <label>Nama</label>
-                  <input class="w3-input" type="text" name="nama{{ $g . $i }}" value="">
+                  <input class="w3-input" type="text" name="nama{{ $g . $i }}" value="dimas">
                 </p>
                 <p>
                   <label>Jenis Kelamin</label>
@@ -124,15 +125,15 @@ CREATE EVENT
                 </p>
                 <p>
                   <label>Nomor KTP</label>
-                  <input class="w3-input" type="number" name="no_ktp{{ $g . $i }}" value="">
+                  <input class="w3-input" type="number" name="no_ktp{{ $g . $i }}" value="63563457356354">
                 </p>
                 <p>
                   <label>Nomor Telepon</label>
-                  <input class="w3-input" type="number" name="tlp{{ $g . $i }}" value="">
+                  <input class="w3-input" type="number" name="tlp{{ $g . $i }}" value="52452346265243">
                 </p>
                 <p>
                   <label>Email</label>
-                  <input class="w3-input" type="email" name="email{{ $g . $i }}" value="">
+                  <input class="w3-input" type="email" name="email{{ $g . $i }}" value="fsdfsd@fdf.com">
                 </p>
                 <p>
                 </p>

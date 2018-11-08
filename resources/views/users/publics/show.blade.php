@@ -53,6 +53,7 @@ CREATE EVENT
 <div class="w3-card-4 w3-padding">
 
   <form action="{{ route('Public.Event.Personal') }}" method="post">
+    <input type="hidden" name="kode_unik" value="{{ $kode_unik }}"></input>
     <input type="hidden" name="acara_id" value="{{ $acara->id }}"></input>
     <input type="hidden" name="user_id" value="{{ $user_id }}"></input>
     <input type="hidden" name="jumlah_produk" value="{{ $jumlah_produk }}"></input>
