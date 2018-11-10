@@ -117,7 +117,6 @@ class EventController extends Controller
     public function pemesan_show($transaksi_id)
     {
       $transaksi = Transaksi::find($transaksi_id);
-      // $dtrans = Dtransaksi::where('transaksi_id',$transaksi_id)->get();
 
       $acara = Acara::find($transaksi->acara_id);
       $tikets = Tiket::where('transaksi_id', $transaksi_id)->orderBy('produk_id','asc')->get();
@@ -162,9 +161,6 @@ class EventController extends Controller
       $acara_id = $tiket->Transaksi->acara_id;
       $transaksi_id = $tiket->transaksi_id;
       return redirect()->route('Event.Checkin', ['id' => $acara_id, 'transaksi_id' => $transaksi_id]);
-      // dd('acara_id', $acara_id, 'transaksi_id', $transaksi_id);
-      // return redirect()->route('Event.Checkin',['id'=>$acara_id])->with(compact('transaksi_id'));
-      // return redirect()->route('route.name', ['parameter' => 'value']);
     }
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -172,7 +168,6 @@ class EventController extends Controller
     {
       $acara = Acara::find($id);
       $saless = Link::where('acara_id',$id)->get();
-      // dd($saless->toarray());
       return view('users.events.sales.index', compact('acara', 'saless'));
     }
 

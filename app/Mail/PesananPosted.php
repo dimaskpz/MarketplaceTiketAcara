@@ -29,7 +29,6 @@ class PesananPosted extends Mailable
      */
     public function build()
     {
-      // dd('tes');
-        return $this->from('dari@dimas.com')->view('emails.pesanan');
+        return $this->from('admin@vihosystem.com')->view('emails.pesanan');
     }
 }

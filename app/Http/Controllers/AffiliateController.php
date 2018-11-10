@@ -64,20 +64,23 @@ class AffiliateController extends Controller
       $tikets = Tiket::where('transaksi_id',$transaksi_id)->get();
 
 
-      $jumlah_eachtiket = DB::table('tikets')
-                      ->where('transaksi_id', $transaksi->id)
-                      ->select(DB::raw('count(*) as total'))
-                      ->groupby('produk_id')
-                      ->get();
+      // $jumlah_eachtiket = DB::table('tikets')
+      //                 ->where('transaksi_id', $transaksi->id)
+      //                 ->select(DB::raw('count(*) as total'))
+      //                 ->groupby('produk_id')
+      //                 ->get();
 
       $produks = Produk::where('acara_id', $transaksi->acara_id)->orderBy('id', 'ASC')->get();
       $jumlah_produk = $produks->count();
       // JUMLAH tiap jenis produk
       $jenis_produks = array();
-      for ($i=0; $i < $jumlah_produk ; $i++) {
-        $nama = $i;
-        array_push($jenis_produks, $jumlah_eachtiket[$i]->total);
+      foreach ($produks as $produk) {
+        array_push($jenis_produks, $produk->Tiket->where('transaksi_id',$transaksi->id)->count());
       }
+      // for ($i=0; $i < $jumlah_produk ; $i++) {
+      //   $nama = $i;
+      //   array_push($jenis_produks, $jumlah_eachtiket[$i]->total);
+      // }
 
       $harga_produks = array();
       $nama_produks = array();

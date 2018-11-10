@@ -196,7 +196,7 @@ class PublicEventController extends Controller
         ]);
 
         Mail::to($request->email_pembeli)->send(new PesananPosted($transaksi));
-        dd('pembelian berhasil');
+        // dd('pembelian berhasil');
         return redirect()->route('Public.Event.Trans',['transaksi_id'=>$last_transaksi->no_nota]);
       }
 
@@ -228,24 +228,15 @@ class PublicEventController extends Controller
       if ($transaksi) {
         // USER -> nama, nomor rekening
         $rekening = $transaksi->acara->user;
-        // dd($transaksi->id);
-        $tikets = DB::table('tikets')
-                        ->where('transaksi_id', $transaksi->id)
-                        ->select(DB::raw('count(*) as total'))
-                        ->groupby('produk_id')
-                        ->get();
-                        // dd($tikets);
 
         $produks = Produk::where('acara_id', $transaksi->acara_id)->orderBy('id', 'ASC')->get();
         $jumlah_produk = $produks->count();
-        // dd($jumlah_produk);
-        // JUMLAH tiap jenis produk
+
         $jenis_produks = array();
-        for ($i=0; $i < $jumlah_produk ; $i++) {
-          $nama = $i;
-          array_push($jenis_produks, $tikets[$i]->total);
+        foreach ($produks as $produk) {
+          array_push($jenis_produks, $produk->Tiket->where('transaksi_id',$transaksi->id)->count());
         }
-        // dd($jenis_produks);
+
         //NAMA & HARGA
         $harga_produks = array();
         $nama_produks = array();

@@ -11,6 +11,11 @@ class Produk extends Model
     return $this->belongsTo('App\Acara');
   }
 
+  public function Tiket()
+  {
+    return $this->hasMany('App\Tiket');
+  }
+
   public function getTotalHargaAttribute()
   {
     return $this->harga ;
