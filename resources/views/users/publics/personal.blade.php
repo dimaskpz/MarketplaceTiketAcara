@@ -1,6 +1,6 @@
 @extends('layouts.create_master')
 @section('title')
-CREATE EVENT
+{{(isset($acara)?$acara->nama:'')}}
 @endsection
 
 @section('content')

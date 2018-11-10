@@ -36,10 +36,6 @@ CREATE EVENT
         <label>Nama Acara</label>
         <input class="w3-input" type="text" name="nama" ></p>
         <p>
-        <label>Kapasitas</label>
-        <input class="w3-input" type="text" name="kapasitas" ></p>
-
-        <p>
         <label>Tanggal Mulai</label>
         <input class="w3-input" type="date" name="tgl_mulai" min="{{date('Y-m-d')}}"></p>
         <p>

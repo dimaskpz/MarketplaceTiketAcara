@@ -3,11 +3,9 @@
 @section('title')
 AFFILLIATE
 @endsection
-@section('nama_user')
-budi
-@endsection
+
 @section('nama_halaman')
-Affiliate
+Afiliasi Penjualan Tiket Anda
 @endsection
 @section('body')
   onload="openEvent(event, 'tabaktif');"
@@ -57,7 +55,7 @@ Affiliate
                   <td>{{ $link->Acara->tgl_mulai }}</td>
                   <td>{{ $link->Acara->alamat }}, {{ $link->Acara->kota }} </td>
                   <td>
-                    <a href="{{ route('Affiliate.Show', ['acara_id'=> $link->acara_id]) }}" class="w3-btn w3-teal">Lihat</a>
+                    <a href="{{ route('Affiliate.Show', ['acara_id'=> $link->acara_id]) }}" class="w3-btn w3-teal">Komisi</a>
                   </td>
                 </tr>
               @endforeach

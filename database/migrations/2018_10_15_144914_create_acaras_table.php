@@ -22,8 +22,8 @@ class CreateAcarasTable extends Migration
             $table->string('nama_tempat',255)->nullable();
             $table->string('kota',255)->nullable();
             $table->string('alamat',255)->nullable();
-            $table->Integer('kapasitas')->nullable();
-            $table->string('jenis_acara',255)->nullable();
+            // $table->Integer('kapasitas')->nullable();
+            // $table->string('jenis_acara',255)->nullable();
             $table->date('tgl_mulai')->nullable();
             $table->date('tgl_selesai')->nullable();
             $table->time('wkt_mulai')->nullable();

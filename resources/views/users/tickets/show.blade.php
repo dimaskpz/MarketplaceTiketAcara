@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Tiket
+{{ $acara->nama }}
 @endsection
 
 @section('nama_halaman')
@@ -41,7 +41,7 @@ Detail Pesanan Tiket
           </tr>
           <tr>
             <td>Nomor Invoice</td>
-            <td>{{$transaksi->id}}</td>
+            <td>{{$transaksi->no_nota}}</td>
           </tr>
           <tr>
             <td>Nama :</td>
@@ -103,6 +103,13 @@ Detail Pesanan Tiket
             </tr>
           @endif
         </table>
+
+        <form class="w3-padding" action="{{ route('Public.Trans.Cek') }}" method="post">
+          <input type="hidden" name="no_nota" value="{{$transaksi->no_nota}}">
+          <input type="hidden" name="email" value="{{ Auth::user()->email }}">
+          <button class="w3-btn w3-black" type="submit" name="button">Halaman Transaksi</button>
+          {{ csrf_field() }}
+        </form>
       </div>
       </p>
   </div>

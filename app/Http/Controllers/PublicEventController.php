@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Mail\PesananPosted;
 
 use App\Link;
 use App\Acara;
@@ -13,6 +14,7 @@ use JavaScript;
 use Carbon\Carbon;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -61,18 +63,17 @@ class PublicEventController extends Controller
     // HALAMAN 2
     public function personal(Request $request)
     {
+      //
       $kode_unik = $request->kode_unik;
       $user_id = $request->user_id;
       $acara_id = $request->acara_id;
       $produks = Produk::where('acara_id', $acara_id)->orderBy('id', 'ASC')->get();
-      // dd($acara_id);
-      // dd($user_id);
-      // dd($produks->toarray());
-      // dd($produks[0]->Acara->nama);
       $jumlah_produk = $produks->count();
+      // dd($jumlah_produk);
       // JUMLAH tiap jenis produk
       $jenis_produks = array();
       for ($i=0; $i < $jumlah_produk ; $i++) {
+        // dd($i);
         $nama = 'tipe'.$i;
         array_push($jenis_produks, $request->$nama);
       }
@@ -83,34 +84,16 @@ class PublicEventController extends Controller
         array_push($nama_produks, $produk->nama);
         array_push($harga_produks, $produk->harga);
       }
-      // dd(
-      //   'acara_id = '
-      //   ,$acara_id
-      //   ,'produks = '
-      //   ,$produks->toarray()
-      //   ,'jumlah produk = ' ,$jumlah_produk
-      //   ,'jenis_produks = ',$jenis_produks
-      //   ,'nama_produks = ', $nama_produks
-      //   ,'harga_produks = ', $harga_produks
-      // );
-      //TOTAL bayar
+
       $total = 0;
       for ($g=0; $g < $jumlah_produk; $g++) {
         $total = $total + ($harga_produks[$g] * $jenis_produks[$g]);
       }
       //DETAIL acara
       $acara = Acara::find($acara_id);
-      // dd($acara);
+
       return view('/users/publics/personal', compact('total','harga_produks','user_id','acara','nama_produks','jenis_produks','jumlah_produk','produks', 'kode_unik'));
     }
-    // dd(
-    //     'request', $request->toarray(),
-    //     'jenis_produks = ' , $jenis_produks,
-    //     'jumlah_produk = ', $jumlah_produk,
-    //     'produks = ', $produks->toarray(),
-    //     'nama_produk', $nama_produks
-    //     );
-
 
     //GIMANA CARA BUAT 10 INPUT TIKET DI BLADE
     //-------------------------------------------------------------------------------------------------------------------
@@ -121,20 +104,18 @@ class PublicEventController extends Controller
     // HALAMAN 3
     public function store_personal(Request $request)
     {
-
-      // dd($request->toarray());
+// dd($request);
       $cek_trans = Transaksi::where('remember_token',$request->kode_unik)->first();
       // dd($cek_trans);
-
       if (!$cek_trans) {
         $produks = Produk::where('acara_id', $request->acara_id)->orderBy('id', 'ASC')->get();
         // dd($produks);
         $jumlah_produk = $produks->count(); //jumlah jenis produk
         // dd($jumlah_produk);
+        // dd($jumlah_produk);
         $id_produks = array(); //kode (id)
         $nama_produks = array(); //nama produk
         $harga_produks = array(); //harga
-
         foreach ($produks as $produk) {
           array_push($id_produks, $produk->id);
           array_push($nama_produks, $produk->nama);
@@ -147,13 +128,13 @@ class PublicEventController extends Controller
           $nama = 'tipe'.$i;
           array_push($jenis_produks, $request->$nama);
         }
-
+// dd($jenis_produks);
         // TOTAL yang dibayar
         $total = 0;
         for ($g=0; $g < $jumlah_produk; $g++) {
           $total = $total + ($harga_produks[$g] * $jenis_produks[$g]);
         }
-
+// dd($total);
         //INSERT tabel pertama TRANSAKSI
         $transaksi = new Transaksi;
         $transaksi->no_nota = 'NT'.uniqid();
@@ -171,7 +152,7 @@ class PublicEventController extends Controller
                                         ->where('email',$transaksi->email)
                                         ->orderby('id', 'ASC')
                                         ->get()->last();
-
+// dd($last_transaksi);
         for ($g=0; $g < $request->jumlah_produk ; $g++) {
           for ($i=0; $i < $jenis_produks[$g] ; $i++) {
             $tiket = new Tiket;
@@ -214,6 +195,8 @@ class PublicEventController extends Controller
             'seconds' => $seconds
         ]);
 
+        Mail::to($request->email_pembeli)->send(new PesananPosted($transaksi));
+        dd('pembelian berhasil');
         return redirect()->route('Public.Event.Trans',['transaksi_id'=>$last_transaksi->no_nota]);
       }
 
@@ -255,6 +238,7 @@ class PublicEventController extends Controller
 
         $produks = Produk::where('acara_id', $transaksi->acara_id)->orderBy('id', 'ASC')->get();
         $jumlah_produk = $produks->count();
+        // dd($jumlah_produk);
         // JUMLAH tiap jenis produk
         $jenis_produks = array();
         for ($i=0; $i < $jumlah_produk ; $i++) {

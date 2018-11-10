@@ -24,29 +24,4 @@ class Tiket extends Model
     return $this->produk->totalBersih;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

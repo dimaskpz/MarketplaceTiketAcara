@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-AFFILLIATE
+{{ $nama_acara }}
 @endsection
 
 @section('nama_halaman')
@@ -94,7 +94,7 @@ Affiliate
               @endif
             </td>
             <td>
-              <a href="#" class="w3-btn w3-teal">Detail Pesanan</a>
+              <a href="{{ route('Affiliate.Show.Detail', ['transaksi_id'=>$transaksi->id]) }}" class="w3-btn w3-teal">Detail Pesanan</a>
             </td>
           </tr>
         @endforeach

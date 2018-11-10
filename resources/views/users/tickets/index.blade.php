@@ -4,8 +4,13 @@
 TICKET
 @endsection
 
+@section('nama_user')
+  {{ Auth::user()->name }}
+@endsection
+
+
 @section('nama_halaman')
-Ticket
+Ticket yang Anda Pesan
 @endsection
 @section('body')
   onload="openEvent(event, 'tabaktif');"

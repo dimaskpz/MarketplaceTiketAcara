@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-EVENT
+{{ $acara->nama }}
 @endsection
 @section('nama_user')
 budi
@@ -40,36 +40,36 @@ Dashboard Event
     </div>
     <div class="w3-half">
       <p>
-      <ul class="w3-ul w3-card-4 w3-white">
+      <ul class="w3-ul w3-card-4 w3-white ">
         <li class="w3-bar">
-          <img src="img_avatar2.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+          {{-- <img src="img_avatar2.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px"> --}}
           <div class="w3-bar-item w3-border-left">
-            <span class="w3-large">Pendapatan</span><br>
-            <span>Web Designer</span>
+            <span class="w3-large">Omset</span><br>
+            <span>Rp {{ number_format($acara->Transaksi->sum('total'),0,"",".") }}</span>            
           </div>
         </li>
 
         <li class="w3-bar">
-          <img src="img_avatar5.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+          {{-- <img src="img_avatar5.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px"> --}}
           <div class="w3-bar-item w3-border-left">
             <span class="w3-large">Tiket Terjual</span><br>
-            <span>Support</span>
+            <span> {{ $acara->totalTiketAcara }} Tiket</span>
           </div>
         </li>
 
         <li class="w3-bar">
-          <img src="img_avatar5.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+          {{-- <img src="img_avatar5.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px"> --}}
           <div class="w3-bar-item w3-border-left">
-            <span class="w3-large">Peserta</span><br>
-            <span>Support</span>
+            <span class="w3-large">Transaksi</span><br>
+            <span>{{ $acara->Transaksi->count() }}</span>
           </div>
         </li>
 
         <li class="w3-bar">
-          <img src="img_avatar6.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+          {{-- <img src="img_avatar6.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px"> --}}
           <div class="w3-bar-item w3-border-left">
             <span class="w3-large">Sales</span><br>
-            <span>Accountant</span>
+            <span>{{ $acara->Link->count() }} Orang</span>
           </div>
         </li>
       </ul>

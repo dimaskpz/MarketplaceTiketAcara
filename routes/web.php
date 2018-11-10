@@ -98,6 +98,7 @@ Route::post('ticket/destroy','EventTicketController@destroy')->name('Event.Ticke
 Route::group(['prefix' => 'affiliates'], function () {
 Route::get('/', 'AffiliateController@index')->name('Affiliate_Default');
 Route::get('/show/{acara_id}', 'AffiliateController@show')->name('Affiliate.Show');
+Route::get('/show/detail/{transaksi_id}', 'AffiliateController@show_detail')->name('Affiliate.Show.Detail');
 });
 
 

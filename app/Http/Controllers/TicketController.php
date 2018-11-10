@@ -19,9 +19,6 @@ class TicketController extends Controller
     public function index()
     {
         $transaksis = Transaksi::where('email',Auth::user()->email)->get();
-        // dd(Auth::user()->email);
-        // dd($tikets);
-
         return view('users.tickets.index', compact('transaksis'));
     }
 

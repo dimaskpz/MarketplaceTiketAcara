@@ -7,7 +7,7 @@ EVENT
 budi
 @endsection
 @section('nama_halaman')
-Event
+Event Milik Anda
 @endsection
 
 @section('body')
@@ -57,9 +57,9 @@ Event
                 <td> {{ $acara->nama }} </td>
                 <td> {{date('d-m-Y', strtotime($acara->tgl_mulai))}} </td>
                 {{-- <td> {{ date_format($acara->tgl_mulai, "Y/m/d H:i:s") }} - {{$acara->tgl_selesai}}  </td> --}}
-                <td> {{ $acara->kapasitas }} </td>
-                <td> {{ $acara->lokasi }} </td>
-                <td> <a href="{{ route('Event.Show', ['id' => $acara->id]) }}" class="w3-btn w3-teal">Lihat</a> </td>
+                <td> {{ $acara->Produk->sum('jumlah') }} </td>
+                <td> {{ $acara->alamat }}, {{ $acara->kota }} </td>
+                <td> <a href="{{ route('Event.Show', ['id' => $acara->id]) }}" class="w3-btn w3-teal">Dashboard</a> </td>
               </tr>
             @endforeach
 

@@ -49,7 +49,7 @@ class EventController extends Controller
           $acara->nama_tempat = $request->nama_tempat;
           $acara->kota = $request->kota;
           $acara->alamat = $request->alamat;
-          $acara->kapasitas = $request->kapasitas;
+          // $acara->kapasitas = $request->kapasitas;
           $acara->deskripsi = $request->deskripsi;
           $acara->tgl_mulai = $request->tgl_mulai;
           $acara->tgl_selesai = $request->tgl_selesai;
@@ -78,7 +78,7 @@ class EventController extends Controller
         $acara->nama_tempat = $request->nama_tempat;
         $acara->kota = $request->kota;
         $acara->alamat = $request->alamat;
-        $acara->kapasitas = $request->kapasitas;
+        // $acara->kapasitas = $request->kapasitas;
         $acara->deskripsi = $request->deskripsi;
         $acara->tgl_mulai = $request->tgl_mulai;
         $acara->tgl_selesai = $request->tgl_selesai;
@@ -121,24 +121,23 @@ class EventController extends Controller
 
       $acara = Acara::find($transaksi->acara_id);
       $tikets = Tiket::where('transaksi_id', $transaksi_id)->orderBy('produk_id','asc')->get();
-      // dd($tikets->toarray());
       $total =0;
       foreach ($tikets as $t) {
         $total = $total + $t->Produk->harga;
       }
-
       return view('users.events.pemesan.show', compact('transaksi', 'acara','total', 'tikets'));
     }
-
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public function konfirmasi($transaksi_id)
     {
       $transaksi = Transaksi::find($transaksi_id);
       $transaksi->ispaid = 'y';
       $transaksi->save();
-
       return redirect()->route('Event.Pemesan.Show',['id'=>$transaksi_id]);
     }
-
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public function checkin($id, Request $request)
     {
       $acara = Acara::find($id);
@@ -146,15 +145,14 @@ class EventController extends Controller
 
       $transaksi_id = $request->transaksi_id;
       if ($transaksi_id) {
-        // dd($transaksi_id);
       $tikets = Tiket::where('transaksi_id',$transaksi_id)->orderBy('produk_id','asc')->get();
-      // dd($tikets->toarray());
       return view('users.events.checkin.index', compact('acara','transaksis','id','tikets'));
       }
 
       return view('users.events.checkin.index', compact('acara','transaksis','id'));
     }
-
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public function checkin_update(Request $request, $tiket_id)
     {
       $tiket = Tiket::find($tiket_id);
@@ -163,12 +161,13 @@ class EventController extends Controller
 
       $acara_id = $tiket->Transaksi->acara_id;
       $transaksi_id = $tiket->transaksi_id;
+      return redirect()->route('Event.Checkin', ['id' => $acara_id, 'transaksi_id' => $transaksi_id]);
       // dd('acara_id', $acara_id, 'transaksi_id', $transaksi_id);
       // return redirect()->route('Event.Checkin',['id'=>$acara_id])->with(compact('transaksi_id'));
-      return redirect()->route('Event.Checkin', ['id' => $acara_id, 'transaksi_id' => $transaksi_id]);
       // return redirect()->route('route.name', ['parameter' => 'value']);
     }
-
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public function sales($id)
     {
       $acara = Acara::find($id);

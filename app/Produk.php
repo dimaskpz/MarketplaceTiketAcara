@@ -21,8 +21,9 @@ class Produk extends Model
     if ($this->komisi_jenis == 'tetap') {
       return $this->komisi_tetap;
     }else {
+      $a=0;
       $a = ($this->komisi_persen / 100 ) * $this->harga;
-      dd($a, 'Model Produk');
+      // dd($a, 'Model Produk');
       return $a;
     }
   }

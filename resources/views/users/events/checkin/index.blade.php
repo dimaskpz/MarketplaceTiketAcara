@@ -1,13 +1,11 @@
 @extends('layouts.master')
 
 @section('title')
-EVENT
+{{ $acara->nama }}
 @endsection
-@section('nama_user')
-budi
-@endsection
+
 @section('nama_halaman')
-CHECKIN
+Check-in Peserta
 @endsection
 
 @section('side_navigation')
@@ -45,6 +43,15 @@ CHECKIN
         <div class="w3-responsive">
           <table class="w3-table-all">
             <tr>
+              <th colspan="2">Nama Pemesan</th>
+              <td colspan="3">{{ $tikets[0]->Transaksi->nama }}</td>
+            </tr>
+            <tr>
+            <th colspan="2">Nomor Invoice</th>
+            <td colspan="3">{{ $tikets[0]->Transaksi->no_nota }}</td>
+          </tr>
+            <tr>
+              <th>No</th>
               <th>Nama Tiket</th>
               <th>Nomor Tiket</th>
               <th>Checkin</th>
@@ -52,14 +59,14 @@ CHECKIN
             </tr>
               @foreach ($tikets as $tiket)
                 <tr>
+                  <td>{{ $loop->iteration }}</td>
                   <td>{{ $tiket->Produk->nama }} ({{ $tiket->nama }})</td>
-                  <td>{{ $tiket->id }}</td>
+                  <td>{{ $tiket->no_tiket }}</td>
                   <td>
-                    @if ($tiket->ischeckin == 't')
+                    @if ($tiket->ischeckin == 'n')
                       {{-- TIKET --}}
                       <form action="{{ route('Event.Checkin.Update',['transaksi_id'=>$tiket->id]) }}" method="post">
-                        {{-- <input type="hidden" name="tiket_id" value="{{$tiket->id}}"> --}}
-                        <input type="submit" value="Checkin"></input>
+                        <input class="w3-btn w3-black" type="submit" value="Checkin"></input>
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="PUT">
                       </form>
@@ -88,7 +95,7 @@ CHECKIN
           @foreach ($transaksis as $transaksi)
             <tr>
               <td>{{ $transaksi->nama }}</td>
-              <td>{{ $transaksi->id }}</td>
+              <td>{{ $transaksi->no_nota }}</td>
               <td>{{ $transaksi->Tiket->count() }}</td>
               <td>
                 {{-- TRANSAKSI --}}

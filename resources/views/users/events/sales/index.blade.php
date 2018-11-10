@@ -1,13 +1,11 @@
 @extends('layouts.master')
 
 @section('title')
-EVENT
+{{ $acara->nama }}
 @endsection
-@section('nama_user')
-budi
-@endsection
+
 @section('nama_halaman')
-SALES
+Sales Event
 @endsection
 
 @section('side_navigation')

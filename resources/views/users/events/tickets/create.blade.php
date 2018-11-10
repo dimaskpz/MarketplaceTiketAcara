@@ -57,7 +57,7 @@
                   Komisi Persen
                 </label>
               </p>
-            
+
             <br>
 
             <p>
@@ -88,10 +88,10 @@
             <div class="w3-responsive">
               <table class="w3-table-all">
                 <tr>
-                  <th>Nama Tiket</th>
+                  <th>Tiket</th>
                   <th>Harga</th>
-                  <th>Jumlah</th>
-                  <th>Tanggal Selesai</th>
+                  <th>Jml</th>
+                  <th>Tgl Selesai</th>
                   <th>Komisi Sales</th>
                   <th>Komisi Prosentase</th>
                 </tr>
@@ -107,7 +107,7 @@
                         <td> Rp {{ number_format($p->komisi_tetap,0,"",".")  }}</td>
                         {{-- Rp {{ number_format($total,0,"",".") }} --}}
                       @else
-                        <td>{{ $p->komisi_persen }} %</td>
+                        <td> Rp {{ number_format( ($p->komisi_persen / 100) * $p->harga ,0,"",".")}} <br>({{ $p->komisi_persen }} %)</td>
                       @endif
                       <td> <a href="{{ route('Event.Ticket.Edit',['id'=>$p->id]) }}" class="w3-btn w3-teal">Edit</a>  </td>
                     </tr>
@@ -120,9 +120,15 @@
       </div>
     </div>
 
+
+    <div class="w3-half w3-padding">
+      <div class="w3-card-4">
+        <a class="w3-btn w3-black w3-left" href="{{ route('Event.Show',['id'=>$id]) }}">Selesai</a>
+      </div>
+    </div>
+
     {{--  --}}
   </div>
-  <a class="w3-btn w3-black w3-left" href="{{ route('Event.Show',['id'=>$id]) }}">Selesai</a>
 
 
   {{--  --}}

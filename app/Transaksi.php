@@ -31,36 +31,18 @@ class Transaksi extends Model
   }
 
 
-public function getTotalBersihAttribute()
-{
-  $jumlah = 0;
-  foreach ($this->tiket as $tiket) {
-    $jumlah = $jumlah + $tiket->totalBersih;
+  public function getTotalBersihAttribute()
+  {
+    $jumlah = 0;
+    foreach ($this->tiket as $tiket) {
+      $jumlah = $jumlah + $tiket->totalBersih;
+    }
+    return $jumlah;
   }
-  return $jumlah;
-}
 
+  public function getTotalTiketAcaraAttribute()
+  {
+    return $this->Tiket->count();
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // public function totalHarga($tikets)
-  // {
-  //   $jumlah = 0;
-  //   foreach ($tikets as $tiket) {
-  //     $jumlah = $jumlah + $tiket->produk->harga;
-  //   }
-  //   return $jumlah;
-  // }
 }

@@ -1,13 +1,11 @@
 @extends('layouts.master')
 
 @section('title')
-EVENT
+{{ $acara->nama }}
 @endsection
-@section('nama_user')
-budi
-@endsection
+
 @section('nama_halaman')
-DATA PEMESAN
+Detail Data Pesanan
 @endsection
 
 @section('side_navigation')
@@ -50,7 +48,7 @@ DATA PEMESAN
           </tr>
           <tr>
             <td>Nomor Invoice</td>
-            <td>{{$transaksi->id}}</td>
+            <td>{{$transaksi->no_nota}}</td>
           </tr>
           <tr>
             <td>Nama :</td>

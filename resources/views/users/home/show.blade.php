@@ -19,7 +19,20 @@ Detail Acara
     <img src="{{ asset('/storage/event/'.$acara->gambar) }}" alt="{{ $acara->gambar }}" style="width:100%" class="w3-left">
   </div>
   <div class="w3-half">
-    <h4>{{ $acara->nama }} </h4>
+    <br>
+    @if (isset($link))
+        <br>
+        <b>
+          Anda sudah terdaftar sebagai sales. Berikut adalah link afiliasi anda:
+        </b>
+      <br>
+      {{ $link->link }}
+    @else
+      <a href="{{ route('Home.Sales.Regis',['acara_id'=>$acara->id]) }}" class="w3-button w3-black">Daftar sebagai Sales</a>
+    @endif
+    <br>
+    
+    <h4 class="w3-bar-item w3-teal">{{ $acara->nama }} </h4>
     {{-- {{ $loop->iteration }} ({{ $loop->iteration % 3 }}) <br> --}}
     <table>
       <tr>
@@ -93,17 +106,7 @@ Detail Acara
         </td>
       </tr>
     </table>
-    <br>
-    @if (isset($link))
-        <br>
-        <b>
-          Anda sudah terdaftar sebagai sales. Berikut adalah link afiliasi anda:
-        </b>
-      <br>
-      {{ $link->link }}
-    @else
-      <a href="{{ route('Home.Sales.Regis',['acara_id'=>$acara->id]) }}" class="w3-button w3-black">Daftar sebagai Sales</a>
-    @endif
+
 
   </div>
 </div>

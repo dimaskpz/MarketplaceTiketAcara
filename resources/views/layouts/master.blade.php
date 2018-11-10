@@ -47,6 +47,7 @@ document.getElementById('logout-form').submit();">
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 @csrf
 </form>
+<label class="w3-bar-item w3-right">Halo,   {{ Auth::user()->name }}</label>
 {{--
 <div class="w3-container">
   <h2>Dropdown Button</h2>
@@ -100,13 +101,14 @@ document.getElementById('logout-form').submit();">
 
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
+
     <h5><b><i class="fa fa-dashboard"></i> @yield('nama_halaman')</b></h5>
   </header>
 
 @yield('content')
-
+<br><br><br><br>
   <!-- Footer -->
-  <footer class="w3-container w3-padding-16 w3-teal">
+  <footer class="w3-container w3-padding-16 w3-teal w3-bottom">
     Copyright Viho Workshop System 2018
   </footer>
 

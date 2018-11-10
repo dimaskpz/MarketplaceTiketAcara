@@ -1,11 +1,9 @@
 @extends('layouts.master')
 
 @section('title')
-EVENT
+{{ $acara->nama }}
 @endsection
-@section('nama_user')
-budi
-@endsection
+
 @section('nama_halaman')
 LAPORAN PENJUALAN
 @endsection

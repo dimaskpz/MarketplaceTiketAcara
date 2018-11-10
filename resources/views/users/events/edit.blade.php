@@ -25,9 +25,9 @@ EDIT EVENT
         <p>
         <label>Nama Acara</label>
         <input class="w3-input" type="text" name="nama" value="{{ (isset($acara)?$acara->nama:'')  }}"></p>
-        <p>
+        {{-- <p>
         <label>Kapasitas</label>
-        <input class="w3-input" type="number" name="kapasitas" value="{{ (isset($acara)?$acara->kapasitas:'')  }}"></p>
+        <input class="w3-input" type="number" name="kapasitas" value="{{ (isset($acara)?$acara->kapasitas:'')  }}"></p> --}}
         {{-- <p>
         <label>Jenis Acara</label>
         <input class="w3-input" type="text" name="jenis_acara" value=""></p> --}}

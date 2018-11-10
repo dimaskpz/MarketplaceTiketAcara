@@ -30,8 +30,8 @@ Edit Tiket
           <label>Deskripsi</label>
           <input class="w3-input w3-border w3-sand" type="text" name="deskripsi" value="{{ $produk->deskripsi }}"></p>
           <p>
-          <label>Tanggal Mulai</label>
-          <input required class="w3-input w3-border w3-sand" type="date" name="tgl_mulai" value="{{ $produk->tgl_mulai }}"></p>
+          <label>Tanggal Selesai</label>
+          <input required class="w3-input w3-border w3-sand" type="date" name="tgl_selesai" value="{{ $produk->tgl_selesai }}"></p>
 
 
         </div>

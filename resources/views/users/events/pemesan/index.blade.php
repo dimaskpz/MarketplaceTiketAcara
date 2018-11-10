@@ -1,13 +1,11 @@
 @extends('layouts.master')
 
 @section('title')
-EVENT
+{{ $acara->nama }}
 @endsection
-@section('nama_user')
-budi
-@endsection
+
 @section('nama_halaman')
-DATA PEMESAN
+Data Pemesan
 @endsection
 
 @section('side_navigation')
@@ -52,7 +50,7 @@ DATA PEMESAN
           @foreach ($pemesans as $p)
             <tr>
               <td>{{ $p->nama }}</td>
-              <td>{{ $p->id }}</td>
+              <td>{{ $p->no_nota }}</td>
               <td>{{ ($p->ispaid == 'y' ?'Sudah Lunas':'Belum Bayar') }}</td>
               <td>{{ $p->user->name }}</td>
               <td> <a href="{{ route('Event.Pemesan.Show',['transaksi_id'=>$p->id]) }}" class="w3-btn w3-teal">Lihat</a> </td>
