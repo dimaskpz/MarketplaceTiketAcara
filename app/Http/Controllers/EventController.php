@@ -9,7 +9,9 @@ Use App\User;
 Use App\Tiket;
 use Illuminate\Http\Request;
 use Auth;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\KonfirmasiBukti;
+use App\Mail\KonfirmasiBuktitoSales;
 class EventController extends Controller
 {
     public function index()
@@ -143,6 +145,11 @@ class EventController extends Controller
       $transaksi = Transaksi::find($transaksi_id);
       $transaksi->ispaid = 'y';
       $transaksi->save();
+
+      //email pemesan
+      Mail::to('ciananda7@gmail.com')->send(new KonfirmasiBukti());
+      //email sales
+      Mail::to('ciananda7@gmail.com')->send(new KonfirmasiBuktitoSales());
       return redirect()->route('Event.Pemesan.Show',['id'=>$transaksi_id]);
     }
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

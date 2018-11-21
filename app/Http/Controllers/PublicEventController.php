@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Mail\PesananPosted;
-
+use App\Mail\UploadBukti;
 use App\Link;
 use App\Acara;
 use App\Produk;
@@ -295,6 +295,9 @@ class PublicEventController extends Controller
       $transaksi = Transaksi::find($xtransaksi->id);
       $transaksi->isupload = 'y';
       $transaksi->save();
+
+      Mail::to('ciananda7@gmail.com')->send(new UploadBukti());
+
       return redirect()->route('Public.Event.Trans',['transaksi_id'=>$request->no_nota]);
     }
 

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SalesRegis;
 use Illuminate\Http\Request;
 use App\Acara;
 use App\Link;
@@ -50,6 +51,9 @@ class HomeController extends Controller
       $link->acara_id = $acara_id;
       $link->link = $rand;
       $link->save();
+      // email pemilik acara
+      Mail::to('ciananda7@gmail.com')->send(new SalesRegis());
+
       return redirect()->route('Home.Event.Show', ['acara_id'=> $acara_id]);
     }
 }
