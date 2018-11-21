@@ -296,7 +296,7 @@ class PublicEventController extends Controller
       $transaksi->isupload = 'y';
       $transaksi->save();
 
-      Mail::to('ciananda7@gmail.com')->send(new UploadBukti());
+      Mail::to($transaksi->Acara->User->email)->send(new UploadBukti());
 
       return redirect()->route('Public.Event.Trans',['transaksi_id'=>$request->no_nota]);
     }

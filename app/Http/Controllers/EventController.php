@@ -219,9 +219,9 @@ class EventController extends Controller
       $transaksi->save();
 
       //email pemesan
-      Mail::to('ciananda7@gmail.com')->send(new KonfirmasiBukti());
+      Mail::to($transaksi->email)->send(new KonfirmasiBukti());
       //email sales
-      Mail::to('ciananda7@gmail.com')->send(new KonfirmasiBuktitoSales());
+      Mail::to($transaksi->User->email)->send(new KonfirmasiBuktitoSales());
       return redirect()->route('Event.Pemesan.Show',['id'=>$transaksi_id]);
     }
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

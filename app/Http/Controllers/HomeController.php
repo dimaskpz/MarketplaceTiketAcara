@@ -52,7 +52,7 @@ class HomeController extends Controller
       $link->link = $rand;
       $link->save();
       // email pemilik acara
-      Mail::to('ciananda7@gmail.com')->send(new SalesRegis());
+      Mail::to($link->Acara->User->email)->send(new SalesRegis());
 
       return redirect()->route('Home.Event.Show', ['acara_id'=> $acara_id]);
     }
