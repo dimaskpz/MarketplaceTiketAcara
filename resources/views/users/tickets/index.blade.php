@@ -69,7 +69,7 @@ Ticket yang Anda Pesan
               <td>
                 <div class="w3-padding-row">
                   <a href="{{ route('Ticket.Show', ['id' => $transaksi->id]) }}" class="w3-btn w3-teal">Nota</a>
-                  <form  action="{{ route('Public.Eticket', ['transaksi_id' => $transaksi->id]) }}" method="post">                    
+                  <form  action="{{ route('Public.Eticket', ['transaksi_id' => $transaksi->id]) }}" method="post">
                     <button type="submit" name="submit" class="w3-btn w3-teal">E-Tiket</button>
                     {{ csrf_field() }}
                   </form>
@@ -95,13 +95,26 @@ Ticket yang Anda Pesan
             <th>Kapasitas</th>
             <th>Venue dan Lokasi</th>
           </tr>
-          <tr>
-            <td>OVO Points</td>
-            <td>18-19 Januari 2018</td>
-            <td>09.00am-12.00pm</td>
-            <td>400</td>
-            <td>Universitas Ciputra</td>
+          {{-- @foreach ($transaksis_lalu as $lalu)
+            <tr>
+
+            <td>
+              {{ $lalu->Acara->nama }}
+            </td>
+            <td>{{ $lalu->Acara->tgl_mulai }}</td>
+            <td>{{ $lalu->Acara->alamat }}, {{ $lalu->Acara->kota }}</td>
+            <td>{{ $lalu->created_at }}</td>
+            <td>
+              <div class="w3-padding-row">
+                <a href="{{ route('Ticket.Show', ['id' => $lalu->id]) }}" class="w3-btn w3-teal">Nota</a>
+                <form  action="{{ route('Public.Eticket', ['transaksi_id' => $lalu->id]) }}" method="post">
+                  <button type="submit" name="submit" class="w3-btn w3-teal">E-Tiket</button>
+                  {{ csrf_field() }}
+                </form>
+              </div>
+            </td>
           </tr>
+          @endforeach --}}
         </table>
       </div>
       </p>

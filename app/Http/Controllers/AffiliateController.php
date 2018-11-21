@@ -15,7 +15,19 @@ class AffiliateController extends Controller
 
     public function index()
     {
+      // $acaras = Acara::where('tgl_mulai','>=',(date("Y-m-d")))->get();
+      // dd($acaras->toarray());
+      // $acaras_lalu = Acara::where('tgl_mulai','<',(date("Y-m-d")))->get();
       $links = Link::where('user_id',Auth::user()->id)->get();
+      // $skg = array();
+      // foreach ($acaras as $acara) {
+      //   foreach ($acara->Link->where('user_id',Auth::user()->id) as $link) {
+      //     array_push($skg,)
+      //   }
+      // }
+      // $links = $acaras->Link->where('user_id',Auth::user()->id)->get();
+      // dd($links->toarray());
+      // $links_lalu =
       // dd($links->toarray());
 
 
@@ -51,7 +63,7 @@ class AffiliateController extends Controller
       $nama_acara = $acara->nama;
       return view('users.affiliates.show', compact('transaksis', 'nama_acara', 'omset','bersih'));
     }
-    
+
     public function show_detail($transaksi_id)
     {
       $transaksi = Transaksi::find($transaksi_id);

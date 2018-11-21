@@ -37,7 +37,7 @@ CREATE EVENT
         <input class="w3-input" type="text" name="nama" ></p>
         <p>
         <label>Tanggal Mulai</label>
-        <input class="w3-input" type="date" name="tgl_mulai" min="{{date('Y-m-d')}}"></p>
+        <input required class="w3-input" type="date" name="tgl_mulai" min="{{date('Y-m-d')}}"></p>
         <p>
         <label>Tanggal Selesai</label>
         <input class="w3-input" type="date" name="tgl_selesai" min="{{date('Y-m-d')}}"></p>

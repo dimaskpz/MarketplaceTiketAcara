@@ -16,8 +16,13 @@ class EventController extends Controller
 {
     public function index()
     {
+        // dd(date("Y-m-d"));
+        // dd($acaras->toarray());
+        // $acaras = Acara::where('user_id', Auth::user()->id)->where('tgl_mulai','>=',(date("Y-m-d")))->get();
+        // $acaras_lalu = Acara::where('user_id', Auth::user()->id)->where('tgl_mulai','<',(date("Y-m-d")))->get();
         $acaras = Acara::where('user_id', Auth::user()->id)->get();
-        return view('users.events.index', compact('acaras'));
+        $acaras_lalu = array();
+        return view('users.events.index', compact('acaras', 'acaras_lalu'));
     }
 
     public function sales_show(Request $request)
@@ -151,7 +156,7 @@ class EventController extends Controller
         $acara->deskripsi = $request->deskripsi;
         $acara->tgl_mulai = $request->tgl_mulai;
         $acara->tgl_selesai = $request->tgl_selesai;
-        $acara->wkt_mulai = $request->wkt_selesai;
+        $acara->wkt_mulai = $request->wkt_mulai;
         $acara->wkt_selesai = $request->wkt_selesai;
         if ($request->file('event_img')) {
           $nama_gambar = time() . '.png';
@@ -224,13 +229,27 @@ class EventController extends Controller
     public function checkin($id, Request $request)
     {
       $acara = Acara::find($id);
-      $transaksis = Transaksi::where('acara_id',$id)->where('ispaid','y')->get();
+      $stran = $request->input('stran');
+      $transaksis = Transaksi::where('acara_id',$id)->where('ispaid','y')
+      ->search($stran)
+      ->get();
+
+      $stiket = $request->input('stiket');
+      if ($stiket) {
+        $tikets = Tiket::where('no_tiket',$stiket)->get();
+        // dd($tiket);
+        // $tikets = Tiket::where('transaksi_id',$tiket->Transaksi->id)->orderBy('produk_id','asc')->get();
+        // dd($tikets, $stiket);
+        return view('users.events.checkin.index', compact('acara','transaksis','id','tikets'));
+      }
 
       $transaksi_id = $request->transaksi_id;
       if ($transaksi_id) {
-      $tikets = Tiket::where('transaksi_id',$transaksi_id)->orderBy('produk_id','asc')->get();
-      return view('users.events.checkin.index', compact('acara','transaksis','id','tikets'));
+        $tikets = Tiket::where('transaksi_id',$transaksi_id)->orderBy('produk_id','asc')->get();
+        return view('users.events.checkin.index', compact('acara','transaksis','id','tikets'));
       }
+
+
 
       return view('users.events.checkin.index', compact('acara','transaksis','id'));
     }

@@ -109,11 +109,6 @@ Route::get('/show/detail/{transaksi_id}', 'AffiliateController@show_detail')->na
 
 
 
-
-
-
-
-
 Route::get('/admin', function () {
     return view('unused.cthtemplate.index');
 });

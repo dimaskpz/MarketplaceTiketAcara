@@ -29,12 +29,26 @@ Check-in Peserta
 
 
   <p>
-  <div class="w3-row-padding">
-    <div class="w3-half">
-    <input type="text" class="w3-bar-item w3-input" placeholder="Cari Pembeli....">
+  <form action="#" method="get">
+    {{-- <p><h5>Cari</h5></p> --}}
+    <div class="w3-row-padding">
+      <div class="w3-third">
+        <input class="w3-input" type="text" name="stran" placeholder="cari nomor transaksi, nama pemesan" value="{{ empty($_GET['stran']) ? '' : $_GET['stran'] }}">
+      </div>
+      <div class="">
+        <button type="submit" class="w3-button w3-black w3-round-large">Cari</button>
+      </div>
+    {{-- <div class="w3-row-padding"> --}}
+    <div class="w3-right">
+      <button type="submit" class="w3-button w3-black w3-round-large">Cari</button>
     </div>
-  </div>
-  </p>
+      <div class="w3-third w3-right">
+        <input class="w3-input" type="text" name="stiket" placeholder="nomor tiket" value="{{ empty($_GET['stiket']) ? '' : $_GET['stiket'] }}">
+      </div>
+    </div>
+    {{-- </div> --}}
+  </form>
+</p>
 
 
   <div class="w3-container city" >

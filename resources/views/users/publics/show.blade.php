@@ -10,44 +10,38 @@
 
 <div class="w3-half w3-padding ">
 <img src="{{ asset('/storage/event/'.$acara->gambar) }}" alt="gambar acara {{(isset($acara)?$acara->nama:'')}}" style="width:100%" class="w3-center ">
-  <table>
+  <table class="w3-table w3-bordered ">
     <tr>
-      <td>
-        Waktu
-      </td>
+      <th class="w3-left" >
+        Tanggal
+      </th>
       <td>
         : {{ (isset($acara)?$acara->tgl_mulai:'')  }} - {{ $acara->tgl_selesai }}
       </td>
     </tr>
-    <td></td>
-    <td>{{ $acara->wkt_mulai }} - {{ $acara->wkt_selesai }}</td>
+    <tr>
+      <th class="w3-left" >Waktu</th>
+      <td>{{ $acara->wkt_mulai }} - {{ $acara->wkt_selesai }}</td>
+    </tr>
+    <tr>
+      <th class="w3-left" >Kapasitas</th>
+      <td>{{ $acara->Produk->sum('jumlah') }}</td>
+    </tr>
+    <tr>
+      <th class="w3-left" >Nama Gedung</th>
+      <td>{{ $acara->nama_tempat }}</td>
+    </tr>
+    <tr>
+      <th class="w3-left" >Lokasi</th>
+      <td>{{ $acara->alamat }}, {{ $acara->kota }}</td>
+    </tr>
+    <tr>
+      <td colspan="2">{{ $acara->deskripsi }}</td>
+    </tr>
   </table>
 
-  <p>
-  <label>Gambar Acara</label>
-  <input class="w3-input" type="file" name="gambar" ></p>
-  <p>
-  <label>Nama Acara</label>
-  <input class="w3-input" type="text" name="nama" value="{{ (isset($acara)?$acara->nama:'')  }}"></p>
-  <p>
-  <label>Kapasitas</label>
-  <input class="w3-input" type="text" name="kapasitas" value="{{ (isset($acara)?$acara->kapasitas:'')  }}"></p>
+
   {{-- <p>
-  <label>Jenis Acara</label>
-  <input class="w3-input" type="text" name="jenis_acara" value=""></p> --}}
-  <p>
-  <label>Tanggal Mulai</label>
-  <input class="w3-input" type="date" name="tgl_mulai" value="{{ (isset($acara)?$acara->tgl_mulai:'')  }}"></p>
-  <p>
-  <label>Tanggal Selesai</label>
-  <input class="w3-input" type="date" name="tgl_selesai" value="{{ $acara->tgl_selesai }}"></p>
-  <p>
-  <label>Waktu Mulai</label>
-  <input class="w3-input" type="time" name="wkt_mulai" value="{{ $acara->wkt_mulai }}"></p>
-  <p>
-  <label>Waktu Selesai</label>
-  <input class="w3-input" type="time" name="wkt_selesai" value="{{ $acara->wkt_selesai }}"></p>
-  <p>
   <label>Nama Tempat</label>
   <input class="w3-input" type="text" name="nama_tempat" value="{{ $acara->nama_tempat }}"></p>
   <p>
@@ -59,7 +53,32 @@
   <p>
   <label>Deskripsi</label>
   <textarea class="w3-input" type="text" name="deskripsi"> {{ $acara->deskripsi }} </textarea>
-  </p>
+  </p> --}}
+  {{-- <p>
+  <label>Gambar Acara</label>
+  <input class="w3-input" type="file" name="gambar" ></p> --}}
+  {{-- <p>
+  <label>Nama Acara</label>
+  <input class="w3-input" type="text" name="nama" value="{{ (isset($acara)?$acara->nama:'')  }}"></p> --}}
+  {{-- <p>
+  <label>Kapasitas</label>
+  <input class="w3-input" type="text" name="kapasitas" value="{{ (isset($acara)?$acara->kapasitas:'')  }}"></p> --}}
+  {{-- <p>
+  <label>Jenis Acara</label>
+  <input class="w3-input" type="text" name="jenis_acara" value=""></p> --}}
+  {{-- <p>
+  <label>Tanggal Mulai</label>
+  <input class="w3-input" type="date" name="tgl_mulai" value="{{ (isset($acara)?$acara->tgl_mulai:'')  }}"></p>
+  <p>
+  <label>Tanggal Selesai</label>
+  <input class="w3-input" type="date" name="tgl_selesai" value="{{ $acara->tgl_selesai }}"></p>
+  <p>
+  <label>Waktu Mulai</label>
+  <input class="w3-input" type="time" name="wkt_mulai" value="{{ $acara->wkt_mulai }}"></p>
+  <p>
+  <label>Waktu Selesai</label>
+  <input class="w3-input" type="time" name="wkt_selesai" value="{{ $acara->wkt_selesai }}"></p> --}}
+
 </div>
 
 <div class="w3-half w3-padding">

@@ -80,13 +80,18 @@ Event Milik Anda
             <th>Kapasitas</th>
             <th>Venue dan Lokasi</th>
           </tr>
-          <tr>
-            <td>OVO Points</td>
-            <td>18-19 Januari 2018</td>
-            <td>09.00am-12.00pm</td>
-            <td>400</td>
-            <td>Universitas Ciputra</td>
-          </tr>
+
+          @foreach ($acaras_lalu as $lalu)
+            <tr>
+              <td> {{ $lalu->nama }} </td>
+              <td> {{date('d-m-Y', strtotime($lalu->tgl_mulai))}} </td>
+
+              <td> {{ $lalu->Produk->sum('jumlah') }} </td>
+              <td> {{ $lalu->alamat }}, {{ $lalu->kota }} </td>
+              <td> <a href="{{ route('Event.Show', ['id' => $lalu->id]) }}" class="w3-btn w3-teal">Dashboard</a> </td>
+            </tr>
+          @endforeach
+
         </table>
       </div>
       </p>

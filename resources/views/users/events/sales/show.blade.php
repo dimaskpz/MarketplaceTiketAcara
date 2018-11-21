@@ -29,7 +29,22 @@ Affiliate
 
       <table class="w3-table-all">
         <tr>
-          <th colspan="2">INFORMASI TOTAL</th>
+          <th colspan="2">INFORMASI SALES</th>
+        </tr>
+        <tr>
+          <th>Nama Sales</th>
+          <td>{{ $transaksis[0]->User->name }}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td>{{ $transaksis[0]->User->email }}</td>
+        </tr>
+        <tr>
+          <th>Telepon</th>
+          <td>{{ $transaksis[0]->User->tlp }}</td>
+        </tr>
+        <tr>
+          <th colspan="2">INFORMASI TOTAL PENJUALAN</th>
         </tr>
         <tr>
           <td>

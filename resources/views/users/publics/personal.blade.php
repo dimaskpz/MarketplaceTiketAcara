@@ -104,9 +104,9 @@
                   <h5> Tiket jenis {{ $g + 1 }} ke {{  $i + 1 }} </h5>
                 </div>
                 <p>
-                  <label>TIKET</label>
+                  {{-- <label>TIKET</label>
                   <input class="w3-input" type="text" name="dtransaksi_id" value="tiket_id{{ $g . $i }}">
-                  <input disabled class="w3-input" type="text" name="tiket_id{{ $g . $i }}" value="{{ uniqid() }}">
+                  <input disabled class="w3-input" type="text" name="tiket_id{{ $g . $i }}" value="{{ uniqid() }}"> --}}
                 </p>
                 <p>
                   <label>Nama</label>
