@@ -80,9 +80,6 @@ Route::get('/sales/{id}','EventController@sales')->name('Event.Sales');
 Route::post('/sales/show/{user_id}', 'EventController@sales_show')->name('Event.Komisi.Show');
 Route::post('/show/detail/{transaksi_id}', 'EventController@sales_show_detail')->name('Event.Komisi.Show.Detail');
 
-
-
-
           //CHECKIN
 Route::get('/checkin/{id}', 'EventController@checkin')->name('Event.Checkin');
 Route::put('/checkin/tiket/{tiket_id}','EventController@checkin_update')->name('Event.Checkin.Update');
