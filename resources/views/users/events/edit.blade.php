@@ -56,10 +56,10 @@ EDIT EVENT
         <label>Deskripsi</label>
         <textarea class="w3-input" type="text" name="deskripsi"> {{ $acara->deskripsi }} </textarea>
         </p>
-        <input type="submit" value="Simpan Acara" class="w3-btn w3-black"></input>
+        <input type="submit" value="Simpan Acara" class="w3-btn w3-orange"></input>
         {{ csrf_field() }}
         <input type="hidden" name="_method" value="PUT">
-        <a href="{{ url()->previous() }}" class="w3-btn w3-yellow">Kembali</a>
+        <a href="{{ url()->previous() }}" class="w3-btn w3-black">Kembali</a>
       </form>
     </div>
   </div>

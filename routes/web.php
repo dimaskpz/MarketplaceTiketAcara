@@ -30,13 +30,12 @@ Route::post('/event/personal/store','PublicEventController@store_personal')->nam
 //3 TAMPILAN DTRANSAKSI
 Route::get('/event/trans/{no_nota}','PublicEventController@show_trans')->name('Public.Event.Trans');
 //3 STORE upload bukti pembayaran
-Route::post('event/bukti/store','PublicEventController@upload')->name('Public.Upload');
+Route::post('/event/bukti/store','PublicEventController@upload')->name('Public.Upload');
 
+Route::post('event/eticket/{transaksi_id}','PublicEventController@show_ticket')->name('Public.Eticket');
 
 
 Route::post('/event/cek/nota','PublicEventController@cektrans')->name('Public.Trans.Cek');
-
-
 
 
 Auth::routes();
@@ -55,9 +54,9 @@ Route::get('/show/{acara_id}/regis', 'HomeController@Sales_regis')->name('Home.S
 });
 
 //DASHBOARD
-Route::group(['prefix' => 'dashboards'], function () {
-Route::get('/', 'DashboardController@index')->name('Dashboard_Default');
-});
+// Route::group(['prefix' => 'dashboards'], function () {
+// Route::get('/', 'DashboardController@index')->name('Dashboard_Default');
+// });
 
 //TICKETS
 Route::group(['prefix' => 'tickets'], function () {
@@ -74,8 +73,9 @@ Route::get('/edit/{id}', 'EventController@edit')->name('Event.Edit');
 Route::get('/create', 'EventController@create')->name('Event.Create');
 Route::post('/store', 'EventController@store')->name('Event.Store');
 Route::put('/update/{id}', 'EventController@update')->name('Event.Update');
-          //dashboard EVENT
+          //laporan penjualan EVENT
 Route::get('/penjualan/{id}', 'EventController@penjualan')->name('Event.Penjualan');
+
 Route::get('/sales/{id}','EventController@sales')->name('Event.Sales');
 
 Route::get('/checkin/{id}', 'EventController@checkin')->name('Event.Checkin');

@@ -12,11 +12,6 @@ LAPORAN PENJUALAN
   @include('layouts.sidebar_event')
 @endsection
 
-
-{{-- @section('side_navigation')
-  @extends('layouts.navigation')
-  @extends('layouts.navigation_event')
-@endsection --}}
 @section('nama_acara')
   {{ $acara->nama }}
 @endsection
@@ -39,13 +34,13 @@ LAPORAN PENJUALAN
             <th>Tiket Terjual</th>
             <th>Total Penjualan</th>
           </tr>
-          @foreach ($produks as $p)
+          @foreach ($acara->produk as $produk)
             <tr>
-              <td>{{ $p->nama }}</td>
-              <td>{{ $p->harga }}</td>
-              {{-- <td>{{ $p->ispaid }}</td>
-              <td>{{ $p->link->user->name }}</td>
-              <td> <a href="#" class="w3-btn w3-teal">Lihat</a> </td> --}}
+              <td>{{ $produk->nama }}</td>
+              <td>Rp {{ number_format($produk->harga,0,"",".") }} </td>
+              <td>{{ $produk->totalTiketLunas }}</td>
+              <td>Rp. {{ number_format($produk->TotalTiketLunas * $produk->harga, 0, "", ".") }}</td>
+              {{-- <td>{{ $transaksis->where('isupload','y')->Tiket->where('produk_id',$p->id) }}</td> --}}
             </tr>
           @endforeach
         </table>

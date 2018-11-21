@@ -39,53 +39,25 @@ class TicketController extends Controller
     {
 
       $transaksi = Transaksi::find($transaksi_id);
-
       $acara = Acara::find($transaksi->acara_id);
       $tikets = Tiket::where('transaksi_id', $transaksi_id)->orderBy('produk_id','asc')->get();
-      //
-      // $total =0;
-      // foreach ($tikets as $t) {
-      //   $total = $total + $t->Produk->harga;
-      // }
-
-      // $tikets = DB::table('tikets')
-      // ->where('transaksi_id', $transaksi->id)
-      // ->select(DB::raw('count(*) as total'))
-      // ->groupby('produk_id')
-      // ->get();
-
       $produks = Produk::where('acara_id', $transaksi->acara_id)->orderBy('id', 'ASC')->get();
       $jumlah_produk = $produks->count();
-      // JUMLAH tiap jenis produk
       $jenis_produks = array();
       foreach ($produks as $produk) {
         array_push($jenis_produks, $produk->Tiket->where('transaksi_id',$transaksi->id)->count());
       }
-      // for ($i=0; $i < $jumlah_produk ; $i++) {
-      //   $nama = $i;
-      //   array_push($jenis_produks, $tikets[$i]->total);
-      // }
-      // dd($jenis_produks);
-      //NAMA & HARGA
       $harga_produks = array();
       $nama_produks = array();
       foreach ($produks as $produk) {
         array_push($nama_produks, $produk->nama);
         array_push($harga_produks, $produk->harga);
       }
-
-      //TOTAL bayar
       $total = 0;
       for ($g=0; $g < $jumlah_produk; $g++) {
         $total = $total + ($harga_produks[$g] * $jenis_produks[$g]);
       }
-
-      // dd($tikets);
-        return view('users.tickets.show', compact('transaksi'
-                                                          ,'jenis_produks', 'harga_produks', 'nama_produks', 'jumlah_produk'
-                                                          , 'total'
-                                                          , 'acara', 'tikets'
-                                                          ));
+        return view('users.tickets.show', compact('transaksi','jenis_produks', 'harga_produks', 'nama_produks', 'jumlah_produk', 'total', 'acara', 'tikets'));
     }
 
 

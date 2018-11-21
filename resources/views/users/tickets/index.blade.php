@@ -69,7 +69,10 @@ Ticket yang Anda Pesan
               <td>
                 <div class="w3-padding-row">
                   <a href="{{ route('Ticket.Show', ['id' => $transaksi->id]) }}" class="w3-btn w3-teal">Nota</a>
-                  <a href="#" class="w3-btn w3-teal">Tiket</a>
+                  <form  action="{{ route('Public.Eticket', ['transaksi_id' => $transaksi->id]) }}" method="post">                    
+                    <button type="submit" name="submit" class="w3-btn w3-teal">E-Tiket</button>
+                    {{ csrf_field() }}
+                  </form>
                 </div>
               </td>
             </tr>

@@ -66,7 +66,7 @@ Check-in Peserta
                     @if ($tiket->ischeckin == 'n')
                       {{-- TIKET --}}
                       <form action="{{ route('Event.Checkin.Update',['transaksi_id'=>$tiket->id]) }}" method="post">
-                        <input class="w3-btn w3-black" type="submit" value="Checkin"></input>
+                        <input class="w3-btn w3-orange" type="submit" value="Checkin"></input>
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="PUT">
                       </form>

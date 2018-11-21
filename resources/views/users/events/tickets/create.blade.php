@@ -68,7 +68,7 @@
               <label>Prosentase Komisi</label>
               <input required disabled id="input_persen" class="w3-input w3-border" type="number" name="komisi_persen" value="" placeholder="Komisi Persen" max="100"><br>
             </p>
-            <button class="w3-btn w3-brown">Tambah Tiket</button>
+            <button class="w3-btn w3-orange">Tambah Tiket</button>
             {{ csrf_field() }}
           </div>
 
@@ -109,7 +109,7 @@
                       @else
                         <td> Rp {{ number_format( ($p->komisi_persen / 100) * $p->harga ,0,"",".")}} <br>({{ $p->komisi_persen }} %)</td>
                       @endif
-                      <td> <a href="{{ route('Event.Ticket.Edit',['id'=>$p->id]) }}" class="w3-btn w3-teal">Edit</a>  </td>
+                      <td> <a href="{{ route('Event.Ticket.Edit',['id'=>$p->id]) }}" class="w3-btn w3-orange">Edit</a>  </td>
                     </tr>
                   @endforeach
                 @endif
@@ -123,7 +123,7 @@
 
     <div class="w3-half w3-padding">
       <div class="w3-card-4">
-        <a class="w3-btn w3-black w3-left" href="{{ route('Event.Show',['id'=>$id]) }}">Selesai</a>
+        <a class="w3-btn w3-orange w3-left" href="{{ route('Event.Show',['id'=>$id]) }}">Selesai</a>
       </div>
     </div>
 

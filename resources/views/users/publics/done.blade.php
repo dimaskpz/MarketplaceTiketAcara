@@ -83,10 +83,22 @@ Viho System
 </div>
 <br>
 
-  <div class="w3-padding">
-    <a class="w3-btn w3-black" href="{{ route('Welcome') }}">Kembali ke Halaman Utama</a>
+<div class="w3-row">
 
+  <div class="w3-padding ">
+    <a class="w3-btn w3-orange" href="{{ route('Welcome') }}">Kembali ke Halaman Utama</a>
+  </div>
+  <div class="w3-padding">
+    <form  action="{{ route('Public.Eticket', ['transaksi_id' => $transaksi->id]) }}" method="post">
+      <button type="submit" name="submit" class="w3-btn w3-orange">E-Tiket</button>
+      {{ csrf_field() }}
+    </form>
+  </div>
 </div>
+
+
+
+
     </div>
 
   <div class="w3-half w3-padding">

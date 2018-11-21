@@ -16,7 +16,7 @@ Event Milik Anda
 
 @section('content')
 <div class="w3-container w3-padding-32">
-  <a href="{{ route('Event.Create') }}" class="w3-btn w3-teal"> Buat Event</a>
+  <a href="{{ route('Event.Create') }}" class="w3-btn w3-orange"> Buat Event</a>
   <!--Search Bar-->
   <h3>Event</h3>
   <p>

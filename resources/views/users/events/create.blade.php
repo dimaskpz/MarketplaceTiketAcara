@@ -60,7 +60,7 @@ CREATE EVENT
         <label>Deskripsi</label>
         <textarea class="w3-input" type="text" name="deskripsi"></textarea>
         </p>
-        <input type="submit" name="submit" value="Simpan Acara" class="w3-btn w3-black"></input>
+        <input type="submit" name="submit" value="Simpan Acara" class="w3-btn w3-orange"></input>
         {{ csrf_field() }}
       </form>
     </div>

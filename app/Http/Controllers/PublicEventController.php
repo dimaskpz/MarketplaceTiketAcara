@@ -20,6 +20,17 @@ use Illuminate\Support\Facades\Storage;
 
 class PublicEventController extends Controller
 {
+
+  public function show_ticket($transaksi_id)
+  {
+    $tickets = Tiket::where('transaksi_id',$transaksi_id)->get();
+    // dd($tickets->toarray());
+    return view('users.publics.ticket_show', compact('tickets'));
+  }
+
+
+
+
   // TAHAP PERTAMA UNTUK MENAMPILKAN DETAIL EVENT
   // HALAMAN 1
     public function show($link)
@@ -104,7 +115,7 @@ class PublicEventController extends Controller
     // HALAMAN 3
     public function store_personal(Request $request)
     {
-// dd($request);
+// dd($request->toarray());
       $cek_trans = Transaksi::where('remember_token',$request->kode_unik)->first();
       // dd($cek_trans);
       if (!$cek_trans) {
@@ -152,11 +163,26 @@ class PublicEventController extends Controller
                                         ->where('email',$transaksi->email)
                                         ->orderby('id', 'ASC')
                                         ->get()->last();
-// dd($last_transaksi);
+        // dd($last_transaksi);
         for ($g=0; $g < $request->jumlah_produk ; $g++) {
           for ($i=0; $i < $jenis_produks[$g] ; $i++) {
+
+            $status_unik = false;
+            $randstring = '';
+            while ($status_unik == false) {
+              $characters = '0123456789';
+              for ($j = 0; $j < 15; $j++) {
+                $randstring = $randstring . $characters[rand(0, strlen($characters)-1)];
+              }
+              $cek = Tiket::where('no_tiket',$randstring)->first();
+              if (!$cek) {
+                $status_unik = true;
+              }
+            }
+
             $tiket = new Tiket;
-            $tiket->no_tiket = uniqid();
+            $tiket->no_tiket = $randstring;
+
             $tiket->transaksi_id = $last_transaksi->id;
             $tiket->produk_id = $id_produks[$g];
 
@@ -166,6 +192,8 @@ class PublicEventController extends Controller
             $xtgl_lahir = 'tgl_lahir'.$g.$i;
             $xjenis_kelamin = 'jenis_kelamin'.$g.$i;
             $xno_ktp = 'no_ktp'.$g.$i;
+
+            // dd($xnama, $request->toarray());
 
             $tiket->nama = $request->$xnama;
             $tiket->email = $request->$xemail;
@@ -202,23 +230,6 @@ class PublicEventController extends Controller
 
         return redirect()->route('Public.Event.Trans',['transaksi_id'=>$cek_trans->no_nota]);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public function show_trans($no_nota)
     {
@@ -280,14 +291,10 @@ class PublicEventController extends Controller
       ]);
       $nama = $request->no_nota.'.jpg'; //nama foto ->$no_nota
       Storage::putFileAs('/public/bukti', new File($request->bukti_img), $nama);
-
       $xtransaksi = Transaksi::where('no_nota',$request->no_nota)->get()->first();
-      // dd($xtransaksi);
       $transaksi = Transaksi::find($xtransaksi->id);
       $transaksi->isupload = 'y';
       $transaksi->save();
-      // dd($transaksi->toarray());
-
       return redirect()->route('Public.Event.Trans',['transaksi_id'=>$request->no_nota]);
     }
 
@@ -301,5 +308,6 @@ class PublicEventController extends Controller
       }
 
     }
+
 
 }

@@ -22,8 +22,7 @@ Affiliate
     </p>
 
     <div class="w3-container city" >
-        <!--Awal Tabel-->
-        <p>
+      <p>
         <div class="w3-responsive">
           <table class="w3-table-all w3-hoverable">
             <tr>
@@ -38,18 +37,6 @@ Affiliate
               <td>Nama :</td>
               <td>{{ $transaksi->nama }}</td>
             </tr>
-            {{-- <tr>
-              <td>Email :</td>
-              <td>{{ $transaksi->email }}</td>
-            </tr>
-            <tr>
-              <td>Telepon :</td>
-              <td>{{ $transaksi->tlp }}</td>
-            </tr> --}}
-            {{-- <tr>
-              <td>Total :</td>
-              <td> Rp {{ number_format($total,0,"",".") }} </td>
-            </tr> --}}
             <tr>
               <td>Status Pembayaran :</td>
               <td>
@@ -60,17 +47,13 @@ Affiliate
                 @endif
               </td>
             </tr>
-
             <tr>
               <td colspan="2">Tiket yang dibeli :</td>
-        </tr>
-
-
+            </tr>
           </table>
         </div>
-        </p>
+      </p>
     </div>
-
     <div class="w3-responsive">
       <table class="w3-table-all w3-hoverable">
         <tr>
@@ -81,32 +64,26 @@ Affiliate
           <th>@Komisi</th>
           <th>Harga Jual</th>
           <th>Komisi</th>
-
         </tr>
         @for ($g=0; $g < $jumlah_produk ; $g++)
-            <tr>
-              <td>{{ $g+1 }}</td>
-              @if ($jenis_produks[$g] != 0)
-                  <td>{{ $nama_produks[$g] }}</td>
-                  <td>{{ $jenis_produks[$g] }}</td>
-
-                  <td>Rp {{ number_format($harga_produks[$g],0,"",".") }}</td>
-                  <td>Rp {{ number_format($komisi_produks[$g],0,"",".") }}</td>
-                  <td>Rp {{ number_format($harga_produks[$g] * $jenis_produks[$g],0,"",".") }}</td>
-                  <td>Rp {{ number_format($komisi_produks[$g] * $jenis_produks[$g],0,"",".") }}</td>
-              @endif
-            </tr>
+          <tr>
+            <td>{{ $g+1 }}</td>
+            @if ($jenis_produks[$g] != 0)
+              <td>{{ $nama_produks[$g] }}</td>
+              <td>{{ $jenis_produks[$g] }}</td>
+              <td>Rp {{ number_format($harga_produks[$g],0,"",".") }}</td>
+              <td>Rp {{ number_format($komisi_produks[$g],0,"",".") }}</td>
+              <td>Rp {{ number_format($harga_produks[$g] * $jenis_produks[$g],0,"",".") }}</td>
+              <td>Rp {{ number_format($komisi_produks[$g] * $jenis_produks[$g],0,"",".") }}</td>
+            @endif
+          </tr>
         @endfor
         <tr>
           <td colspan="5"><b>Total Pembayaran</b></td>
           <td>Rp {{ number_format($total,0,"",".") }}</td>
           <td>Rp {{ number_format($total_komisi,0,"",".") }}</td>
         </tr>
-
-
       </table>
-
-
     </div>
       <!--Akhir Tabs-->
     </div>

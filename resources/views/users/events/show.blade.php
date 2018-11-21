@@ -45,7 +45,7 @@ Dashboard Event
           {{-- <img src="img_avatar2.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px"> --}}
           <div class="w3-bar-item w3-border-left">
             <span class="w3-large">Omset</span><br>
-            <span>Rp {{ number_format($acara->Transaksi->sum('total'),0,"",".") }}</span>            
+            <span>Rp {{ number_format($acara->Transaksi->where('ispaid','y')->sum('total'),0,"",".") }}</span>
           </div>
         </li>
 
@@ -78,8 +78,8 @@ Dashboard Event
       {{-- BUTTON EDIT --}}
       <p>
         <div class="w3-row-padding">
-          <a href="{{ route('Event.Edit', ['id' => $acara->id]) }}" class="w3-btn w3-teal">Ubah Detail Acara</a>
-          <a href=" {{ route('Event.Ticket.Create', ['id'=>$acara->id]) }} " class="w3-btn w3-teal">Pengaturan Tiket</a>
+          <a href="{{ route('Event.Edit', ['id' => $acara->id]) }}" class="w3-btn w3-orange">Ubah Detail Acara</a>
+          <a href=" {{ route('Event.Ticket.Create', ['id'=>$acara->id]) }} " class="w3-btn w3-orange">Pengaturan Tiket</a>
         </div>
       </p>
       {{-- AKHIR BUTTON EDIT --}}
@@ -103,13 +103,12 @@ Dashboard Event
             <p><label> {{ $acara->tgl_mulai }} </label></p>
             <p><label> {{ $acara->tgl_selesai }} </label></p>
             <p><label> {{ $acara->wkt_mulai }} - {{ $acara->wkt_selesai }} </label></p>
-            <p><label> {{ $acara->lokasi }} </label></p>
+            <p><label> {{ $acara->alamat }},{{ $acara->kota }} </label></p>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 
   </div>
   <!--Akhir Container-->

@@ -27,11 +27,13 @@ Detail Acara
         </b>
       <br>
       {{ $link->link }}
+      <br>
+      <a href="{{ route('Public.Event.Show', ['link'=> $link->link]) }}">www.vihosystem.com/event/{{ $link->link }}</a>
     @else
-      <a href="{{ route('Home.Sales.Regis',['acara_id'=>$acara->id]) }}" class="w3-button w3-black">Daftar sebagai Sales</a>
+      <a href="{{ route('Home.Sales.Regis',['acara_id'=>$acara->id]) }}" class="w3-button w3-orange">Daftar sebagai Sales</a>
     @endif
     <br>
-    
+
     <h4 class="w3-bar-item w3-teal">{{ $acara->nama }} </h4>
     {{-- {{ $loop->iteration }} ({{ $loop->iteration % 3 }}) <br> --}}
     <table>

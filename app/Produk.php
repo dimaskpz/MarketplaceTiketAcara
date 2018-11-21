@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produk extends Model
 {
+  protected $appends = [
+    'totalTiketLunas'
+  ];
+
   public function Acara()
   {
     return $this->belongsTo('App\Acara');
@@ -21,6 +25,15 @@ class Produk extends Model
     return $this->harga ;
   }
 
+  public function getTotalTiketLunasAttribute(){
+    $tikets = $this->tiket;
+    $count = 0;
+    foreach($tikets as $tiket){
+      if($tiket->isPaid) $count = $count+1;
+    }
+    return $count;
+  }
+
   public function getTotalBersihAttribute()
   {
     if ($this->komisi_jenis == 'tetap') {
@@ -32,6 +45,11 @@ class Produk extends Model
       return $a;
     }
   }
+
+  // public function getTotalTiketLunasAttribute()
+  // {
+  //   return $this->
+  // }
 
 
 

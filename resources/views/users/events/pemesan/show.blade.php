@@ -36,7 +36,7 @@ Detail Data Pesanan
     </div>
   </div> --}}
   </p>
-<a class="w3-btn" href="{{ route('Event.Pemesan',['id'=>$transaksi->acara_id]) }}">Kembali</a>
+<a class="w3-btn w3-black" href="{{ route('Event.Pemesan',['id'=>$transaksi->acara_id]) }}">Kembali</a>
   <div class="w3-container city" >
       <!--Awal Tabel-->
       <p>

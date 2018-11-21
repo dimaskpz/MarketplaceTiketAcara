@@ -36,7 +36,6 @@ class HomeController extends Controller
       if ($link) {
       return view('users.home.show', compact('acara','link'));
       }
-
       return view('users.home.show', compact('acara'));
     }
 
@@ -46,13 +45,11 @@ class HomeController extends Controller
         $rand = substr(md5(microtime()),rand(0,26),7);
         $cek_link = Link::where('link',$rand)->exists();
       } while ( ! $rand);
-
       $link = new Link;
       $link->user_id = Auth::user()->id;
       $link->acara_id = $acara_id;
       $link->link = $rand;
       $link->save();
-
       return redirect()->route('Home.Event.Show', ['acara_id'=> $acara_id]);
     }
 }

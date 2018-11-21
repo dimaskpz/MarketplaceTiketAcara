@@ -96,8 +96,18 @@ class EventController extends Controller
     public function penjualan($id)
     {
       $acara = Acara::find($id);
-      $produks = Produk::where('acara_id', $id)->get();
-      return view('users.events.penjualan.index', compact('acara','produks'));
+      //
+      // $produks = Produk::where('acara_id', $id)->get();
+      // $transaksis = Transaksi::where('acara_id', $id)
+      // ->where('ispaid','y')->get();
+      //
+      // foreach ($produks as $p) {
+      //   array_push($jumlah_penjualan,
+      //             $transaksis->TotalTiketLunas($p->id));
+      // }
+
+      return view('users.events.penjualan.index',
+      compact('acara'));
     }
 
     public function pemesan($id)

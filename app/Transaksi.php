@@ -42,7 +42,50 @@ class Transaksi extends Model
 
   public function getTotalTiketAcaraAttribute()
   {
-    return $this->Tiket->count();
+    return $this->tiket->count();
   }
+
+
+//BARU LAPORAN PENJUALAN
+
+
+
+
+
+
+//
+  //
+  // public function getTotalAttribute($produk_id)
+  // {
+  //   $jumlah_tiket = 0;
+  //   foreach ($this as $transaksi) {
+  //     $jumlah_tiket = $jumlah_tiket + $transaksi->Tiket->totalTiketLunas($produk_id);
+  //   }
+  //   return $jumlah_tiket;
+  // }
+
+
+
+
+
+
+
+
+
+
+
+// LANJUT KE MODEL TIKET FUNCTION getTotalTiketLunasAttribute($produk_id)
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
