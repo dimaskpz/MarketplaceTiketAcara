@@ -20,6 +20,73 @@ class EventController extends Controller
         return view('users.events.index', compact('acaras'));
     }
 
+    public function sales_show(Request $request)
+    {
+      // dd('wqrqwerqewr');
+      $user_id = $request->user_id;
+      $acara_id = $request->acara_id;
+      // dd($user_id,$acara_id);
+      $transaksis = Transaksi::where('user_id',$user_id)->where('acara_id', $acara_id)->get();
+      // dd($transaksis->toarray());
+      $paid_transaksis = Transaksi::where('user_id',$user_id)->where('acara_id', $acara_id)->where('ispaid','y')->get();
+      $omset = 0;
+      foreach($paid_transaksis as $transaksi){
+        $omset = $omset + $transaksi->totalOmset;
+      }
+      $bersih = 0;
+      foreach ($paid_transaksis as $transaksi) {
+        $bersih = $bersih + $transaksi->totalBersih;
+      }
+      $acara = Acara::find($acara_id);
+      $nama_acara = $acara->nama;
+      // dd($nama_acara);
+
+      return view('users.events.sales.show'
+                              , compact('transaksis', 'nama_acara','acara', 'omset','bersih', 'acara_id', 'user_id')
+                                );
+    }
+
+    public function sales_show_detail(Request $request)
+    {
+      // $acara_id = $request->acara_id;
+      // $user_id = $request->user_id;
+      $transaksi_id = $request->transaksi_id;
+
+      $transaksi = Transaksi::find($transaksi_id);
+      $tikets = Tiket::where('transaksi_id',$transaksi_id)->get();
+      $produks = Produk::where('acara_id', $transaksi->acara_id)->orderBy('id', 'ASC')->get();
+      $jumlah_produk = $produks->count();
+      $jenis_produks = array();
+      foreach ($produks as $produk) {
+        array_push($jenis_produks, $produk->Tiket->where('transaksi_id',$transaksi->id)->count());
+      }
+      $harga_produks = array();
+      $nama_produks = array();
+      $komisi_produks = array();
+      foreach ($produks as $produk) {
+        array_push($nama_produks, $produk->nama);
+        array_push($harga_produks, $produk->harga);
+        if ($produk->komisi_jenis == 'tetap') {
+          array_push($komisi_produks, $produk->komisi_tetap);
+        } else {
+          $hitung_persen = ( $produk->komisi_persen / 100 ) * $produk->harga;
+          array_push($komisi_produks, $hitung_persen);
+        }
+      }
+      $total = 0;
+      $total_komisi = 0;
+      for ($g=0; $g < $jumlah_produk; $g++) {
+        $total = $total + ($harga_produks[$g] * $jenis_produks[$g]);
+        $total_komisi = $total_komisi + ($komisi_produks[$g] * $jenis_produks[$g]);
+      }
+
+      $acara = Acara::find($transaksi->acara_id);
+
+      return view('users.events.sales.show_detail'
+                                , compact('acara','transaksi', 'tikets','produks', 'jumlah_produk', 'jenis_produks', 'harga_produks', 'nama_produks', 'total','komisi_produks', 'total_komisi')
+                                );
+    }
+
     public function create()
     {
         return view('users.events.create');

@@ -41,10 +41,10 @@ Sales Event
             <th>Nama Sales</th>
             <th>Tiket Belum dibayar</th>
             <th>Penjualan Tiket</th>
-            <th>Keuntungan Bersih</th>
+            {{-- <th>Keuntungan Bersih</th> --}}
             <th>Email</th>
             <th>No Telepon</th>
-            {{-- <th>Lihat</th> --}}
+            <th>Lihat</th>
             {{-- <th>Waktu</th> --}}
           </tr>
 
@@ -53,9 +53,18 @@ Sales Event
               <td>{{ $s->User->name }}</td>
               <td>4</td>
               <td>20</td>
-              <td>Rp 5.000.000</td>
+              {{-- <td>Rp 5.000.000</td> --}}
               <td>{{ $s->User->email }}</td>
-              <td>0845843574</td>
+              <td>{{ $s->User->tlp }}</td>
+              <td>
+                {{-- <a href="{{ route('Event.Komisi.Show', ['user_id' => $s->User->id]) }}" class="w3-btn w3-teal">Detail Komisi</a> --}}
+                <form  action="{{ route('Event.Komisi.Show', ['user_id' => $s->User->id]) }}" method="post">
+                  <input type="hidden" name="acara_id" value="{{$acara->id}}">
+                  <input type="hidden" name="user_id" value="{{$s->User->id}}">
+                  <button type="submit" name="submit" class="w3-btn w3-teal">Detail Komisi</button>
+                  {{ csrf_field() }}
+                </form>
+              </td>
               {{-- <td>{{ $s->tlp }}</td> --}}
               {{-- <td>{{ $s->penjualan }}</td> --}}
             </tr>
