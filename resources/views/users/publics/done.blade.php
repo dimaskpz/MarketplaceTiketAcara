@@ -17,6 +17,10 @@ Viho System
           </div>
           <table>
             <tr>
+              <td>Nama Bank</td>
+              <td>{{ $rekening->bank }}</td>
+            </tr>
+            <tr>
               <td>
                 Nama Rekening
               </td>
@@ -114,6 +118,28 @@ Viho System
             </td>
           </tr>
         </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-half w3-padding">
+    <div class="w3-card-4">
+      <div class="w3-padding">
+        <div class="w3-container w3-blue">
+          <h6>Ubah Data Peserta apabila terdapat kesalahan</h6>
+        </div>
+        <p>
+        <table>
+          <tr>
+            <td>
+              <form  action="{{ route('Public.Edit', ['transaksi_id' => $transaksi->id]) }}" method="post">
+                <button type="submit" name="submit" class="w3-btn w3-orange">Ubah Data Peserta</button>
+                {{ csrf_field() }}
+              </form>
+            </td>
+          </tr>
+        </table>
+      </p>
       </div>
     </div>
   </div>

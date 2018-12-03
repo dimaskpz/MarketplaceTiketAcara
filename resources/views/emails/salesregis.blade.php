@@ -15,44 +15,41 @@
     <h1>Ada Sales yang daftar di Acara mu!!!</h1>
     {{-- <h2 class="w3-bar-item w3-teal w3-padding"> {{ $transaksi->Acara->nama }}</h2> --}}
 
-    {{-- <div class="w3-card-4">
+    <div class="w3-card-4">
       <div class="w3-padding">
         <div class="w3-container w3-blue">
-          <h4> SEGERA LAKUKAN PEMBAYARAN </h4>
+          <h4> DATA SALES </h4>
         </div>
         <table>
           <tr>
             <td>
-              Nama Rekening
+              Nama Sales
             </td>
             <td>
-              {{ $transaksi->User->nama_rekening }}
+              {{ $user->name }}
             </td>
+          </tr>
+          <tr>
+            <td>
+              Nomor Telepon
+            </td>
+            <td>{{ $user->tlp }}</td>
+          </tr>
+          <tr>
+            <td>
+              Email
+            </td>
+            <td>{{ $user->email }}</td>
           </tr>
           <tr>
             <td>
               Nomor Rekening
             </td>
-            <td>{{ $transaksi->User->no_rekening }}</td>
+            <td>{{ $user->bank }} - {{ $user->no_rekening }}</td>
+            
           </tr>
-          <tr>
-            <td>
-              Jumlah Tagihan
-            </td>
-            <td>
-              Rp {{ number_format($transaksi->total,0,"",".") }}
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              Nomor Invoice
-            </td>
-            <td>{{ $transaksi->no_nota }}</td>
-          </tr>
-
         </table>
       </div>
-    </div> --}}
+    </div>
   </body>
 </html>

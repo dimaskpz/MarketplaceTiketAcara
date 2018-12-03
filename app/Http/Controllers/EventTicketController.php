@@ -10,11 +10,12 @@ class EventTicketController extends Controller
 {
     public function create($id)
     {
+      $acara = Acara::find($id);
       $produks =Produk::where('acara_id',$id)->get();
       if(!$produks){
-        return view('users.events.tickets.create', compact('id'));
+        return view('users.events.tickets.create', compact('id','acara'));
       }
-      return view('users.events.tickets.create', compact('id','produks'));
+      return view('users.events.tickets.create', compact('id','produks','acara'));
     }
 
     public function store(Request $request, $id)
@@ -50,9 +51,9 @@ class EventTicketController extends Controller
     public function edit($produk_id)
     {
       $produk = Produk::find($produk_id);
-      $acara_id = $produk->Acara->id;
+      $acara = Acara::find($produk->Acara->id);
       // dd($acara_id);
-      return view('users.events.tickets.edit', compact('produk'));
+      return view('users.events.tickets.edit', compact('produk','acara'));
     }
 
     public function update(Request $request, $id)

@@ -48,7 +48,7 @@ class Transaksi extends Model
 
   public function scopeSearch($query, $s)
   {
-    return $query->where('no_nota', 'like', '%' .$s.'%')
+    return $query->where('no_nota', 'like', '%' .$s.'%')->where('ispaid','y')
     ->orWhere('nama', 'like', '%' . $s . '%')
     ->orWhere('email', 'like', '%' . $s . '%')
     ->orWhere('tlp', 'like', '%' . $s . '%');

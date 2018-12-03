@@ -12,47 +12,68 @@
     </style>
   </head>
   <body>
-    <h1>Pemesan telah mengupload bukti pembayaran</h1>
-    {{-- <h2 class="w3-bar-item w3-teal w3-padding"> {{ $transaksi->Acara->nama }}</h2> --}}
+    <h1>Pemesan dengan nomor invoice {{ $transaksi->no_nota }} telah mengupload bukti pembayaran</h1>
+    <h2 class="w3-bar-item w3-teal w3-padding"> {{ $transaksi->Acara->nama }}</h2>
 
-    {{-- <div class="w3-card-4">
+    <div class="w3-card-4">
       <div class="w3-padding">
         <div class="w3-container w3-blue">
-          <h4> SEGERA LAKUKAN PEMBAYARAN </h4>
+          <h4> SEGERA CEK BUKTI PEMBAYARAN NYA </h4>
         </div>
         <table>
           <tr>
             <td>
-              Nama Rekening
+              Nama Pemesan
             </td>
             <td>
-              {{ $transaksi->User->nama_rekening }}
+              {{ $transaksi->nama }}
             </td>
           </tr>
           <tr>
             <td>
-              Nomor Rekening
+              Email
             </td>
-            <td>{{ $transaksi->User->no_rekening }}</td>
+            <td>
+              {{ $transaksi->email }}
+            </td>
           </tr>
           <tr>
             <td>
-              Jumlah Tagihan
+              Nomor Telepon
             </td>
             <td>
+              {{ $transaksi->tlp }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Total yang dibayarkan
+            </td>
+            <td>              
               Rp {{ number_format($transaksi->total,0,"",".") }}
             </td>
           </tr>
-
           <tr>
             <td>
-              Nomor Invoice
+              Batas Waktu Pembayaran
             </td>
-            <td>{{ $transaksi->no_nota }}</td>
+            <td>
+              {{ $transaksi->due_at }}
+            </td>
           </tr>
+          <tr>
+            <td>
+              Nama Sales
+            </td>
+            <td>
+              {{ $transaksi->User->name }}
+            </td>
+          </tr>
+
+
 
         </table>
       </div>
-    </div> --}}
+    </div>
   </body>
 </html>

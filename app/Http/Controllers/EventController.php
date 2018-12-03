@@ -218,10 +218,16 @@ class EventController extends Controller
       $transaksi->ispaid = 'y';
       $transaksi->save();
 
+      $tikets = Tiket::where('transaksi_id', $transaksi_id)->get();
+      foreach ($tikets as $tk) {
+        $tk->ispaidd = 'y';
+        $tk->save();
+      }
+
       //email pemesan
-      Mail::to($transaksi->email)->send(new KonfirmasiBukti());
+      Mail::to($transaksi->email)->send(new KonfirmasiBukti($transaksi));
       //email sales
-      Mail::to($transaksi->User->email)->send(new KonfirmasiBuktitoSales());
+      Mail::to($transaksi->User->email)->send(new KonfirmasiBuktitoSales($transaksi));
       return redirect()->route('Event.Pemesan.Show',['id'=>$transaksi_id]);
     }
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -236,11 +242,12 @@ class EventController extends Controller
 
       $stiket = $request->input('stiket');
       if ($stiket) {
-        $tikets = Tiket::where('no_tiket',$stiket)->get();
-        // dd($tiket);
-        // $tikets = Tiket::where('transaksi_id',$tiket->Transaksi->id)->orderBy('produk_id','asc')->get();
-        // dd($tikets, $stiket);
-        return view('users.events.checkin.index', compact('acara','transaksis','id','tikets'));
+        $tikets = Tiket::where('no_tiket',$stiket)->where('ispaidd','y')->get();
+        // dd($tikets,'masuk sini xcdcdcsc', $tikets->count());
+        if ($tikets->count() >= 1) {
+          // dd($tikets,'masuk sini');
+          return view('users.events.checkin.index', compact('acara','transaksis','id','tikets'));
+        }
       }
 
       $transaksi_id = $request->transaksi_id;

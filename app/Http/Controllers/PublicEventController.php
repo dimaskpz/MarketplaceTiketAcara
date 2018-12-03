@@ -28,7 +28,44 @@ class PublicEventController extends Controller
     return view('users.publics.ticket_show', compact('tickets'));
   }
 
+  public function edit_peserta(Request $request)
+  {
+    // dd($request);
+    $tickets = Tiket::where('transaksi_id', $request->transaksi_id)->get();
+    // dd($tickets->toarray());
 
+    return view('users.publics.edit_personal', compact('tickets'));
+  }
+
+  public function update_peserta(Request $request)
+  {
+    $tickets = Tiket::where('transaksi_id',$request->transaksi_id)->get();
+    $jumlah_tiket = $tickets->count();
+
+    for ($i=1; $i < $jumlah_tiket + 1 ; $i++) {
+      $tiket_id = 'tiket_id' . $i;
+      $tiket = Tiket::find($request->$tiket_id);
+
+      $xnama = 'nama'.$i;
+      $xemail = 'email'.$i;
+      $xtlp = 'tlp'.$i;
+      $xtgl_lahir = 'tgl_lahir'.$i;
+      $xjenis_kelamin = 'jenis_kelamin'.$i;
+      $xno_ktp = 'no_ktp'.$i;
+
+      $tiket->nama = $request->$xnama ;
+      $tiket->email = $request->$xemail ;
+      $tiket->tlp = $request->$xtlp ;
+      $tiket->tgl_lahir = $request->$xtgl_lahir ;
+      $tiket->jenis_kelamin = $request->$xjenis_kelamin ;
+      $tiket->no_ktp = $request->$xno_ktp ;
+      $tiket->save();
+    }
+
+    $transaksi = Transaksi::find($request->transaksi_id);
+
+    return redirect()->route('Public.Event.Trans',['transaksi_id'=>$transaksi->no_nota]);
+  }
 
 
   // TAHAP PERTAMA UNTUK MENAMPILKAN DETAIL EVENT
@@ -43,6 +80,7 @@ class PublicEventController extends Controller
       if ($link_show) {
           $user_id = $link_show->user_id;
           $acara_id = $link_show->acara_id;
+          // dd($acara_id);
           $acara = Acara::find($acara_id);
           // dd($acara->toarray(),'acara_id',$acara_id);
           $produks = Produk::where('acara_id', $acara_id)->get();
@@ -55,7 +93,24 @@ class PublicEventController extends Controller
           $lihat->remember_token = $kode_unik;
           $lihat->save();
 
-          return view('users.publics.show', compact('acara','produks','user_id', 'jumlah_produk','kode_unik'));
+          // $kapasitas_produks = Produk::where('acara_id', $acara_id);
+          // dd($sekarang);
+          // $tikets = Tiket::where('acara_id',$acara_id)->where('ispaid','y')->where('due_at','>',$sekarang)->get();
+          // dd($tikets->toarray());
+          // dd($produks[0]->Tiket);
+          $sisa_tikets = array();
+          $sekarang = carbon::now();
+          $produks = Produk::where('acara_id', $acara_id)->get();
+          // dd($produks->toarray());
+          foreach ($produks as $produk) {
+            $jumlah_tiket = $produk->jumlah;
+              $paid_tiket = $produk->Tiket->Where('ispaidd','y')->count();
+              $wait_tiket = $produk->Tiket->Where('ispaidd','n')->where('due_at','>',$sekarang)->count();
+              $perhitungan = $jumlah_tiket - ($paid_tiket + $wait_tiket);
+              // dd('wait tiket', $wait_tiket ,'paid tiket', $paid_tiket);
+              array_push($sisa_tikets, $perhitungan);
+            }
+          return view('users.publics.show', compact('acara','produks','user_id', 'jumlah_produk','kode_unik','sisa_tikets'));
       } else {
           return abort(404);
         }
@@ -156,6 +211,7 @@ class PublicEventController extends Controller
         $transaksi->tlp = $request->tlp_pembeli;
         $transaksi->total = $total;
         $transaksi->remember_token = $request->kode_unik;
+        $transaksi->due_at = carbon::now()->addHours(12);
         $transaksi->save();
 
         // foreignkey
@@ -201,6 +257,7 @@ class PublicEventController extends Controller
             $tiket->tgl_lahir = $request->$xtgl_lahir;
             $tiket->jenis_kelamin = $request->$xjenis_kelamin;
             $tiket->no_ktp = $request->$xno_ktp;
+            $tiket->due_at = carbon::now()->addHours(12);
             $tiket->save();
           }
         }
@@ -222,8 +279,8 @@ class PublicEventController extends Controller
             'minutes' => $minutes,
             'seconds' => $seconds
         ]);
+        // Mail::to($request->email_pembeli)->send(new PesananPosted($transaksi));
 
-        Mail::to($request->email_pembeli)->send(new PesananPosted($transaksi));
         // dd('pembelian berhasil');
         return redirect()->route('Public.Event.Trans',['transaksi_id'=>$last_transaksi->no_nota]);
       }
@@ -296,7 +353,7 @@ class PublicEventController extends Controller
       $transaksi->isupload = 'y';
       $transaksi->save();
 
-      Mail::to($transaksi->Acara->User->email)->send(new UploadBukti());
+      Mail::to($transaksi->Acara->User->email)->send(new UploadBukti($transaksi));
 
       return redirect()->route('Public.Event.Trans',['transaksi_id'=>$request->no_nota]);
     }

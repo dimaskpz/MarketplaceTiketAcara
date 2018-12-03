@@ -30,6 +30,7 @@ class ProfileController extends Controller
       $user->tlp = $request->tlp;
       $user->nama_rekening = $request->nama_rekening;
       $user->no_rekening = $request->no_rekening;
+      $user->bank = $request->bank;
       $user->save();
 
     return redirect()->route('Profile.Edit');

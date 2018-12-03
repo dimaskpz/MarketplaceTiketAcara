@@ -28,6 +28,7 @@ class CreateTransaksisTable extends Migration
             $table->integer('total')->nullable();
             $table->string('isupload')->default('n');
             $table->string('ispaid')->default('n');
+            $table->timestamp('due_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

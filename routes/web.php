@@ -34,6 +34,8 @@ Route::post('/event/bukti/store','PublicEventController@upload')->name('Public.U
 
 Route::post('event/eticket/{transaksi_id}','PublicEventController@show_ticket')->name('Public.Eticket');
 
+Route::post('event/edit/{transaksi_id}','PublicEventController@edit_peserta')->name('Public.Edit');
+Route::post('event/update/{transaksi_id}','PublicEventController@update_peserta')->name('Public.Update');
 
 Route::post('/event/cek/nota','PublicEventController@cektrans')->name('Public.Trans.Cek');
 

@@ -102,9 +102,13 @@
         <br>
         Berakhir pada {{ $p->tgl_selesai }}
         <br>
-        <div class="w3-quarter">
-        <input class="w3-input"name="tipe{{$loop->iteration - 1}}" type="number" step="1" value="0" min="0" max="5"></input>
-      </div>
+        {{ $sisa_tikets[$loop->iteration - 1] <> 0 ? 'Sisa Tiket ' . $sisa_tikets[$loop->iteration - 1] : 'Maaf Tiket telah habis' }}
+        @if ($sisa_tikets[$loop->iteration - 1] <> 0)
+          <br>
+          <div class="w3-quarter">
+            <input class="w3-input" name="tipe{{$loop->iteration - 1}}" type="number" step="1" value="0" min="0" max="{{ $sisa_tikets[$loop->iteration - 1] < 5 ? $sisa_tikets[$loop->iteration - 1] : 5 }}"></input>
+          </div>          
+        @endif
         <br>
         <br>
       @endforeach
@@ -112,7 +116,8 @@
     <input class="w3-btn w3-black" type="submit" value="Beli Tiket"></input>
     {{ csrf_field() }}
   </form>
-
+<br>
+*Pembelian Tiket Maksimal 5 Tiket per Jenis Tiket.
 </div>
 </div>
 @endsection

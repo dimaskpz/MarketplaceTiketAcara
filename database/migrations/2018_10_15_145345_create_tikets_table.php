@@ -19,7 +19,7 @@ class CreateTiketsTable extends Migration
             $table->unsignedInteger('transaksi_id');
             $table->foreign('transaksi_id')->references('id')->on('transaksis')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedInteger('produk_id');
-            $table->foreign('produk_id')->references('id')->on('produks')->onUpdate('cascade')->onDelete('cascade');          
+            $table->foreign('produk_id')->references('id')->on('produks')->onUpdate('cascade')->onDelete('cascade');
             $table->string('nama')->nullable();
             $table->string('email')->nullable();
             $table->string('tlp')->nullable();
@@ -27,6 +27,8 @@ class CreateTiketsTable extends Migration
             $table->string('jenis_kelamin')->nullable();
             $table->string('no_ktp')->nullable();
             $table->string('ischeckin')->default('n');
+            $table->string('ispaidd')->default('n');
+            $table->timestamp('due_at')->nullable();
             $table->timestamps();
         });
     }

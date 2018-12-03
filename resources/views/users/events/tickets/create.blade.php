@@ -37,7 +37,7 @@
 
             <p>
               <label>Tanggal Selesai</label>
-              <input required min="{{date('Y-m-d')}}" class="w3-input w3-border w3-sand" type="date" name="tgl_selesai">
+              <input required min="{{date('Y-m-d')}}" max="{{ $acara->tgl_mulai }}" class="w3-input w3-border w3-sand" type="date" name="tgl_selesai">
             </p>
 
 

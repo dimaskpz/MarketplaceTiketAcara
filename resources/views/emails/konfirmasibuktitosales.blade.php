@@ -14,27 +14,27 @@
   <body>
     <h1>Pembayaran Pemesan Tiket melalui Link mu telah dikonfirmasi Admin Acara</h1>
     {{-- <h3>E-Tiket mu telah valid!!! yeeyy!!!</h3> --}}
-    {{-- <h2 class="w3-bar-item w3-teal w3-padding"> {{ $transaksi->Acara->nama }}</h2> --}}
+    <h2 class="w3-bar-item w3-teal w3-padding"> {{ $transaksi->Acara->nama }}</h2>
 
-    {{-- <div class="w3-card-4">
+    <div class="w3-card-4">
       <div class="w3-padding">
         <div class="w3-container w3-blue">
-          <h4> SEGERA LAKUKAN PEMBAYARAN </h4>
+          <h4> DETAIL TRANSAKSI PEMESAN </h4>
         </div>
         <table>
           <tr>
             <td>
-              Nama Rekening
+              Nama Pemesan
             </td>
             <td>
-              {{ $transaksi->User->nama_rekening }}
+              {{ $transaksi->nama }}
             </td>
           </tr>
           <tr>
             <td>
-              Nomor Rekening
+              Nomor Invoice
             </td>
-            <td>{{ $transaksi->User->no_rekening }}</td>
+            <td>{{ $transaksi->no_nota }}</td>
           </tr>
           <tr>
             <td>
@@ -45,15 +45,8 @@
             </td>
           </tr>
 
-          <tr>
-            <td>
-              Nomor Invoice
-            </td>
-            <td>{{ $transaksi->no_nota }}</td>
-          </tr>
-
         </table>
       </div>
-    </div> --}}
+    </div>
   </body>
 </html>

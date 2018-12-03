@@ -19,7 +19,7 @@ class TransaksisTableSeeder extends Seeder
             'user_id' => '2',
             'acara_id' => '1',
             'nama' => 'dimas',
-            'email' => 'dimaskpz',
+            'email' => 'dimaskpz@gmail.com',
             'tlp' => '08845747754',
             'ispaid' => 'n',
           ],

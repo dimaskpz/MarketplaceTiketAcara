@@ -64,6 +64,10 @@ Check-in Peserta
             <th colspan="2">Nomor Invoice</th>
             <td colspan="3">{{ $tikets[0]->Transaksi->no_nota }}</td>
           </tr>
+          <tr>
+          <th colspan="2">Status</th>
+          <td colspan="3">{{ ($tikets[0]->Transaksi->ispaid == 'y'? 'Lunas' : 'Belum Lunas') }}</td>
+        </tr>
             <tr>
               <th>No</th>
               <th>Nama Tiket</th>

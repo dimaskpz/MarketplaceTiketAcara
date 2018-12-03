@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Mail;
-
+use App\Transaksi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -10,15 +10,15 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class KonfirmasiBukti extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $transaksi;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Transaksi $transaksi)
     {
-        //
+        $this->transaksi = $transaksi;
     }
 
     /**
@@ -28,6 +28,6 @@ class KonfirmasiBukti extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.konfirmasibukti');
+        return $this->from('admin@vihosystem.com')->view('emails.konfirmasibukti');
     }
 }

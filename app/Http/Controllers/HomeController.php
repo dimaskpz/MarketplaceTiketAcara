@@ -6,6 +6,7 @@ use App\Mail\SalesRegis;
 use Illuminate\Http\Request;
 use App\Acara;
 use App\Link;
+use App\User;
 use Carbon\Carbon;
 use Auth;
 class HomeController extends Controller
@@ -52,7 +53,8 @@ class HomeController extends Controller
       $link->link = $rand;
       $link->save();
       // email pemilik acara
-      Mail::to($link->Acara->User->email)->send(new SalesRegis());
+      $user = User::find(Auth::user()->id);
+      Mail::to($link->Acara->User->email)->send(new SalesRegis($user));
 
       return redirect()->route('Home.Event.Show', ['acara_id'=> $acara_id]);
     }

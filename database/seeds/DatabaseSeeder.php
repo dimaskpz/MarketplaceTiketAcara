@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
           AcarasTableSeeder::class,
           LinksTableSeeder::class,
           ProduksTableSeeder::class,
-          TransaksisTableSeeder::class,
-          TiketsTableSeeder::class,
+          // TransaksisTableSeeder::class,
+          // TiketsTableSeeder::class,
         ]);
     }
 }
