@@ -14,7 +14,7 @@
   <body>
     <h1>Pemesan dengan nomor invoice {{ $transaksi->no_nota }} telah mengupload bukti pembayaran</h1>
     <h2 class="w3-bar-item w3-teal w3-padding"> {{ $transaksi->Acara->nama }}</h2>
-
+    <h2 class="w3-bar-item w3-teal w3-padding"> {{ $transaksi->Acara->tgl_mulai }}</h2>
     <div class="w3-card-4">
       <div class="w3-padding">
         <div class="w3-container w3-blue">
@@ -49,7 +49,7 @@
             <td>
               Total yang dibayarkan
             </td>
-            <td>              
+            <td>
               Rp {{ number_format($transaksi->total,0,"",".") }}
             </td>
           </tr>

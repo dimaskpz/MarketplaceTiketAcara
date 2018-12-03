@@ -12,7 +12,7 @@
     </style>
   </head>
   <body>
-    <h1>Pesanan Anda Menanti Pembayaran</h1>
+    <h1>Pesanan Anda Akan Segera Expire pada {{$transaksi->due_at}}</h1>
     <h2 class="w3-bar-item w3-teal w3-padding"> {{ $transaksi->Acara->nama }}</h2>
     <h2 class="w3-bar-item w3-teal w3-padding"> {{ $transaksi->Acara->tgl_mulai }}</h2>
     <div class="w3-card-4">

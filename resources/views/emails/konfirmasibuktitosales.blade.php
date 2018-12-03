@@ -15,7 +15,7 @@
     <h1>Pembayaran Pemesan Tiket melalui Link mu telah dikonfirmasi Admin Acara</h1>
     {{-- <h3>E-Tiket mu telah valid!!! yeeyy!!!</h3> --}}
     <h2 class="w3-bar-item w3-teal w3-padding"> {{ $transaksi->Acara->nama }}</h2>
-
+    <h2 class="w3-bar-item w3-teal w3-padding"> {{ $transaksi->Acara->tgl_mulai }}</h2>
     <div class="w3-card-4">
       <div class="w3-padding">
         <div class="w3-container w3-blue">
