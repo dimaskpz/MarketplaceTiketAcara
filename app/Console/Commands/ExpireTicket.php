@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 // use App\User;
-use App\Mail\ExpireSoon;
+use App\Mail\ExpiredSoon;
 use App\Transaksi;
 use Carbon\Carbon;
 use App\Mail\SendMailable;
@@ -48,11 +48,11 @@ class ExpireTicket extends Command
       // dd($sekarang, $jarak, $transaksis->toarray());
       if (is_array($transaksis)) {
         foreach ($transaksis as $transaksi) {
-          Mail::to($transaksi->email)->send(new ExpireSoon($transaksi));
+          Mail::to($transaksi->email)->send(new ExpiredSoon($transaksi));
         }
       } else {
         if ($transaksis) {
-          Mail::to($transaksis->email)->send(new ExpireSoon($transaksis));
+          Mail::to($transaksis->email)->send(new ExpiredSoon($transaksis));
           // code...
         }
       }
