@@ -2,7 +2,7 @@
 website application untuk Event Organizersistem afiliasi. menggunakan laravel.
 
 
-![alt text](https://github.com/dimaskpz/sistem/blob/master/readme/ss1.png)
+![alt text](https://github.com/dimaskpz/sistem/blob/master/readme/ss1.PNG)
 ![alt text](https://github.com/dimaskpz/sistem/blob/master/readme/ss2.png)
 ![alt text](https://github.com/dimaskpz/sistem/blob/master/readme/ss3.png)
 ![alt text](https://github.com/dimaskpz/sistem/blob/master/readme/ss4.png)
