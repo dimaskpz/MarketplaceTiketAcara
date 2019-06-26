@@ -1,6 +1,7 @@
 # sistem
 website application untuk Event Organizersistem afiliasi. menggunakan laravel.
-  
+dimaskpz@gmail.com
+
   
     
 ![alt text](https://github.com/dimaskpz/sistem/blob/master/readme/ss1.PNG)    
